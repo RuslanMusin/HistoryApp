@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/linlay_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_portrait"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/ic_launcher"
+            android:alpha="1"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_portrait"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Ульянов Владимир Ильич" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linlay_title"
+        android:layout_marginTop="16dp"
+        android:background="@color/primary_dark"
+        android:padding="6dp"
+        android:text="@string/test_name"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+         />
+
+    <TextView
+        android:id="@+id/tv_test_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tv_test"
+        android:text="@string/strength"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_states"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_test_name"
+        android:layout_marginTop="16dp"
+        android:background="@color/primary_dark"
+        android:padding="6dp"
+        android:text="@string/states"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+       />
+
+    <TextView
+        android:id="@+id/tv_strength_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tv_states"
+        android:text="@string/strength"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_strength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/tv_states"
+        android:layout_toRightOf="@id/tv_strength_title"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_intelligence_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tv_strength_title"
+        android:textSize="18sp"
+        android:text="@string/intelligence"/>
+
+    <TextView
+        android:id="@+id/tv_intelligence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/tv_strength_title"
+        android:layout_toRightOf="@id/tv_intelligence_title"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        android:textSize="18sp"
+        android:text="Intelligence"/>
+
+    <TextView
+        android:id="@+id/tv_prestige_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tv_intelligence_title"
+        android:text="@string/prestige"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_prestige"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/tv_intelligence_title"
+        android:layout_toRightOf="@id/tv_prestige_title"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        android:textSize="18sp"
+        android:text="Intelligence"/>
+
+    <TextView
+        android:id="@+id/tv_hp_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tv_prestige_title"
+        android:text="@string/hp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_hp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/tv_prestige_title"
+        android:layout_toRightOf="@id/tv_hp_title"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        android:textSize="18sp"
+        android:text="Intelligence"/>
+
+    <TextView
+        android:id="@+id/tv_support_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tv_hp_title"
+        android:text="@string/support"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tv_support"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/tv_hp_title"
+        android:layout_toRightOf="@id/tv_support_title"
+        android:layout_alignParentRight="true"
+        android:gravity="end"
+        android:textSize="18sp"
+        android:text="Intelligence"/>
+</RelativeLayout>

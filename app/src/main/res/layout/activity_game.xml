@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include layout="@layout/game_toolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.game.play.PlayGameActivity">
+
+    <include
+        android:id="@+id/enemy_selected_card"
+        layout="@layout/item_game_card_medium"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_my_score"
+        app:layout_constraintEnd_toStartOf="@+id/space"
+        app:layout_constraintTop_toBottomOf="@+id/tv_enemy_score" />
+
+    <include
+        android:id="@+id/my_selected_card"
+        layout="@layout/item_game_card_medium"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_my_score"
+        app:layout_constraintStart_toEndOf="@+id/space"
+        app:layout_constraintTop_toBottomOf="@+id/tv_enemy_score"
+       />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="60dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <ImageView
+
+        android:id="@+id/iv_game_enemy_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pers" />
+
+    <TextView
+        android:id="@+id/tv_game_enemy_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Enemy name"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_game_enemy_image"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_game_my_cards"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_game_card_small" />
+
+    <TextView
+        android:id="@+id/tv_my_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="0"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_game_my_cards"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_enemy_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_game_enemy_image" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/enemy"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_game_enemy_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_game_enemy_image" />
+
+
+    <FrameLayout
+        android:id="@+id/game_questions_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/game_selected_card_background"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>

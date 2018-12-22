@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/li_comment"
+    android:layout_alignParentBottom="true"
+   >
+
+    <View
+        android:id="@+id/shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/top_shadow" />
+
+    <LinearLayout
+        android:id="@+id/newCommentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/commentEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/comment_text_hint"
+            android:inputType="textMultiLine"
+            android:maxHeight="@dimen/new_comment_max_height"
+            android:minHeight="@dimen/new_comment_min_height"
+            android:padding="@dimen/intrinsic_padding" />
+
+       <!-- <Button
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/intrinsic_padding"
+            android:background="@color/primary"
+            android:enabled="false"
+            android:minWidth="0dp"
+            android:paddingLeft="@dimen/large_intrinsic_padding"
+            android:paddingRight="@dimen/large_intrinsic_padding"
+            android:text="@string/send_comment_button_label"
+            android:textColor="@android:color/white" />-->
+
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/intrinsic_padding"
+            android:enabled="false"
+            android:minWidth="0dp"
+            android:src="@drawable/ic_send_black_24dp"
+            android:scaleType="centerCrop"
+            android:paddingLeft="@dimen/large_intrinsic_padding"
+            android:paddingRight="@dimen/large_intrinsic_padding"
+           />
+    </LinearLayout>
+
+</LinearLayout>

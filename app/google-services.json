@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "552367507853",
+    "firebase_url": "https://cardsproject-485af.firebaseio.com",
+    "project_id": "cardsproject-485af",
+    "storage_bucket": "cardsproject-485af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552367507853:android:b7a8528e58b9bb81",
+        "android_client_info": {
+          "package_name": "com.summer.itis.cardsproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552367507853-vf7k8h8fl9me0sbh6eghi9mhg7o0f5ev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.summer.itis.cardsproject",
+            "certificate_hash": "7700ab663490a043dacaab29c72da3a663ab5daa"
+          }
+        },
+        {
+          "client_id": "552367507853-qb6eemrd9iv0s6qkm9bfn3st4ur9asqc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.summer.itis.cardsproject",
+            "certificate_hash": "76f5f1e52f3b46370d3c85965f125336f9bfa604"
+          }
+        },
+        {
+          "client_id": "552367507853-060pf722l7q87j08td7nl2oli4lkjd2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVJzJVp-Bre4zLWt-N_d9s6AV3uQNCANU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552367507853-060pf722l7q87j08td7nl2oli4lkjd2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

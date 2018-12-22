@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="120dp"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="@drawable/customborder">
+
+    <TextView
+        android:id="@+id/tv_card_person_name"
+        android:layout_width="100dp"
+        android:layout_height="32dp"
+        android:maxLines="2"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"
+        android:textSize="12sp"
+        android:text="Иван Грозный LДостоевский"
+       />
+
+    <ImageView
+        android:id="@+id/iv_card"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:padding="1dp"
+        app:srcCompat="@mipmap/ic_launcher_round" />
+
+   <!-- <TextView
+        android:id="@+id/tv_card_test_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin.normal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textSize="12sp"
+        android:text="Опричнина"
+       />-->
+
+    <LinearLayout
+        android:id="@+id/ll_card_params"
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:orientation="horizontal"
+       >
+
+        <View
+            android:id="@+id/view_card_intelligence"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/game_card_intelligence" />
+
+        <View
+            android:id="@+id/view_card_support"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/game_card_support" />
+
+        <View
+            android:id="@+id/view_card_prestige"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/game_card_prestige" />
+
+        <View
+            android:id="@+id/view_card_hp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/game_card_hp" />
+
+        <View
+            android:id="@+id/view_card_strength"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/game_card_strength" />
+
+    </LinearLayout>
+
+   <!-- <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/ll_card_params"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />-->
+
+</LinearLayout>

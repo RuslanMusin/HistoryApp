@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_tests"
+        android:icon="@drawable/ic_book_black_24dp"
+        android:title="@string/tests" />
+
+    <item
+        android:id="@+id/menu_cards"
+        android:icon="@drawable/ic_group_black_24dp"
+        android:title="@string/card" />
+
+    <item
+        android:id="@+id/menu_game"
+        android:icon="@drawable/ic_group_black_24dp"
+        android:title="@string/game" />
+
+    <item
+        android:id="@+id/menu_friends"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/friends" />
+
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="@string/logout" />
+</menu>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin.large"
+        android:layout_marginStart="@dimen/margin.large"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/li_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/profileInfo"
+            android:layout_width="match_parent"
+            android:minHeight="120dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/intrinsic_padding"
+            android:paddingRight="@dimen/intrinsic_padding"
+            android:paddingTop="@dimen/intrinsic_padding"
+            >
+
+            <RelativeLayout
+                android:id="@+id/imageContainer"
+                android:layout_width="@dimen/profile_screen_avatar_size"
+                android:layout_height="@dimen/profile_screen_avatar_size"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                >
+
+                <ProgressBar
+                    android:id="@+id/progressBarPersonal"
+                    android:layout_width="@dimen/progress_bar_size"
+                    android:layout_height="@dimen/progress_bar_size"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_portrait"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:alpha="1"
+                    android:src="@mipmap/ic_launcher" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/profile_screen_avatar_right_margin"
+                android:layout_toEndOf="@+id/imageContainer"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nameEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="@dimen/large_intrinsic_padding"
+                    android:paddingTop="@dimen/intrinsic_padding"
+                    android:text="@string/book_name"
+                    android:textColor="@color/primary_text"
+                    android:fontFamily="@font/font_family"
+                    android:textSize="@dimen/text.22"
+                     />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_add_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_friend"
+                    android:textAllCaps="false"
+                    android:background="@color/primary"
+                    android:padding="@dimen/padding_small"
+                    android:textColor="@color/white"
+                    />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_play_game"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin.normal"
+                    android:text="@string/play_game"
+                    android:textAllCaps="false"
+                    android:background="@color/primary"
+                    android:padding="@dimen/padding_small"
+                    android:textColor="@color/white"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/postsCounterTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/profile_screen_margin_between_counters"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Title"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/likesCountersTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.Title"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/li_tests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin.normal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_small"
+                android:src="@drawable/ic_insert_drive_file_black_24dp"/>
+
+        <TextView
+            android:id="@+id/tv_crossings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_small"
+            android:text="@string/tests"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text.16" />
+        </LinearLayout>
+
+        <include layout="@layout/layout_divider"/>
+
+        <LinearLayout
+            android:id="@+id/li_cards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin.normal"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_small"
+                android:src="@drawable/ic_portrait_black_24dp"/>
+
+            <TextView
+                android:id="@+id/tv_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_small"
+                android:paddingTop="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_small"
+                android:text="@string/card"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text.16" />
+        </LinearLayout>
+
+        <include layout="@layout/layout_divider"/>
+
+        <TextView
+            android:id="@+id/tv_desc_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin.normal"
+            android:text="@string/desc"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text.16" />
+
+        <include layout="@layout/layout_expandable_text_view"/>
+
+        <!--<com.summer.itis.summerproject.ui.widget.ExpandableTextView
+            android:id="@+id/extv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            expandableTextView:animDuration="200"
+            expandableTextView:collapseText="@string/collapse_text_label"
+            expandableTextView:expandText="@string/expand_text_label"
+            expandableTextView:maxCollapsedLines="3">
+
+            <TextView
+                android:id="@+id/expandable_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:ellipsize="end"
+                android:textAppearance="@style/TextAppearance.Second" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/small_intrinsic_padding">
+
+                <TextView
+                    android:id="@+id/dateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="day ago"
+                    android:textAppearance="@style/TextAppearance.Second.Light" />
+
+                <TextView
+                    android:id="@+id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:autoLink="web"
+                    android:textAppearance="@style/TextAppearance.Second.Light" />
+
+            </RelativeLayout>
+
+        </com.summer.itis.summerproject.ui.widget.ExpandableTextView>-->
+
+        <ProgressBar
+            android:id="@+id/progress_loader"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin.small"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

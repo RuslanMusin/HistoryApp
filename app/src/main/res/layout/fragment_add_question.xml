@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinner"
+            ms_background_color="@color/primary"
+            ms_text_color="@color/white"
+            android:text="@string/select_test_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="0dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <!-- Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/ti_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:hintTextAppearance="@style/QuestionTiLayout"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/et_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLength="200"
+                android:maxLines="5"
+                android:textSize="@dimen/text.18"
+                android:hint="@string/qustionId"/>
+        </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/li_answers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+    </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_add_answer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:text="@string/add_answer"/>
+
+       <!-- <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_next_question"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:text="@string/next_question"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_finish_questions"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:background="@color/primary"
+            android:textColor="@color/white"
+            android:text="@string/finish_questions"/>-->
+
+    </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

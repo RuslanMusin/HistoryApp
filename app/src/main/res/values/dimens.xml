@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="item_size">72dp</dimen>
+
+    <dimen name="margin.small">4dp</dimen>
+    <dimen name="margin.normal">8dp</dimen>
+    <dimen name="margin.large">16dp</dimen>
+    <dimen name="margin.xlarge">24dp</dimen>
+
+    <dimen name="text.14">14sp</dimen>
+    <dimen name="text.16">16sp</dimen>
+    <dimen name="text.18">18sp</dimen>
+    <dimen name="text.20">20sp</dimen>
+    <dimen name="text.22">22sp</dimen>
+    <dimen name="text.24">24sp</dimen>
+
+    <dimen name="padding_xsmall">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_xlarge">32dp</dimen>
+
+
+    <dimen name="height_nav_header">220dp</dimen>
+    <dimen name="height_app_bar">240dp</dimen>
+    <dimen name="size_image_list">48dp</dimen>
+    <dimen name="size_image_medium">60dp</dimen>
+    <dimen name="size_item_large">72dp</dimen>
+
+    <dimen name="small_intrinsic_padding">4dp</dimen>
+    <dimen name="intrinsic_padding">8dp</dimen>
+    <dimen name="large_intrinsic_padding">16dp</dimen>
+
+    <dimen name="progress_bar_size">50dp</dimen>
+
+    <dimen name="circle_image_shadow_radius">3dp</dimen>
+
+
+    <dimen name="new_comment_min_height">50dp</dimen>
+    <dimen name="new_comment_max_height">100dp</dimen>
+
+    <dimen name="post_counters_item_width">50dp</dimen>
+
+    <dimen name="post_detail_image_height">250dp</dimen>
+    <dimen name="post_author_image_side">80dp</dimen>
+    <dimen name="post_author_image_margin">210dp</dimen> <!-- (post_detail_image_height - post_author_image_side / 2), for centering by post image bottom line-->
+
+    <dimen name="profile_photo_side">150dp</dimen>
+
+    <dimen name="profile_screen_avatar_size">100dp</dimen>
+
+    <dimen name="profile_screen_margin_top_progress_bar">120dp</dimen>
+
+    <dimen name="profile_screen_margin_between_counters">32dp</dimen>
+    <dimen name="profile_screen_avatar_right_margin">24dp</dimen>
+
+    <!--post cardId content_padding left = card_elevation + card_padding-->
+    <dimen name="post_card_content_padding_left">90dp</dimen>
+
+    <dimen name="post_counter_radius">16dp</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="tab_max_width">264dp</dimen>
+    <dimen name="tab_padding_bottom">16dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
+    <dimen name="custom_tab_layout_height">72dp</dimen>
+
+</resources>

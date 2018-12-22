@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/linlay_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_portrait"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/ic_launcher"
+            android:alpha="1"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_portrait"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Ульянов Владимир Ильич" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linlay_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"
+        android:hint="State"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/white"
+        android:layout_centerHorizontal="true">
+    </Button>
+
+    <Button
+        android:id="@+id/btn_wiki"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_state"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"
+        android:hint="Wiki"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/white"
+        android:layout_centerHorizontal="true">
+    </Button>
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_wiki"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"
+        android:hint="Test"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/tv_description_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="6dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/btn_test"
+        android:text="Description"
+        android:background="@color/primary_dark"
+        tools:text="Description"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tv_description_title"
+        android:layout_gravity="start"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        tools:text="Ульянов Владимир Ильич - вождь народа amsndbfkak.dsnfadfna.dnf.ands.kjfnadfasdfadsfadfadsfasdfadfad sdsgsdfgsfdgsfdgsfgsfgdsgfsdfgsdfgsdfgsdfgds" />
+</RelativeLayout>
