@@ -1,15 +1,15 @@
-package com.summer.itis.summerproject.ui.game.game_list.game
+package com.summer.itis.cardsproject.ui.game.game_list.game
 
 import android.widget.ProgressBar
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.model.game.LobbyPlayerData
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.ui.game.game_list.GameAdapter
-import com.summer.itis.summerproject.ui.tests.test_list.TestAdapter
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.game.LobbyPlayerData
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.game.game_list.GameAdapter
+import com.summer.itis.cardsproject.ui.tests.test_list.TestAdapter
 import io.reactivex.disposables.Disposable
 
 interface GameListView : MvpView, BaseAdapter.OnItemClickListener<Lobby> {

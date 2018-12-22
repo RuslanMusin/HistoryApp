@@ -1,8 +1,8 @@
-package com.summer.itis.summerproject.repository.json
+package com.summer.itis.cardsproject.repository.json
 
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.summer.itis.summerproject.model.Question
+import com.summer.itis.cardsproject.model.Question
 
 import java.util.HashMap
 

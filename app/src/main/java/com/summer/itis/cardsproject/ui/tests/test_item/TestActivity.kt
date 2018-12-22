@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests.test_item
+package com.summer.itis.cardsproject.ui.tests.test_item
 
 import android.app.Activity
 import android.content.Intent
@@ -9,23 +9,23 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
 
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.ui.base.BaseBackActivity
-import com.summer.itis.summerproject.ui.base.OnCancelListener
-import com.summer.itis.summerproject.ui.base.OnForwardListener
-import com.summer.itis.summerproject.ui.base.OnOkListener
-import com.summer.itis.summerproject.ui.tests.add_test.fragments.main.AddTestFragment
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.main.TestFragment
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.ui.base.BaseBackActivity
+import com.summer.itis.cardsproject.ui.base.OnCancelListener
+import com.summer.itis.cardsproject.ui.base.OnForwardListener
+import com.summer.itis.cardsproject.ui.base.OnOkListener
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.main.TestFragment
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_test.*
-import com.summer.itis.summerproject.ui.tests.ChangeToolbarListener
-import com.summer.itis.summerproject.ui.tests.add_test.fragments.question.AddQuestionFragment
-import com.summer.itis.summerproject.ui.tests.test_list.test.TestListActivity
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.EDIT_STATUS
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.question.AddQuestionFragment
+import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import kotlinx.android.synthetic.main.back_forward.*
 
 

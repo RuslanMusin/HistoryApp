@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.play.list
+package com.summer.itis.cardsproject.ui.game.play.list
 
 import android.support.v7.widget.RecyclerView
 import android.view.View

@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.cards_info
+package com.summer.itis.cardsproject.ui.cards.cards_info
 
 import QuestionFragment.Companion.CARD_JSON
 import android.content.Context
@@ -8,11 +8,11 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings.PluginState
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.string.card
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.ui.base.BaseActivity
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.string.card
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.ui.base.BaseActivity
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.activity_wiki.*
 
 

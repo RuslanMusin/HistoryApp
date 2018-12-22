@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.model.db_dop_models
+package com.summer.itis.cardsproject.model.db_dop_models
 
 import com.google.firebase.database.IgnoreExtraProperties
 

@@ -1,7 +1,7 @@
-package com.summer.itis.summerproject.ui.comment
+package com.summer.itis.cardsproject.ui.comment
 
-import com.summer.itis.summerproject.model.Comment
-import com.summer.itis.summerproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.model.Comment
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
 
 interface OnCommentClickListener : BaseAdapter.OnItemClickListener<Comment> {
 

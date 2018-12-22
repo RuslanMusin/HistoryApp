@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.add_photo
+package com.summer.itis.cardsproject.ui.game.add_photo
 
 import android.app.Activity
 import android.content.Intent
@@ -12,26 +12,26 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.string.card
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.db_dop_models.PhotoItem
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.cards.add_card.AddCardActivity
-import com.summer.itis.summerproject.ui.cards.add_card.AddCardActivity.Companion.ITEM_JSON
-import com.summer.itis.summerproject.ui.cards.add_card_list.AddCardListAdapter
-import com.summer.itis.summerproject.ui.cards.add_card_list.AddCardListView
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestActivity
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.EDIT_STATUS
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.USER_ID
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.string.card
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.db_dop_models.PhotoItem
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity
+import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity.Companion.ITEM_JSON
+import com.summer.itis.cardsproject.ui.cards.add_card_list.AddCardListAdapter
+import com.summer.itis.cardsproject.ui.cards.add_card_list.AddCardListView
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.USER_ID
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import io.reactivex.disposables.Disposable
 
 class AddPhotoActivity : NavigationBaseActivity(), AddPhotoView, BaseAdapter.OnItemClickListener<PhotoItem> {

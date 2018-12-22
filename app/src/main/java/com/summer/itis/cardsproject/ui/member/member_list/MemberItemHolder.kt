@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.member.member_list
+package com.summer.itis.cardsproject.ui.member.member_list
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,10 +8,10 @@ import android.widget.TextView
 
 import com.bumptech.glide.Glide
 
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const.STUB_PATH
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const.STUB_PATH
 
 class MemberItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

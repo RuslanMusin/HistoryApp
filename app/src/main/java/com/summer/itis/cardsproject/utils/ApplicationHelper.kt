@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.summer.itis.summerproject.utils
+package com.summer.itis.cardsproject.utils
 
 import android.content.Context
 import android.util.Log
@@ -29,26 +29,26 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.summer.itis.summerproject.Application
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.start.login.LoginActivity
+import com.summer.itis.cardsproject.Application
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.start.login.LoginActivity
 
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 import android.util.TypedValue
-import com.summer.itis.summerproject.ui.member.member_item.PersonalActivity
-import com.summer.itis.summerproject.utils.Const.STUB_PATH
+import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
+import com.summer.itis.cardsproject.utils.Const.STUB_PATH
 import android.app.Activity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import com.summer.itis.summerproject.utils.Const.MAX_LENGTH
-import com.summer.itis.summerproject.utils.Const.MORE_TEXT
-import com.summer.itis.summerproject.utils.Const.OFFLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.MAX_LENGTH
+import com.summer.itis.cardsproject.utils.Const.MORE_TEXT
+import com.summer.itis.cardsproject.utils.Const.OFFLINE_STATUS
 
 
 //ОСНОВНОЙ КЛАСС HELPER приложения. ОТСЮДА БЕРЕМ ТЕКУЩЕГО ЮЗЕРА ИЗ БД, ГРУЗИМ ФОТКУ ЮЗЕРА В ПРОФИЛЬ,

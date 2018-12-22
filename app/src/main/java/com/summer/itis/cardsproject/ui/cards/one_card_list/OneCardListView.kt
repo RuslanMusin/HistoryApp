@@ -1,12 +1,12 @@
-package com.summer.itis.summerproject.ui.cards.one_card_list
+package com.summer.itis.cardsproject.ui.cards.one_card_list
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
 import io.reactivex.disposables.Disposable
 
 interface OneCardListView : MvpView, BaseAdapter.OnItemClickListener<AbstractCard> {

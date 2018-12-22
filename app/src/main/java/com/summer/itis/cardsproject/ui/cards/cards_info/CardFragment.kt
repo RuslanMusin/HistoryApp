@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.cards_info
+package com.summer.itis.cardsproject.ui.cards.cards_info
 
 import QuestionFragment.Companion.CARD_JSON
 import android.content.Intent
@@ -13,19 +13,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.id.*
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.ui.cards.card_states.CardStatesActivity
-import com.summer.itis.summerproject.ui.tests.one_test_list.OneTestListActivity
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.ABSTRACT_CARD_ID
-import com.summer.itis.summerproject.utils.Const.DEFAULT_ABSTRACT_TESTS
-import com.summer.itis.summerproject.utils.Const.TEST_LIST_TYPE
-import com.summer.itis.summerproject.utils.Const.USER_ABSTRACT_TESTS
-import com.summer.itis.summerproject.utils.Const.USER_ID
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.id.*
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.ui.cards.card_states.CardStatesActivity
+import com.summer.itis.cardsproject.ui.tests.one_test_list.OneTestListActivity
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.ABSTRACT_CARD_ID
+import com.summer.itis.cardsproject.utils.Const.DEFAULT_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.utils.Const.TEST_LIST_TYPE
+import com.summer.itis.cardsproject.utils.Const.USER_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.utils.Const.USER_ID
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 
 /**
  * Created by Home on 11.07.2018.

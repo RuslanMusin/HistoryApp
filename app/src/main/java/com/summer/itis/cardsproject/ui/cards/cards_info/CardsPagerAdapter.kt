@@ -1,9 +1,9 @@
-package com.summer.itis.summerproject.ui.cards.cards_info
+package com.summer.itis.cardsproject.ui.cards.cards_info
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.summer.itis.summerproject.model.AbstractCard
+import com.summer.itis.cardsproject.model.AbstractCard
 
 /**
  * Created by Home on 11.07.2018.

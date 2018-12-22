@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.play.change_list
+package com.summer.itis.cardsproject.ui.game.play.change_list
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Card
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Card
 import android.view.animation.AnimationUtils
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity.Companion.setWeight
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity.Companion.setWeight
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import kotlinx.android.synthetic.main.item_game_card_medium.view.*
 
 

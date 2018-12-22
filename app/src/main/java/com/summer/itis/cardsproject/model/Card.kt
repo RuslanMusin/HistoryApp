@@ -1,11 +1,11 @@
-package com.summer.itis.summerproject.model
+package com.summer.itis.cardsproject.model
 
 import android.os.Parcel
 import android.os.Parcelable
 import android.os.Parcelable.Creator
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
-import com.summer.itis.summerproject.model.AbstractCard
+import com.summer.itis.cardsproject.model.AbstractCard
 
 @IgnoreExtraProperties
 open class Card() : Parcelable{

@@ -1,13 +1,13 @@
-package com.summer.itis.summerproject.ui.cards.cards_list.tabs
+package com.summer.itis.cardsproject.ui.cards.cards_list.tabs
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.ui.cards.card_item.CardActivity
-import com.summer.itis.summerproject.ui.cards.cards_info.CardsActivity
-import com.summer.itis.summerproject.utils.Const.ALL_LIST_CARDS
-import com.summer.itis.summerproject.utils.Const.DEFAULT_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.ui.cards.card_item.CardActivity
+import com.summer.itis.cardsproject.ui.cards.cards_info.CardsActivity
+import com.summer.itis.cardsproject.utils.Const.ALL_LIST_CARDS
+import com.summer.itis.cardsproject.utils.Const.DEFAULT_ABSTRACT_TESTS
 import java.util.ArrayList
 
 /**

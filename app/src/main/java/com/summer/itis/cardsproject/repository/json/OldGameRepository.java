@@ -2,13 +2,13 @@ package com.summer.itis.cardsproject.repository.json;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.summer.itis.summerproject.model.GameOne;
-import com.summer.itis.summerproject.ui.start.login.LoginActivity;
+import com.summer.itis.cardsproject.model.GameOne;
+import com.summer.itis.cardsproject.ui.start.login.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.summer.itis.summerproject.utils.Const.SEP;
+import static com.summer.itis.cardsproject.utils.Const.SEP;
 
 public class OldGameRepository {
 

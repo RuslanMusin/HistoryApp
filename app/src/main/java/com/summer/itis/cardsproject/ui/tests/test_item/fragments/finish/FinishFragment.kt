@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests.test_item.fragments.finish
+package com.summer.itis.cardsproject.ui.tests.test_item.fragments.finish
 
 import QuestionFragment.Companion.ANSWERS_TYPE
 import QuestionFragment.Companion.RIGHT_ANSWERS
@@ -10,27 +10,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Question
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.testRepository
-import com.summer.itis.summerproject.ui.base.BaseBackActivity
-import com.summer.itis.summerproject.ui.base.OnBackPressedListener
-import com.summer.itis.summerproject.ui.base.OnOkListener
-import com.summer.itis.summerproject.ui.tests.ChangeToolbarListener
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.WINNED_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.check_answers.AnswersFragment
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.winned_card.TestCardFragment
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Question
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
+import com.summer.itis.cardsproject.ui.base.BaseBackActivity
+import com.summer.itis.cardsproject.ui.base.OnBackPressedListener
+import com.summer.itis.cardsproject.ui.base.OnOkListener
+import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.WINNED_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.check_answers.AnswersFragment
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.winned_card.TestCardFragment
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_finish_test.*
 
 class FinishFragment : Fragment(), View.OnClickListener, OnBackPressedListener, OnOkListener {

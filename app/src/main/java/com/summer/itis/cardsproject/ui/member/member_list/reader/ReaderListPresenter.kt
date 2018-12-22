@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.member.member_list.reader
+package com.summer.itis.cardsproject.ui.member.member_list.reader
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -10,14 +10,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.db_dop_models.ElementId
-import com.summer.itis.summerproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.db_dop_models.ElementId
+import com.summer.itis.cardsproject.repository.RepositoryProvider
 
 import java.util.ArrayList
 
 import android.support.constraint.Constraints.TAG
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer

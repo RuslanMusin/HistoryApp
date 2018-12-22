@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.utils
+package com.summer.itis.cardsproject.utils
 
 import android.util.Log
 

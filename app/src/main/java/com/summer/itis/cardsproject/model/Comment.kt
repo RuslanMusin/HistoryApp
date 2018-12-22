@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.summer.itis.summerproject.model
+package com.summer.itis.cardsproject.model
 
 
 import com.google.firebase.database.Exclude

@@ -1,11 +1,11 @@
-package com.summer.itis.summerproject.ui.cards.one_card_list
+package com.summer.itis.cardsproject.ui.cards.one_card_list
 
 import android.annotation.SuppressLint
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.cardRepository
-import com.summer.itis.summerproject.ui.tests.one_test_list.OneTestListView
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.ui.tests.one_test_list.OneTestListView
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer

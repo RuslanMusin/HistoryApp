@@ -1,14 +1,14 @@
-package com.summer.itis.summerproject.ui.game.add_photo
+package com.summer.itis.cardsproject.ui.game.add_photo
 
 import android.system.Os.remove
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.summer.itis.summerproject.model.db_dop_models.PhotoItem
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.abstractCardRepository
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestView
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.model.db_dop_models.PhotoItem
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abstractCardRepository
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestView
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer

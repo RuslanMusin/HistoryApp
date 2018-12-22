@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.repository.json
+package com.summer.itis.cardsproject.repository.json
 
 import android.util.Log
 
@@ -10,11 +10,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
-import com.summer.itis.summerproject.model.Comment
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.db_dop_models.ElementId
-import com.summer.itis.summerproject.model.db_dop_models.Relation
-import com.summer.itis.summerproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.model.Comment
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.db_dop_models.ElementId
+import com.summer.itis.cardsproject.model.db_dop_models.Relation
+import com.summer.itis.cardsproject.utils.ApplicationHelper
 
 import java.util.ArrayList
 import java.util.HashMap
@@ -22,15 +22,15 @@ import java.util.Objects
 
 import io.reactivex.Single
 
-import com.summer.itis.summerproject.utils.Const.ADD_FRIEND
-import com.summer.itis.summerproject.utils.Const.OFFLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.QUERY_END
-import com.summer.itis.summerproject.utils.Const.REMOVE_FRIEND
-import com.summer.itis.summerproject.utils.Const.REMOVE_REQUEST
-import com.summer.itis.summerproject.utils.Const.SEP
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.RxUtils
+import com.summer.itis.cardsproject.utils.Const.ADD_FRIEND
+import com.summer.itis.cardsproject.utils.Const.OFFLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.QUERY_END
+import com.summer.itis.cardsproject.utils.Const.REMOVE_FRIEND
+import com.summer.itis.cardsproject.utils.Const.REMOVE_REQUEST
+import com.summer.itis.cardsproject.utils.Const.SEP
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Observable
 
 class UserRepository {

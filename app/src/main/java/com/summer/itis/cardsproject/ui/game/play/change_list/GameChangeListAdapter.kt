@@ -1,11 +1,11 @@
-package com.summer.itis.summerproject.ui.game.play.change_list
+package com.summer.itis.cardsproject.ui.game.play.change_list
 
 import android.util.Log
 import android.view.ViewGroup
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.getRandom
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.getRandom
 
 class GameChangeListAdapter(items: MutableList<Card>, val allCards: MutableList<Card>, val size: Int, val onStop: () -> Unit) : BaseAdapter<Card, GameChangeListViewHolder>(items) {
 

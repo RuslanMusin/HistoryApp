@@ -1,15 +1,15 @@
-package com.summer.itis.summerproject.ui.game.game_list
+package com.summer.itis.cardsproject.ui.game.game_list
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.model.game.LobbyPlayerData
-import com.summer.itis.summerproject.utils.Const.MAX_LENGTH
-import com.summer.itis.summerproject.utils.Const.MORE_TEXT
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.game.LobbyPlayerData
+import com.summer.itis.cardsproject.utils.Const.MAX_LENGTH
+import com.summer.itis.cardsproject.utils.Const.MORE_TEXT
 import kotlinx.android.synthetic.main.item_game.view.*
 
 class GameItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

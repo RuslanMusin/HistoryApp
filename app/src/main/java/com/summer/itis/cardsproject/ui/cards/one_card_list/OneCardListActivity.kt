@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.one_card_list
+package com.summer.itis.cardsproject.ui.cards.one_card_list
 
 import android.app.Activity
 import android.content.Intent
@@ -9,17 +9,17 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.cards.card_item.CardActivity
-import com.summer.itis.summerproject.ui.cards.cards_list.adapter.CardsListAdapter
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.DEFAULT_ABSTRACT_TESTS
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.cards.card_item.CardActivity
+import com.summer.itis.cardsproject.ui.cards.cards_list.adapter.CardsListAdapter
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.DEFAULT_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import io.reactivex.disposables.Disposable
 
 class OneCardListActivity : NavigationBaseActivity(), OneCardListView, BaseAdapter.OnItemClickListener<AbstractCard> {

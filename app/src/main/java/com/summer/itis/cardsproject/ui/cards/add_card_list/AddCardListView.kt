@@ -1,8 +1,8 @@
-package com.summer.itis.summerproject.ui.cards.add_card_list
+package com.summer.itis.cardsproject.ui.cards.add_card_list
 
 import com.arellomobile.mvp.MvpView
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.model.pojo.query.Page
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.model.pojo.query.Page
 import io.reactivex.disposables.Disposable
 
 interface AddCardListView : MvpView {

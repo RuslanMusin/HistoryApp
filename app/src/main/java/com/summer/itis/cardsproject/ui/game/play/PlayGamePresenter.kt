@@ -1,21 +1,21 @@
-package com.summer.itis.summerproject.ui.game.play
+package com.summer.itis.cardsproject.ui.game.play
 
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.game.CardChoose
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.json.GamesRepository
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.utils.Const.BOT_GAME
-import com.summer.itis.summerproject.utils.Const.BOT_ID
-import com.summer.itis.summerproject.utils.Const.MODE_PLAY_GAME
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_TYPE
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.getRandom
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.game.CardChoose
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.json.GamesRepository
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.utils.Const.BOT_GAME
+import com.summer.itis.cardsproject.utils.Const.BOT_ID
+import com.summer.itis.cardsproject.utils.Const.MODE_PLAY_GAME
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.getRandom
 import io.reactivex.Single
 import java.util.*
 

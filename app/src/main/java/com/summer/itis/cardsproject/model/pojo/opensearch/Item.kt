@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.model.pojo.opensearch
+package com.summer.itis.cardsproject.model.pojo.opensearch
 
 
 import org.simpleframework.xml.Attribute

@@ -1,8 +1,8 @@
-package com.summer.itis.summerproject.repository.api
+package com.summer.itis.cardsproject.repository.api
 
 
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.model.pojo.query.Page
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.model.pojo.query.Page
 
 import io.reactivex.Single
 

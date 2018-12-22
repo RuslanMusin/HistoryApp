@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.member.member_list.reader
+package com.summer.itis.cardsproject.ui.member.member_list.reader
 
 import android.widget.ProgressBar
 
@@ -6,9 +6,9 @@ import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.ui.member.member_list.MemberAdapter
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.member.member_list.MemberAdapter
 
 import io.reactivex.disposables.Disposable
 

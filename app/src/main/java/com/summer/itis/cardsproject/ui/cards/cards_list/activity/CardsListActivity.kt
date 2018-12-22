@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.cards_list.activity
+package com.summer.itis.cardsproject.ui.cards.cards_list.activity
 
 import android.content.Context
 import android.content.Intent
@@ -8,14 +8,14 @@ import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.SearchView
 import android.view.Menu
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.base.EasyNavigationBaseActivity
-import com.summer.itis.summerproject.ui.cards.cards_list.adapter.CardsListPagerAdapter
-import com.summer.itis.summerproject.utils.Const.MY_LIST
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_LIST
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.USER_LIST
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.base.EasyNavigationBaseActivity
+import com.summer.itis.cardsproject.ui.cards.cards_list.adapter.CardsListPagerAdapter
+import com.summer.itis.cardsproject.utils.Const.MY_LIST
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_LIST
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.USER_LIST
 import kotlinx.android.synthetic.main.activity_cards_list.toolbar
 
 class CardsListActivity : EasyNavigationBaseActivity() {

@@ -1,10 +1,10 @@
-package com.summer.itis.summerproject.ui.base
+package com.summer.itis.cardsproject.ui.base
 
 import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.MvpAppCompatFragment
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.finish.FinishFragment
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.finish.FinishFragment
 
 abstract class BaseBackActivity: NavigationBaseActivity() {
 
@@ -24,7 +24,7 @@ abstract class BaseBackActivity: NavigationBaseActivity() {
     }
 
     fun getCurrentFragment(): Fragment {
-        return supportFragmentManager.findFragmentByTag(currentTag)
+        return supportFragmentManager.findFragmentByTag(currentTag)!!
     }
 
 }

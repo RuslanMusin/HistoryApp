@@ -1,7 +1,7 @@
-package com.summer.itis.summerproject.ui.cards.card_states.fragment
+package com.summer.itis.cardsproject.ui.cards.card_states.fragment
 
 import com.arellomobile.mvp.MvpView
-import com.summer.itis.summerproject.model.Test
+import com.summer.itis.cardsproject.model.Test
 
 interface CardStateView : MvpView {
 

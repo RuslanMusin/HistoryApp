@@ -1,15 +1,15 @@
-package com.summer.itis.summerproject.ui.cards.add_card
+package com.summer.itis.cardsproject.ui.cards.add_card
 
 import android.annotation.SuppressLint
 import android.util.Log
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.summer.itis.summerproject.model.pojo.query.Page
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestView
+import com.summer.itis.cardsproject.model.pojo.query.Page
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestView
 
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import io.reactivex.functions.Consumer
 
 @InjectViewState

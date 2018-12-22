@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.game_list.fragment
+package com.summer.itis.cardsproject.ui.game.game_list.fragment
 
 import android.app.Activity
 import android.app.ProgressDialog.show
@@ -18,17 +18,17 @@ import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.Glide
 import com.ms.square.android.expandabletextview.ExpandableTextView
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.string.card
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.model.game.LobbyPlayerData
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.gamesRepository
-import com.summer.itis.summerproject.ui.game.add_game.AddGameActivity
-import com.summer.itis.summerproject.ui.game.game_list.GameAdapter
-import com.summer.itis.summerproject.ui.game.game_list.game.GameListView
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.string.card
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.game.LobbyPlayerData
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
+import com.summer.itis.cardsproject.ui.game.add_game.AddGameActivity
+import com.summer.itis.cardsproject.ui.game.game_list.GameAdapter
+import com.summer.itis.cardsproject.ui.game.game_list.game.GameListView
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const
 import kotlinx.android.synthetic.main.fragment_test_list.*
 import java.util.ArrayList
 

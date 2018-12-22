@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.comment
+package com.summer.itis.cardsproject.ui.comment
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
@@ -14,12 +14,12 @@ import com.bumptech.glide.Glide
 
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.id.*
-import com.summer.itis.summerproject.model.Comment
-import com.summer.itis.summerproject.ui.widget.ExpandableTextView
-import com.summer.itis.summerproject.utils.Const.STUB_PATH
-import com.summer.itis.summerproject.utils.FormatterUtil
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.id.*
+import com.summer.itis.cardsproject.model.Comment
+import com.summer.itis.cardsproject.ui.widget.ExpandableTextView
+import com.summer.itis.cardsproject.utils.Const.STUB_PATH
+import com.summer.itis.cardsproject.utils.FormatterUtil
 import kotlinx.android.synthetic.main.item_comment.view.*
 
 class CommentItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests
+package com.summer.itis.cardsproject.ui.tests
 
 import android.view.View
 

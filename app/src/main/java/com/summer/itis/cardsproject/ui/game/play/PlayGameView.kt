@@ -1,9 +1,9 @@
-package com.summer.itis.summerproject.ui.game.play
+package com.summer.itis.cardsproject.ui.game.play
 
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.Question
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.repository.json.GamesRepository
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Question
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.repository.json.GamesRepository
 
 interface PlayGameView : PlayView {
     fun setEnemyUserData(user: User)

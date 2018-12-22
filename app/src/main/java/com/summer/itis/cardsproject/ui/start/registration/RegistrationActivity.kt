@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.start.registration
+package com.summer.itis.cardsproject.ui.start.registration
 
 import android.app.Activity
 import android.content.Intent
@@ -18,18 +18,18 @@ import com.bumptech.glide.Glide
 
 
 import com.google.firebase.auth.FirebaseAuth
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.db_dop_models.PhotoItem
-import com.summer.itis.summerproject.ui.base.BaseActivity
-import com.summer.itis.summerproject.ui.cards.add_card.AddCardActivity
-import com.summer.itis.summerproject.ui.game.add_photo.AddPhotoActivity
-import com.summer.itis.summerproject.ui.member.member_item.PersonalActivity
-import com.summer.itis.summerproject.ui.start.login.LoginActivity
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.BOT_ID
-import com.summer.itis.summerproject.utils.Const.STUB_PATH
-import com.summer.itis.summerproject.utils.Const.USER_ID
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.db_dop_models.PhotoItem
+import com.summer.itis.cardsproject.ui.base.BaseActivity
+import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity
+import com.summer.itis.cardsproject.ui.game.add_photo.AddPhotoActivity
+import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
+import com.summer.itis.cardsproject.ui.start.login.LoginActivity
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.BOT_ID
+import com.summer.itis.cardsproject.utils.Const.STUB_PATH
+import com.summer.itis.cardsproject.utils.Const.USER_ID
 import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.dialog_pick_image.*
 import java.io.InputStream
@@ -120,19 +120,19 @@ class RegistrationActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(reqCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK) {
             if(reqCode == GALLERY_PHOTO) {
-                imageUri = data.data
+                imageUri = data?.data
                 isStandartPhoto = false
                 val imageStream: InputStream = getContentResolver().openInputStream(imageUri)
                 val selectedImage: Bitmap = BitmapFactory.decodeStream(imageStream)
                 iv_cover.setImageBitmap(selectedImage)
             }
             if(reqCode == STANDART_PHOTO) {
-                val photoItem = Const.gsonConverter.fromJson(data.getStringExtra(AddCardActivity.ITEM_JSON), PhotoItem::class.java)
+                val photoItem = Const.gsonConverter.fromJson(data?.getStringExtra(AddCardActivity.ITEM_JSON), PhotoItem::class.java)
                 photoUrl = photoItem.photoUrl
                 Glide.with(this)
                         .load(photoUrl)

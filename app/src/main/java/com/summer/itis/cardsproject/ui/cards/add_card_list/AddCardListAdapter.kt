@@ -1,9 +1,9 @@
-package com.summer.itis.summerproject.ui.cards.add_card_list
+package com.summer.itis.cardsproject.ui.cards.add_card_list
 
 import android.view.ViewGroup
 
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
 
 class AddCardListAdapter(items: MutableList<Item>) : BaseAdapter<Item, AddCardListHolder>(items) {
 

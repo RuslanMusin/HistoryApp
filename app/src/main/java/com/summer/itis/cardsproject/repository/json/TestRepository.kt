@@ -1,32 +1,32 @@
-package com.summer.itis.summerproject.repository.json
+package com.summer.itis.cardsproject.repository.json
 
 import android.util.Log
 import com.google.android.gms.common.util.ArrayUtils.contains
 import com.google.firebase.database.*
-import com.summer.itis.summerproject.model.*
-import com.summer.itis.summerproject.model.db_dop_models.ElementId
-import com.summer.itis.summerproject.model.db_dop_models.Relation
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.abstractCardRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.cardRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.testRepository
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.ADMIN_ROLE
-import com.summer.itis.summerproject.utils.Const.AFTER_TEST
-import com.summer.itis.summerproject.utils.Const.BEFORE_TEST
-import com.summer.itis.summerproject.utils.Const.LOSE_GAME
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_TYPE
-import com.summer.itis.summerproject.utils.Const.QUERY_END
+import com.summer.itis.cardsproject.model.*
+import com.summer.itis.cardsproject.model.db_dop_models.ElementId
+import com.summer.itis.cardsproject.model.db_dop_models.Relation
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abstractCardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.ADMIN_ROLE
+import com.summer.itis.cardsproject.utils.Const.AFTER_TEST
+import com.summer.itis.cardsproject.utils.Const.BEFORE_TEST
+import com.summer.itis.cardsproject.utils.Const.LOSE_GAME
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
+import com.summer.itis.cardsproject.utils.Const.QUERY_END
 
 import java.util.ArrayList
 import java.util.HashMap
 
 import io.reactivex.Single
 
-import com.summer.itis.summerproject.utils.Const.SEP
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.USER_TYPE
-import com.summer.itis.summerproject.utils.Const.WIN_GAME
-import com.summer.itis.summerproject.utils.RxUtils
+import com.summer.itis.cardsproject.utils.Const.SEP
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.USER_TYPE
+import com.summer.itis.cardsproject.utils.Const.WIN_GAME
+import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Observable
 import java.util.regex.Pattern
 

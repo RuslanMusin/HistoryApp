@@ -1,8 +1,8 @@
-package com.summer.itis.summerproject.model.game
+package com.summer.itis.cardsproject.model.game
 
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.repository.json.GamesRepository.Companion.FIELD_CREATOR
-import com.summer.itis.summerproject.utils.Const.BOT_GAME
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.repository.json.GamesRepository.Companion.FIELD_CREATOR
+import com.summer.itis.cardsproject.utils.Const.BOT_GAME
 
 class GameData {
 

@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.member.member_list.reader
+package com.summer.itis.cardsproject.ui.member.member_list.reader
 
 
 import android.content.Context
@@ -18,20 +18,20 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.member.member_item.PersonalActivity
-import com.summer.itis.summerproject.ui.member.member_list.MemberAdapter
-import com.summer.itis.summerproject.ui.member.member_list.fragment.ReaderListFragment
-import com.summer.itis.summerproject.utils.Const.ADD_FRIEND
-import com.summer.itis.summerproject.utils.Const.FRIEND_LIST
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.READER_LIST
-import com.summer.itis.summerproject.utils.Const.REMOVE_FRIEND
-import com.summer.itis.summerproject.utils.Const.REQUEST_LIST
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
+import com.summer.itis.cardsproject.ui.member.member_list.MemberAdapter
+import com.summer.itis.cardsproject.ui.member.member_list.fragment.ReaderListFragment
+import com.summer.itis.cardsproject.utils.Const.ADD_FRIEND
+import com.summer.itis.cardsproject.utils.Const.FRIEND_LIST
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.READER_LIST
+import com.summer.itis.cardsproject.utils.Const.REMOVE_FRIEND
+import com.summer.itis.cardsproject.utils.Const.REQUEST_LIST
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import io.reactivex.disposables.Disposable
 import java.util.*
 

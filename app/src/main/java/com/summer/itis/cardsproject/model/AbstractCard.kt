@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.model
+package com.summer.itis.cardsproject.model
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests.test_list.test
+package com.summer.itis.cardsproject.ui.tests.test_list.test
 
 import android.content.Context
 import android.content.Intent
@@ -17,21 +17,21 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.repository.json.UserRepository.Companion.currentId
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity
-import com.summer.itis.summerproject.ui.tests.test_list.TestAdapter
-import com.summer.itis.summerproject.ui.tests.test_list.fragment.TestListFragment
-import com.summer.itis.summerproject.utils.Const.EDIT_STATUS
-import com.summer.itis.summerproject.utils.Const.MY_LIST
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_LIST
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.USER_LIST
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.repository.json.UserRepository.Companion.currentId
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
+import com.summer.itis.cardsproject.ui.tests.test_list.TestAdapter
+import com.summer.itis.cardsproject.ui.tests.test_list.fragment.TestListFragment
+import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
+import com.summer.itis.cardsproject.utils.Const.MY_LIST
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_LIST
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.USER_LIST
 import io.reactivex.disposables.Disposable
 
 class TestListActivity : NavigationBaseActivity(), TestListView {

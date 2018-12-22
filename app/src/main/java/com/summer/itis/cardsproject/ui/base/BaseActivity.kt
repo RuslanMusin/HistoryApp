@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.base
+package com.summer.itis.cardsproject.ui.base
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 
-import com.summer.itis.summerproject.R
+import com.summer.itis.cardsproject.R
 
 //СТАНДАРТНЫЙ БАЗОВЫЙ АКТИВИТИ ДЛЯ ТЕХ,КОМУ НЕ НУЖНА НАВИГАЦИЯ, НО ЕСТЬ СТРЕЛКА НАЗАД И ПРОГРЕСС БАР.
 open class BaseActivity : AppCompatActivity() {

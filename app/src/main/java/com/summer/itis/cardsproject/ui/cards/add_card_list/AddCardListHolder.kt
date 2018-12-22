@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.add_card_list
+package com.summer.itis.cardsproject.ui.cards.add_card_list
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -6,10 +6,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.string.name
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.utils.ImageLoadHelper
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.string.name
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.utils.ImageLoadHelper
 import kotlinx.android.synthetic.main.item_member.view.*
 
 

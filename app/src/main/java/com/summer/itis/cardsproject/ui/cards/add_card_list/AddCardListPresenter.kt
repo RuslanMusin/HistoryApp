@@ -1,14 +1,14 @@
-package com.summer.itis.summerproject.ui.cards.add_card_list
+package com.summer.itis.cardsproject.ui.cards.add_card_list
 
 import android.annotation.SuppressLint
 import android.util.Log
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.repository.RepositoryProvider
 
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer

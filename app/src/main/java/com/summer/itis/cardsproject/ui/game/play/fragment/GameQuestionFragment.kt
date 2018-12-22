@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Answer
-import com.summer.itis.summerproject.model.Question
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity
-import com.summer.itis.summerproject.ui.game.play.PlayView
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Answer
+import com.summer.itis.cardsproject.model.Question
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
+import com.summer.itis.cardsproject.ui.game.play.PlayView
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_question.*
 import java.util.*
 

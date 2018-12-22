@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.member.member_item
+package com.summer.itis.cardsproject.ui.member.member_item
 
 
 import android.os.CountDownTimer
@@ -8,22 +8,22 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.db_dop_models.Relation
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.gamesRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity
-import com.summer.itis.summerproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.db_dop_models.Relation
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
+import com.summer.itis.cardsproject.utils.ApplicationHelper
 
-import com.summer.itis.summerproject.utils.Const.ADD_REQUEST
-import com.summer.itis.summerproject.utils.Const.IN_GAME_STATUS
-import com.summer.itis.summerproject.utils.Const.NOT_ACCEPTED
-import com.summer.itis.summerproject.utils.Const.OWNER_TYPE
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.USER_KEY
-import com.summer.itis.summerproject.utils.NetworkUtil.netTimer
+import com.summer.itis.cardsproject.utils.Const.ADD_REQUEST
+import com.summer.itis.cardsproject.utils.Const.IN_GAME_STATUS
+import com.summer.itis.cardsproject.utils.Const.NOT_ACCEPTED
+import com.summer.itis.cardsproject.utils.Const.OWNER_TYPE
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.USER_KEY
+import com.summer.itis.cardsproject.utils.NetworkUtil.netTimer
 
 class PersonalPresenter(private val testActivity: PersonalActivity) {
 

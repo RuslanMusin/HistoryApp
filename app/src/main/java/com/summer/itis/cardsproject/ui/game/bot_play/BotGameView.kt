@@ -1,11 +1,11 @@
-package com.summer.itis.summerproject.ui.game.bot_play
+package com.summer.itis.cardsproject.ui.game.bot_play
 
 import com.arellomobile.mvp.MvpView
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.Question
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.repository.json.GamesRepository
-import com.summer.itis.summerproject.ui.game.play.PlayView
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Question
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.repository.json.GamesRepository
+import com.summer.itis.cardsproject.ui.game.play.PlayView
 
 interface BotGameView : PlayView {
     fun setEnemyUserData(user: User)

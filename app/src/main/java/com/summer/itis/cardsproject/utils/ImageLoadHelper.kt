@@ -1,10 +1,10 @@
-package com.summer.itis.summerproject.utils
+package com.summer.itis.cardsproject.utils
 
 import android.support.annotation.DrawableRes
 import android.widget.ImageView
 
 import com.squareup.picasso.Picasso
-import com.summer.itis.summerproject.R
+import com.summer.itis.cardsproject.R
 
 //КЛАСС ДЛЯ РАБОТЫ С ФОТКАМИ.НЕ ИСПОЛЬЗОВАТЬ, ПЕРЕЖИТОК ПРОШЛОГО,ЮЗАТЬ GLIDE
 object ImageLoadHelper {

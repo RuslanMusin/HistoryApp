@@ -1,10 +1,10 @@
-package com.summer.itis.summerproject.repository.json
+package com.summer.itis.cardsproject.repository.json
 
 import android.util.Log
 import com.google.firebase.database.*
-import com.summer.itis.summerproject.model.Comment
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.RxUtils
+import com.summer.itis.cardsproject.model.Comment
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Single
 import java.util.ArrayList
 import java.util.HashMap

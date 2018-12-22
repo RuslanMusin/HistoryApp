@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests.one_test_list
+package com.summer.itis.cardsproject.ui.tests.one_test_list
 
 import android.app.Activity
 import android.content.Intent
@@ -9,20 +9,20 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity
-import com.summer.itis.summerproject.ui.tests.test_list.TestAdapter
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.summerproject.utils.Const.ABSTRACT_CARD_ID
-import com.summer.itis.summerproject.utils.Const.DEFAULT_ABSTRACT_TESTS
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.TEST_LIST_TYPE
-import com.summer.itis.summerproject.utils.Const.USER_ABSTRACT_TESTS
-import com.summer.itis.summerproject.utils.Const.USER_ID
-import com.summer.itis.summerproject.utils.Const.USER_TESTS
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
+import com.summer.itis.cardsproject.ui.tests.test_list.TestAdapter
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.Const.ABSTRACT_CARD_ID
+import com.summer.itis.cardsproject.utils.Const.DEFAULT_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.TEST_LIST_TYPE
+import com.summer.itis.cardsproject.utils.Const.USER_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.utils.Const.USER_ID
+import com.summer.itis.cardsproject.utils.Const.USER_TESTS
 import io.reactivex.disposables.Disposable
 
 class OneTestListActivity : NavigationBaseActivity(), OneTestListView, BaseAdapter.OnItemClickListener<Test> {

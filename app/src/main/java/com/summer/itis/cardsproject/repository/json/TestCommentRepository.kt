@@ -1,16 +1,16 @@
-package com.summer.itis.summerproject.repository.json
+package com.summer.itis.cardsproject.repository.json
 
 import android.util.Log
 import java.util.ArrayList
 import java.util.HashMap
 
 import com.google.firebase.database.*
-import com.summer.itis.summerproject.R.string.bookId
-import com.summer.itis.summerproject.model.Comment
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.ui.comment.OnCommentClickListener
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.RxUtils
+import com.summer.itis.cardsproject.R.string.bookId
+import com.summer.itis.cardsproject.model.Comment
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.ui.comment.OnCommentClickListener
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Single
 
 class TestCommentRepository() {

@@ -1,9 +1,9 @@
-package com.summer.itis.summerproject.model
+package com.summer.itis.cardsproject.model
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.utils.Const.OFFLINE_STATUS
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.utils.Const.OFFLINE_STATUS
 
 @IgnoreExtraProperties
 class User {

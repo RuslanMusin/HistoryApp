@@ -1,9 +1,9 @@
-package com.summer.itis.summerproject.ui.tests.test_list
+package com.summer.itis.cardsproject.ui.tests.test_list
 
 import android.view.ViewGroup
-import com.summer.itis.summerproject.model.Test
+import com.summer.itis.cardsproject.model.Test
 
-import com.summer.itis.summerproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
 
 class TestAdapter(items: MutableList<Test>) : BaseAdapter<Test, TestItemHolder>(items) {
 

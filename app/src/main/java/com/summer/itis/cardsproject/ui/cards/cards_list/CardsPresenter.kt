@@ -1,10 +1,10 @@
-package com.summer.itis.summerproject.ui.cards.cards_list
+package com.summer.itis.cardsproject.ui.cards.cards_list
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.utils.ApplicationHelper
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer

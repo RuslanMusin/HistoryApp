@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests.add_test
+package com.summer.itis.cardsproject.ui.tests.add_test
 
 import android.app.Activity
 import android.content.Intent
@@ -12,28 +12,28 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Question
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.testRepository
-import com.summer.itis.summerproject.ui.base.*
-import com.summer.itis.summerproject.ui.tests.ChangeToolbarListener
-import com.summer.itis.summerproject.ui.tests.add_test.fragments.main.AddTestFragment
-import com.summer.itis.summerproject.ui.tests.add_test.fragments.question.AddQuestionFragment
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.TEST_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.WINNED_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.main.TestFragment
-import com.summer.itis.summerproject.ui.tests.test_list.test.TestListActivity
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.EDIT_STATUS
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Question
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
+import com.summer.itis.cardsproject.ui.base.*
+import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.question.AddQuestionFragment
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.WINNED_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.main.TestFragment
+import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.activity_with_frame_and_toolbar.*
 import kotlinx.android.synthetic.main.back_forward.*
 

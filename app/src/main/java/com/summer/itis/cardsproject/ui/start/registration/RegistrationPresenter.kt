@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.start.registration
+package com.summer.itis.cardsproject.ui.start.registration
 
 import android.net.Uri
 import android.text.TextUtils
@@ -14,21 +14,21 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.AVATAR
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.AVATAR
 
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-import com.summer.itis.summerproject.utils.Const.IMAGE_START_PATH
-import com.summer.itis.summerproject.utils.Const.SEP
-import com.summer.itis.summerproject.utils.Const.STUB_PATH
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.IMAGE_START_PATH
+import com.summer.itis.cardsproject.utils.Const.SEP
+import com.summer.itis.cardsproject.utils.Const.STUB_PATH
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 
 class RegistrationPresenter(private val regView: RegistrationActivity) {
 

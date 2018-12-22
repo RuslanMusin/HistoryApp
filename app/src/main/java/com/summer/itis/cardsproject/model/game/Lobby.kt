@@ -1,10 +1,10 @@
-package com.summer.itis.summerproject.model.game
+package com.summer.itis.cardsproject.model.game
 
 import com.google.firebase.database.Exclude
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_TYPE
-import com.summer.itis.summerproject.utils.Const.ONLINE_GAME
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.USER_TYPE
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
+import com.summer.itis.cardsproject.utils.Const.ONLINE_GAME
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.USER_TYPE
 
 class Lobby {
 

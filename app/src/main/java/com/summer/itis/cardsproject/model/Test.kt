@@ -1,9 +1,9 @@
-package com.summer.itis.summerproject.model
+package com.summer.itis.cardsproject.model
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
 import com.google.gson.annotations.Expose
-import com.summer.itis.summerproject.model.db_dop_models.Relation
+import com.summer.itis.cardsproject.model.db_dop_models.Relation
 
 import java.util.ArrayList
 

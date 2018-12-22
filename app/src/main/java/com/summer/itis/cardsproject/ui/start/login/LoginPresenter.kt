@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.start.login
+package com.summer.itis.cardsproject.ui.start.login
 
 import android.content.Context
 import android.text.TextUtils
@@ -9,28 +9,28 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.model.pojo.query.Page
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.model.pojo.query.Page
 
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.abstractCardRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.cardRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.testRepository
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_TYPE
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abstractCardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
 
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.gamesRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.USER_DATA_PREFERENCES
-import com.summer.itis.summerproject.utils.Const.USER_PASSWORD
-import com.summer.itis.summerproject.utils.Const.USER_USERNAME
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.USER_DATA_PREFERENCES
+import com.summer.itis.cardsproject.utils.Const.USER_PASSWORD
+import com.summer.itis.cardsproject.utils.Const.USER_USERNAME
 
 
 class LoginPresenter(private val logView: LoginActivity) {

@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.find
+package com.summer.itis.cardsproject.ui.game.find
 
 import android.content.Context
 import android.content.Intent
@@ -7,10 +7,10 @@ import android.support.v4.widget.DrawerLayout
 import android.util.Log
 import android.view.View
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.ui.base.EasyNavigationBaseActivity
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.ui.base.EasyNavigationBaseActivity
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import kotlinx.android.synthetic.main.layout_find_game.*
 
 class FindGameActivity : EasyNavigationBaseActivity(), FindGameView {

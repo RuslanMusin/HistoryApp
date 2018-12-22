@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.service
+package com.summer.itis.cardsproject.ui.service
 
 import android.app.NotificationManager
 import android.app.Service
@@ -8,21 +8,21 @@ import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.game.GameData
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.gamesRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity
-import com.summer.itis.summerproject.ui.member.member_item.PersonalActivity
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const.ONLINE_GAME
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.game.GameData
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
+import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const.ONLINE_GAME
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import android.app.PendingIntent
 import android.support.v4.app.NotificationCompat.PRIORITY_HIGH
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity.Companion.ACCEPTED_GAME
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity.Companion.LOBBY_JSON
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity.Companion.ACCEPTED_GAME
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity.Companion.LOBBY_JSON
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 
 
 class GameService : Service() {

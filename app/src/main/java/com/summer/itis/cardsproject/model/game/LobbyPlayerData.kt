@@ -1,6 +1,6 @@
-package com.summer.itis.summerproject.model.game
+package com.summer.itis.cardsproject.model.game
 
-import com.summer.itis.summerproject.utils.Const.MODE_CHANGE_CARDS
+import com.summer.itis.cardsproject.utils.Const.MODE_CHANGE_CARDS
 
 class LobbyPlayerData() {
 

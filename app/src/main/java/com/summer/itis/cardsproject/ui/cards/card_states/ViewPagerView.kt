@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.card_states
+package com.summer.itis.cardsproject.ui.cards.card_states
 
 import com.arellomobile.mvp.MvpView
 

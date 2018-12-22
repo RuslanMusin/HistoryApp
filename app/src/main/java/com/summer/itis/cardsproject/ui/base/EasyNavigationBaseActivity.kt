@@ -1,8 +1,8 @@
-package com.summer.itis.summerproject.ui.base
+package com.summer.itis.cardsproject.ui.base
 
 import android.os.Bundle
 import android.widget.FrameLayout
-import com.summer.itis.summerproject.R
+import com.summer.itis.cardsproject.R
 
 abstract class EasyNavigationBaseActivity : NavigationBaseActivity() {
 

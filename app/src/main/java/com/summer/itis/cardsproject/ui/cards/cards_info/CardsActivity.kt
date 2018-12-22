@@ -1,14 +1,14 @@
-package com.summer.itis.summerproject.ui.cards.cards_info
+package com.summer.itis.cardsproject.ui.cards.cards_info
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.widget.FrameLayout
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.ui.base.EasyNavigationBaseActivity
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.ui.base.EasyNavigationBaseActivity
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
 import kotlinx.android.synthetic.main.activity_cards.toolbar
 import java.util.ArrayList
 

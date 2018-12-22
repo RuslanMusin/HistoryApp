@@ -1,10 +1,10 @@
-package com.summer.itis.summerproject.repository
+package com.summer.itis.cardsproject.repository
 
 import android.util.Log
-import com.summer.itis.summerproject.repository.api.WikiApiRepository
-import com.summer.itis.summerproject.repository.api.WikiApiRepositoryImpl
-import com.summer.itis.summerproject.repository.json.*
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.repository.api.WikiApiRepository
+import com.summer.itis.cardsproject.repository.api.WikiApiRepositoryImpl
+import com.summer.itis.cardsproject.repository.json.*
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 
 
 class RepositoryProvider {

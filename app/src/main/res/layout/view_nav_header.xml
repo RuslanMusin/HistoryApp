@@ -41,7 +41,7 @@
             android:layout_centerInParent="true"
             android:visibility="visible" />
 
-        <com.summer.itis.summerproject.ui.widget.CircularImageView
+        <com.summer.itis.cardsproject.ui.widget.CircularImageView
             android:id="@+id/iv_crossing"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

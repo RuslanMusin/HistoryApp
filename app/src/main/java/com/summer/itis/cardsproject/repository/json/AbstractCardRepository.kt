@@ -1,16 +1,16 @@
-package com.summer.itis.summerproject.repository.json
+package com.summer.itis.cardsproject.repository.json
 
 import android.os.Build.VERSION_CODES.O
 import android.util.Log
 import com.google.firebase.database.*
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.db_dop_models.ElementId
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.RxUtils
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.db_dop_models.ElementId
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Observable
 import io.reactivex.Single
 import java.util.ArrayList

@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests.add_test.fragments.main
+package com.summer.itis.cardsproject.ui.tests.add_test.fragments.main
 
 import GameQuestionFragment.Companion.QUESTION_NUMBER
 import android.app.Activity
@@ -17,34 +17,34 @@ import android.widget.EditText
 import android.widget.TextView
 import com.bumptech.glide.Glide
 
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.string.card
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.ui.base.BaseBackActivity
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.base.OnBackPressedListener
-import com.summer.itis.summerproject.ui.cards.add_card.AddCardActivity.Companion.CARD_EXTRA
-import com.summer.itis.summerproject.ui.cards.add_card_list.AddCardListActivity
-import com.summer.itis.summerproject.ui.tests.ChangeToolbarListener
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestActivity.Companion.ADD_QUESTION_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestActivity.Companion.ADD_TEST_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestView
-import com.summer.itis.summerproject.ui.tests.add_test.fragments.main.AddTestFragment.Companion.ADD_CARD
-import com.summer.itis.summerproject.ui.tests.add_test.fragments.question.AddQuestionFragment
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.check_answers.AnswersFragment
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.finish.FinishFragment
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.main.TestFragment
-import com.summer.itis.summerproject.ui.tests.test_list.test.TestListActivity
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.string.card
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.ui.base.BaseBackActivity
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.base.OnBackPressedListener
+import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity.Companion.CARD_EXTRA
+import com.summer.itis.cardsproject.ui.cards.add_card_list.AddCardListActivity
+import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_QUESTION_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_TEST_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestView
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment.Companion.ADD_CARD
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.question.AddQuestionFragment
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.check_answers.AnswersFragment
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.finish.FinishFragment
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.main.TestFragment
+import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
 
-import com.summer.itis.summerproject.utils.Const.COMA
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.utils.Const.COMA
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_add_test.*
 import kotlinx.android.synthetic.main.item_game_card_medium.*
 

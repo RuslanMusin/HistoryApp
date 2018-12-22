@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.add_game
+package com.summer.itis.cardsproject.ui.game.add_game
 
 import com.arellomobile.mvp.MvpView
 

@@ -1,14 +1,14 @@
-package com.summer.itis.summerproject.ui.base
+package com.summer.itis.cardsproject.ui.base
 
 import android.support.annotation.CallSuper
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
 
 import android.support.constraint.Constraints.TAG
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 
 abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>(list: MutableList<T>) : RecyclerView.Adapter<VH>() {
 

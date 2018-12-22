@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.model.pojo.query
+package com.summer.itis.cardsproject.model.pojo.query
 
 import org.simpleframework.xml.Attribute
 import org.simpleframework.xml.Element

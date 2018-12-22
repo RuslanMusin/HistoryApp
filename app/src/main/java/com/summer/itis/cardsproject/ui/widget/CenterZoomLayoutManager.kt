@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.widget
+package com.summer.itis.cardsproject.ui.widget
 
 import android.content.Context
 import android.support.v4.view.ViewCompat.setScaleY

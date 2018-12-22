@@ -1,11 +1,11 @@
-package com.summer.itis.summerproject.ui.cards.cards_list.adapter
+package com.summer.itis.cardsproject.ui.cards.cards_list.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.util.Log
-import com.summer.itis.summerproject.ui.cards.cards_list.tabs.AllCardsTabFragment
-import com.summer.itis.summerproject.ui.cards.cards_list.tabs.MyCardsTabFragment
+import com.summer.itis.cardsproject.ui.cards.cards_list.tabs.AllCardsTabFragment
+import com.summer.itis.cardsproject.ui.cards.cards_list.tabs.MyCardsTabFragment
 
 /**
  * Created by Home on 10.07.2018.

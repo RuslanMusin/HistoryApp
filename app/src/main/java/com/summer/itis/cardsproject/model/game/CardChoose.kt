@@ -1,6 +1,6 @@
-package com.summer.itis.summerproject.model.game
+package com.summer.itis.cardsproject.model.game
 
-import com.summer.itis.summerproject.model.Card
+import com.summer.itis.cardsproject.model.Card
 
 class CardChoose {
 

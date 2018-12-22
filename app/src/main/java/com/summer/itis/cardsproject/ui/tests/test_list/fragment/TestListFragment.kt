@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.tests.test_list.fragment
+package com.summer.itis.cardsproject.ui.tests.test_list.fragment
 
 import android.app.Activity
 import android.os.Bundle
@@ -13,19 +13,19 @@ import android.widget.ProgressBar
 import android.widget.TextView
 
 
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestActivity
-import com.summer.itis.summerproject.ui.tests.test_list.TestAdapter
-import com.summer.itis.summerproject.ui.tests.test_list.test.TestListView
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.summerproject.utils.Const.MY_LIST
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_LIST
-import com.summer.itis.summerproject.utils.Const.READER_LIST
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.USER_LIST
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
+import com.summer.itis.cardsproject.ui.tests.test_list.TestAdapter
+import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListView
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.Const.MY_LIST
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_LIST
+import com.summer.itis.cardsproject.utils.Const.READER_LIST
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.USER_LIST
 import kotlinx.android.synthetic.main.fragment_test_list.*
 
 import java.util.ArrayList

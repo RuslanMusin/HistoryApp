@@ -1,10 +1,10 @@
-package com.summer.itis.summerproject.ui.cards.cards_list
+package com.summer.itis.cardsproject.ui.cards.cards_list
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.OneExecutionStateStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.summer.itis.summerproject.model.AbstractCard
+import com.summer.itis.cardsproject.model.AbstractCard
 import io.reactivex.annotations.NonNull
 import io.reactivex.disposables.Disposable
 

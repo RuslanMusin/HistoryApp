@@ -6,7 +6,7 @@
     android:layout_below="@+id/li_check_crossings"
     >
 
-    <com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
+    <com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
         android:id="@+id/rv_comics_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

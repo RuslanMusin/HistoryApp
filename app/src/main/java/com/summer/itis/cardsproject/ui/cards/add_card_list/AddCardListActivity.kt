@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.add_card_list
+package com.summer.itis.cardsproject.ui.cards.add_card_list
 
 import android.app.Activity
 import android.content.Intent
@@ -14,26 +14,26 @@ import android.widget.TextView
 
 import com.annimon.stream.Stream
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.id.progressBar
-import com.summer.itis.summerproject.R.id.toolbar
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.cards.add_card.AddCardActivity
-import com.summer.itis.summerproject.ui.cards.add_card.AddCardActivity.Companion.ITEM_JSON
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestActivity
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const.EDIT_STATUS
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.id.progressBar
+import com.summer.itis.cardsproject.R.id.toolbar
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity
+import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity.Companion.ITEM_JSON
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
 
 import java.util.ArrayList
 import java.util.regex.Pattern
 
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import io.reactivex.disposables.Disposable
 
 class AddCardListActivity : NavigationBaseActivity(), AddCardListView, BaseAdapter.OnItemClickListener<Item> {
@@ -234,11 +234,11 @@ class AddCardListActivity : NavigationBaseActivity(), AddCardListView, BaseAdapt
         startActivityForResult(intent, ADD_CARD)
     }
 
-    public override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(reqCode, resultCode, data)
 
         if (reqCode == ADD_CARD && resultCode == Activity.RESULT_OK) {
-            val card = data.getStringExtra(CARD_EXTRA)
+            val card = data?.getStringExtra(CARD_EXTRA)
             val intent = Intent()
             intent.putExtra(CARD_EXTRA, card)
             setResult(Activity.RESULT_OK, intent)

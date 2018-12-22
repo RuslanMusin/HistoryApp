@@ -8,32 +8,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.summer.itis.summerproject.model.Answer
-import com.summer.itis.summerproject.model.Question
+import com.summer.itis.cardsproject.model.Answer
+import com.summer.itis.cardsproject.model.Question
 
 import java.util.ArrayList
 
 import android.widget.*
 import com.afollestad.materialdialogs.DialogAction
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.ui.base.BaseBackActivity
-import com.summer.itis.summerproject.ui.base.OnBackPressedListener
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
-import com.summer.itis.summerproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.finish.FinishFragment
-import com.summer.itis.summerproject.ui.tests.test_item.fragments.main.TestFragment
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.ui.base.BaseBackActivity
+import com.summer.itis.cardsproject.ui.base.OnBackPressedListener
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
+import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.finish.FinishFragment
+import com.summer.itis.cardsproject.ui.tests.test_item.fragments.main.TestFragment
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_question.*
 import com.afollestad.materialdialogs.MaterialDialog
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.ui.base.OnCancelListener
-import com.summer.itis.summerproject.ui.base.OnFourActionListener
-import com.summer.itis.summerproject.ui.tests.ChangeToolbarListener
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.ui.base.OnCancelListener
+import com.summer.itis.cardsproject.ui.base.OnFourActionListener
+import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 
 
 class QuestionFragment : Fragment(), View.OnClickListener, OnFourActionListener {

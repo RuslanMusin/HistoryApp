@@ -1,32 +1,32 @@
-package com.summer.itis.summerproject.repository.json
+package com.summer.itis.cardsproject.repository.json
 
 import android.util.Log
 import com.google.firebase.database.*
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.model.db_dop_models.Relation
-import com.summer.itis.summerproject.model.game.CardChoose
-import com.summer.itis.summerproject.model.game.GameData
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.model.game.LobbyPlayerData
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.cardRepository
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.repository.json.UserRepository.Companion.FIELD_LOBBY_ID
-import com.summer.itis.summerproject.utils.ApplicationHelper
-import com.summer.itis.summerproject.utils.Const.BOT_ID
-import com.summer.itis.summerproject.utils.Const.IN_GAME_STATUS
-import com.summer.itis.summerproject.utils.Const.MODE_END_GAME
-import com.summer.itis.summerproject.utils.Const.NOT_ACCEPTED
-import com.summer.itis.summerproject.utils.Const.OFFICIAL_TYPE
-import com.summer.itis.summerproject.utils.Const.OFFLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.ONLINE_GAME
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.QUERY_END
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
-import com.summer.itis.summerproject.utils.Const.USER_TYPE
-import com.summer.itis.summerproject.utils.RxUtils
-import com.summer.itis.summerproject.utils.getRandom
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.model.db_dop_models.Relation
+import com.summer.itis.cardsproject.model.game.CardChoose
+import com.summer.itis.cardsproject.model.game.GameData
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.game.LobbyPlayerData
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.repository.json.UserRepository.Companion.FIELD_LOBBY_ID
+import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.Const.BOT_ID
+import com.summer.itis.cardsproject.utils.Const.IN_GAME_STATUS
+import com.summer.itis.cardsproject.utils.Const.MODE_END_GAME
+import com.summer.itis.cardsproject.utils.Const.NOT_ACCEPTED
+import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
+import com.summer.itis.cardsproject.utils.Const.OFFLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.ONLINE_GAME
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.QUERY_END
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.USER_TYPE
+import com.summer.itis.cardsproject.utils.RxUtils
+import com.summer.itis.cardsproject.utils.getRandom
 import io.reactivex.Single
 
 
@@ -401,7 +401,7 @@ class GamesRepository {
 
  /*   fun createNotification(gameMode: String): Notification {
         // Create PendingIntent
-        val resultIntent = Intent(com.summer.itis.summerproject.Application.getContext(), PlayGameActivity::class.java)
+        val resultIntent = Intent(com.summer.itis.cardsproject.Application.getContext(), PlayGameActivity::class.java)
         resultIntent.putExtra(PlayGameActivity.GAME_MODE,gameMode)
         val resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT)

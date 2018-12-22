@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.play.list
+package com.summer.itis.cardsproject.ui.game.play.list
 
 import android.content.Context
 import android.support.constraint.Constraints
@@ -10,11 +10,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.Card
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Card
 import com.afollestad.materialdialogs.MaterialDialog
 import com.ms.square.android.expandabletextview.ExpandableTextView
-import com.summer.itis.summerproject.R.id.expand_text_view
+import com.summer.itis.cardsproject.R.id.expand_text_view
 import kotlinx.android.synthetic.main.fragment_test_card.*
 
 

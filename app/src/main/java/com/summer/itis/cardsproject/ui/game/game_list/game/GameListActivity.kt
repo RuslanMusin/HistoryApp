@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.game.game_list.game
+package com.summer.itis.cardsproject.ui.game.game_list.game
 
 import android.app.ProgressDialog
 import android.content.Context
@@ -19,18 +19,18 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.game.bot_play.BotGameActivity
-import com.summer.itis.summerproject.ui.game.game_list.GameAdapter
-import com.summer.itis.summerproject.ui.game.game_list.fragment.GameListFragment
-import com.summer.itis.summerproject.ui.game.play.PlayGameActivity
-import com.summer.itis.summerproject.ui.service.GameService
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.ONLINE_STATUS
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.game.bot_play.BotGameActivity
+import com.summer.itis.cardsproject.ui.game.game_list.GameAdapter
+import com.summer.itis.cardsproject.ui.game.game_list.fragment.GameListFragment
+import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
+import com.summer.itis.cardsproject.ui.service.GameService
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import io.reactivex.disposables.Disposable
 
 class GameListActivity : NavigationBaseActivity(), GameListView {

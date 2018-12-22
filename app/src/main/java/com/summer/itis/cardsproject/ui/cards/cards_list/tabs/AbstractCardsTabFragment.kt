@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.cards_list.tabs
+package com.summer.itis.cardsproject.ui.cards.cards_list.tabs
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -7,15 +7,15 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.base.BaseAdapter
-import com.summer.itis.summerproject.ui.cards.cards_list.CardsPresenter
-import com.summer.itis.summerproject.ui.cards.cards_list.CardsView
-import com.summer.itis.summerproject.ui.cards.cards_list.adapter.CardsListAdapter
-import com.summer.itis.summerproject.utils.Const.ALL_LIST_CARDS
-import com.summer.itis.summerproject.utils.Const.USER_LIST_CARDS
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.ui.cards.cards_list.CardsPresenter
+import com.summer.itis.cardsproject.ui.cards.cards_list.CardsView
+import com.summer.itis.cardsproject.ui.cards.cards_list.adapter.CardsListAdapter
+import com.summer.itis.cardsproject.utils.Const.ALL_LIST_CARDS
+import com.summer.itis.cardsproject.utils.Const.USER_LIST_CARDS
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_recycler_list.*
 import java.util.ArrayList

@@ -1,8 +1,8 @@
-package com.summer.itis.summerproject.ui.cards.cards_list.adapter
+package com.summer.itis.cardsproject.ui.cards.cards_list.adapter
 
 import android.view.ViewGroup
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
 
 /**
  * Created by Home on 10.07.2018.

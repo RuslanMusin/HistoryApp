@@ -1,9 +1,9 @@
-package com.summer.itis.summerproject.ui.member.member_list
+package com.summer.itis.cardsproject.ui.member.member_list
 
 import android.view.ViewGroup
 
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.ui.base.BaseAdapter
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.ui.base.BaseAdapter
 
 class MemberAdapter(items: MutableList<User>) : BaseAdapter<User, MemberItemHolder>(items) {
 

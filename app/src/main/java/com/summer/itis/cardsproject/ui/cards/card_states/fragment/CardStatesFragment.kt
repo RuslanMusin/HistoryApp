@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.card_states.fragment
+package com.summer.itis.cardsproject.ui.cards.card_states.fragment
 
 import QuestionFragment.Companion.CARD_JSON
 import android.os.Bundle
@@ -11,12 +11,12 @@ import android.widget.TextView
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.bumptech.glide.Glide
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.string.card
-import com.summer.itis.summerproject.model.AbstractCard
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.Test
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.string.card
+import com.summer.itis.cardsproject.model.AbstractCard
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Test
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_card_state.*
 
 /**

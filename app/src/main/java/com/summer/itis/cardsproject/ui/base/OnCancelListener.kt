@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.base
+package com.summer.itis.cardsproject.ui.base
 
 interface OnCancelListener {
 

@@ -1,16 +1,16 @@
-package com.summer.itis.summerproject.ui.game.find
+package com.summer.itis.cardsproject.ui.game.find
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.game.Lobby
-import com.summer.itis.summerproject.model.game.LobbyPlayerData
-import com.summer.itis.summerproject.repository.RepositoryProvider
-import com.summer.itis.summerproject.repository.json.GamesRepository
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.service.GameService
-import com.summer.itis.summerproject.utils.Const.BOT_GAME
-import com.summer.itis.summerproject.utils.Const.ONLINE_GAME
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.game.LobbyPlayerData
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.repository.json.GamesRepository
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.service.GameService
+import com.summer.itis.cardsproject.utils.Const.BOT_GAME
+import com.summer.itis.cardsproject.utils.Const.ONLINE_GAME
 
 @InjectViewState
 class FindGamePresenter() : MvpPresenter<FindGameView>() {

@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/large_intrinsic_padding"
     android:paddingTop="@dimen/large_intrinsic_padding">
 
-    <com.summer.itis.summerproject.ui.widget.CircularImageView
+    <com.summer.itis.cardsproject.ui.widget.CircularImageView
         android:id="@+id/avatarImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"

@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.member.member_list.fragment
+package com.summer.itis.cardsproject.ui.member.member_list.fragment
 
 
 import android.os.Bundle
@@ -12,16 +12,16 @@ import android.widget.ProgressBar
 import android.widget.TextView
 
 
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.model.User
-import com.summer.itis.summerproject.repository.json.UserRepository
-import com.summer.itis.summerproject.ui.member.member_list.MemberAdapter
-import com.summer.itis.summerproject.ui.member.member_list.reader.ReaderListView
-import com.summer.itis.summerproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.summerproject.utils.Const.FRIEND_LIST
-import com.summer.itis.summerproject.utils.Const.READER_LIST
-import com.summer.itis.summerproject.utils.Const.REQUEST_LIST
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.User
+import com.summer.itis.cardsproject.repository.json.UserRepository
+import com.summer.itis.cardsproject.ui.member.member_list.MemberAdapter
+import com.summer.itis.cardsproject.ui.member.member_list.reader.ReaderListView
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.Const.FRIEND_LIST
+import com.summer.itis.cardsproject.utils.Const.READER_LIST
+import com.summer.itis.cardsproject.utils.Const.REQUEST_LIST
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 
 import java.util.ArrayList
 

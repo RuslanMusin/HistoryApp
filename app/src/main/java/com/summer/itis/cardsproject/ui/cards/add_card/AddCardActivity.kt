@@ -1,4 +1,4 @@
-package com.summer.itis.summerproject.ui.cards.add_card
+package com.summer.itis.cardsproject.ui.cards.add_card
 
 import android.app.Activity
 import android.content.Intent
@@ -12,22 +12,22 @@ import android.widget.SeekBar
 import android.widget.TextView
 
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.summer.itis.summerproject.R
-import com.summer.itis.summerproject.R.id.*
-import com.summer.itis.summerproject.R.string.card
-import com.summer.itis.summerproject.model.Card
-import com.summer.itis.summerproject.model.pojo.opensearch.Item
-import com.summer.itis.summerproject.model.pojo.query.Page
-import com.summer.itis.summerproject.repository.RepositoryProvider.Companion.userRepository
-import com.summer.itis.summerproject.ui.base.BaseActivity
-import com.summer.itis.summerproject.ui.base.NavigationBaseActivity
-import com.summer.itis.summerproject.ui.cards.add_card_list.AddCardListActivity.Companion.CARD_EXTRA
-import com.summer.itis.summerproject.ui.tests.add_test.AddTestActivity
-import com.summer.itis.summerproject.utils.Const
-import com.summer.itis.summerproject.utils.Const.EDIT_STATUS
-import com.summer.itis.summerproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.R.id.*
+import com.summer.itis.cardsproject.R.string.card
+import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.pojo.opensearch.Item
+import com.summer.itis.cardsproject.model.pojo.query.Page
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.ui.base.BaseActivity
+import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.cards.add_card_list.AddCardListActivity.Companion.CARD_EXTRA
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
+import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 
-import com.summer.itis.summerproject.utils.Const.gsonConverter
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.layout_add_card.*
 
 class AddCardActivity : NavigationBaseActivity(), AddCardView, SeekBar.OnSeekBarChangeListener {
