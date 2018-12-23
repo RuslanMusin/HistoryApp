@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.R.string.card
 import com.summer.itis.cardsproject.model.Card
+import com.summer.itis.cardsproject.model.Epoch
 import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.ui.base.BaseBackActivity
@@ -27,6 +28,7 @@ import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
 import com.summer.itis.cardsproject.ui.base.OnBackPressedListener
 import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity.Companion.CARD_EXTRA
 import com.summer.itis.cardsproject.ui.cards.add_card_list.AddCardListActivity
+import com.summer.itis.cardsproject.ui.epoch.EpochListActivity
 import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_QUESTION_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_TEST_FRAGMENT
@@ -42,6 +44,7 @@ import com.summer.itis.cardsproject.ui.tests.test_item.fragments.main.TestFragme
 import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
 
 import com.summer.itis.cardsproject.utils.Const.COMA
+import com.summer.itis.cardsproject.utils.Const.EPOCH_KEY
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.gsonConverter
@@ -67,6 +70,8 @@ class AddTestFragment : Fragment(), View.OnClickListener, OnBackPressedListener 
     companion object {
 
         const val ADD_CARD: Int = 1
+
+        const val ADD_EPOCH: Int = 2
 
         fun newInstance(args: Bundle): Fragment {
             val fragment = AddTestFragment()
@@ -127,6 +132,7 @@ class AddTestFragment : Fragment(), View.OnClickListener, OnBackPressedListener 
     private fun setListeners() {
         btnCreateQuestions!!.setOnClickListener(this)
         btnAddCard!!.setOnClickListener(this)
+        li_choose_epoch.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -153,6 +159,11 @@ class AddTestFragment : Fragment(), View.OnClickListener, OnBackPressedListener 
                 val intent = Intent(activity, AddCardListActivity::class.java)
                 startActivityForResult(intent, ADD_CARD)
 
+            }
+
+            R.id.li_choose_epoch -> {
+                val intent = Intent(activity, EpochListActivity::class.java)
+                startActivityForResult(intent, ADD_EPOCH)
             }
         }
     }
@@ -188,14 +199,24 @@ class AddTestFragment : Fragment(), View.OnClickListener, OnBackPressedListener 
     override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(reqCode, resultCode, data)
 
-        if (reqCode == ADD_CARD && resultCode == Activity.RESULT_OK) {
-            val card = gsonConverter.fromJson(data!!.getStringExtra(CARD_EXTRA), Card::class.java)
-            tvAddedCards!!.text = card.abstractCard.name
-            test!!.card = card
-            Glide.with(this)
+        if(resultCode == Activity.RESULT_OK) {
+            if (reqCode == ADD_CARD) {
+                val card = gsonConverter.fromJson(data!!.getStringExtra(CARD_EXTRA), Card::class.java)
+                tvAddedCards!!.text = card.abstractCard.name
+                test!!.card = card
+                Glide.with(this)
                     .load(card.abstractCard.photoUrl)
                     .into(iv_cover)
-            tv_test_card_name.setError(null);
+                tv_test_card_name.setError(null);
+            }
+            if (reqCode == ADD_EPOCH) {
+                val epoch = gsonConverter.fromJson(data!!.getStringExtra(EPOCH_KEY), Epoch::class.java)
+                tv_epoch!!.text = epoch.name
+                test!!.epoch = epoch
+                test!!.epochId = epoch.id
+                test!!.card?.epochId = epoch.id
+            }
         }
+
     }
 }

@@ -30,11 +30,16 @@ class Test {
 
     var imageUrl: String? = null
 
+    lateinit var epochId: String
+
     @Exclude
     var comments: MutableList<Comment> = ArrayList()
 
     @Exclude
     var card: Card? = null
+
+    @Exclude
+    var epoch: Epoch? = null
 
     @Exclude
     var testDone: Boolean = false

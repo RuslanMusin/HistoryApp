@@ -39,6 +39,7 @@ import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
 import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
 import com.summer.itis.cardsproject.ui.member.member_list.reader.ReaderListActivity
 import com.summer.itis.cardsproject.ui.start.login.LoginActivity
+import com.summer.itis.cardsproject.ui.statists.activity.StatListActivity
 import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
 import com.summer.itis.cardsproject.utils.ApplicationHelper
 import com.summer.itis.cardsproject.utils.ApplicationHelper.Companion.offlineFunction
@@ -231,6 +232,8 @@ open class NavigationBaseActivity : MvpAppCompatActivity() {
                 R.id.menu_cards -> CardsListActivity.start(this)
 
                 R.id.menu_game -> GameListActivity.start(this)
+
+                R.id.menu_statistics -> StatListActivity.start(this)
 
                 R.id.menu_friends -> ReaderListActivity.start(this)
 

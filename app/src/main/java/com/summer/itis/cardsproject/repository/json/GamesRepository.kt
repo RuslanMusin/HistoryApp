@@ -11,6 +11,7 @@ import com.summer.itis.cardsproject.model.game.Lobby
 import com.summer.itis.cardsproject.model.game.LobbyPlayerData
 import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.repository.json.UserRepository.Companion.FIELD_LOBBY_ID
 import com.summer.itis.cardsproject.utils.ApplicationHelper
@@ -1011,7 +1012,10 @@ class GamesRepository {
 
         lobby.gameData?.enemyId?.let {
             RepositoryProvider.cardRepository.addCardAfterGame(onEnemyLoseCard!!.id!!, getPlayerId()!!, it)
-                .subscribe()
+                .subscribe { e ->
+                    userEpochRepository.updateAfterGame(lobby, getPlayerId(), true, my_score)
+                    userEpochRepository.updateAfterGame(lobby, it, false, enemy_score)
+                }
         }
     }
 

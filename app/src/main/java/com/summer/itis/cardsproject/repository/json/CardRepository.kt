@@ -7,6 +7,7 @@ import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.model.db_dop_models.ElementId
 import com.summer.itis.cardsproject.model.db_dop_models.Relation
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abstractCardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.AFTER_TEST
@@ -42,6 +43,7 @@ class CardRepository {
     private val FIELD_HP = "hp"
     private val FIELD_STRENGTH = "strength"
     private val FIELD_TYPE = "type"
+    private val FIELD_EPOCH_ID = "epochId"
 
 
     init {
@@ -63,6 +65,7 @@ class CardRepository {
             result[FIELD_SUPPORT] = card.support
             result[FIELD_STRENGTH] = card.strength
             result[FIELD_TYPE] = card.type
+            result[FIELD_EPOCH_ID] = card.epochId
         }
         return result
     }
@@ -164,7 +167,11 @@ class CardRepository {
                                         .readTest(card?.testId)
                                         .subscribe{ test ->
                                             card?.test = test
-                                            e.onSuccess(card!!)
+                                            epochRepository.findEpoch(card?.epochId!!)
+                                                .subscribe { epoch ->
+                                                    card?.epoch = epoch
+                                                    e.onSuccess(card!!)
+                                                }
                                         }
                             }
                 }

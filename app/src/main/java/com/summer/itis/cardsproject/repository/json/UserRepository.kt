@@ -14,6 +14,7 @@ import com.summer.itis.cardsproject.model.Comment
 import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.model.db_dop_models.ElementId
 import com.summer.itis.cardsproject.model.db_dop_models.Relation
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
 import com.summer.itis.cardsproject.utils.ApplicationHelper
 
 import java.util.ArrayList
@@ -56,6 +57,7 @@ class UserRepository {
                 Log.d(TAG, "database error = " + databaseError.message)
             }
             Log.d(TAG, "completed ")
+            userEpochRepository.createStartEpoches(user)
         }
     }
 

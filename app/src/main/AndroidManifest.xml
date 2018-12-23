@@ -92,7 +92,15 @@
                   android:screenOrientation="portrait"
                   android:configChanges="orientation|keyboardHidden"
         />
+        <activity android:name=".ui.statists.activity.StatListActivity"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation|keyboardHidden"
+        />
         <activity android:name=".ui.cards.one_card_list.OneCardListActivity"
+                  android:screenOrientation="portrait"
+                  android:configChanges="orientation|keyboardHidden"
+        />
+        <activity android:name=".ui.epoch.EpochListActivity"
                   android:screenOrientation="portrait"
                   android:configChanges="orientation|keyboardHidden"
         />

@@ -64,6 +64,8 @@ object Const {
     const val USER_KEY = "user"
     const val POINT_KEY = "point"
 
+    const val EPOCH_KEY = "EPOCH_KEY"
+
     //Crossing type
     const val WATCHER_TYPE = "watcher"
     const val OWNER_TYPE = "owner"
@@ -87,6 +89,11 @@ object Const {
     const val OFFICIAL_LIST = "OFFICIAL"
     const val USER_LIST = "USER"
     const val MY_LIST = "MY"
+
+    //Stats list types
+    const val LEADER_LIST = "LEADER_LIST"
+    const val MY_GAME_LIST = "MY_GAME_LIST"
+    const val COMMON_LIST = "COMMON_LIST"
 
     //Firebase constants
     const val SEP = "/"

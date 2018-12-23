@@ -206,6 +206,17 @@
         <include layout="@layout/layout_divider"/>
 
         <TextView
+                android:id="@+id/tv_add_epoches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin.normal"
+                android:text="@string/choose_epoch"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text.16"
+                android:visibility="gone"
+        />
+
+        <TextView
             android:id="@+id/tv_desc_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

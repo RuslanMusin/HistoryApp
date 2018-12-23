@@ -34,10 +34,14 @@ import android.content.Context
 import android.support.v4.app.NotificationCompat
 import android.widget.SeekBar
 import com.summer.itis.cardsproject.R.id.*
+import com.summer.itis.cardsproject.model.Epoch
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.ui.epoch.EpochListActivity
 import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
 import com.summer.itis.cardsproject.ui.service.GameService
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
+import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
 import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
@@ -73,6 +77,7 @@ class AddGameActivity : NavigationBaseActivity(), AddGameView, View.OnClickListe
         types = listOf(getString(R.string.user_type), getString(R.string.official_type))
         spinner.setItems(types)
         btn_add_game_photo.setOnClickListener(this)
+        li_choose_epoch.setOnClickListener(this)
         btn_create_game.setOnClickListener(this)
         seekBarCards.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -131,6 +136,11 @@ class AddGameActivity : NavigationBaseActivity(), AddGameView, View.OnClickListe
                 startActivityForResult(intent, ADD_CARD)
 
             }
+
+            R.id.li_choose_epoch -> {
+                val intent = Intent(this, EpochListActivity::class.java)
+                startActivityForResult(intent, AddTestFragment.ADD_EPOCH)
+            }
         }
     }
 
@@ -139,13 +149,25 @@ class AddGameActivity : NavigationBaseActivity(), AddGameView, View.OnClickListe
     override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(reqCode, resultCode, data)
 
-        if (reqCode == ADD_CARD && resultCode == Activity.RESULT_OK) {
-            val photoItem = gsonConverter.fromJson(data!!.getStringExtra(ITEM_JSON), PhotoItem::class.java)
-            Glide.with(iv_cover.context)
+        if(resultCode == Activity.RESULT_OK) {
+            if (reqCode == ADD_CARD ) {
+                val photoItem = gsonConverter.fromJson(data!!.getStringExtra(ITEM_JSON), PhotoItem::class.java)
+                Glide.with(iv_cover.context)
                     .load(photoItem.photoUrl)
                     .into(iv_cover)
-            lobby.photoUrl = photoItem.photoUrl
+                lobby.photoUrl = photoItem.photoUrl
+
+
+            }
+
+            if (reqCode == AddTestFragment.ADD_EPOCH) {
+                val epoch = gsonConverter.fromJson(data!!.getStringExtra(Const.EPOCH_KEY), Epoch::class.java)
+                tv_epoch!!.text = epoch.name
+                lobby.epoch = epoch
+                lobby.epochId = epoch.id
+            }
         }
+
     }
 
     override fun onGameCreated() {

@@ -287,6 +287,18 @@
     <string name="you_dont_have_card_min">Вам не хватает карт для игры</string>
     <string name="choose_from_standart">Выбрать из стандартных</string>
     <string name="choose_from_gallery">Выбрать из галлереи</string>
+    <string name="statistics">Статистика</string>
+    <string name="epoch">Эпоха</string>
+    <string name="choose_epoch">Выберите эпоху</string>
+
+    <string-array name="epoches">
+        <item>Древняя Русь, IX – XIIIвв</item>
+        <item>Татаро-монгольское иго, XIII – XVвв</item>
+        <item>Московское царство, XVI – XVI вв</item>
+        <item>Российская империя, XVIII – начало XXвв(1917)</item>
+        <item>СССР, 1917 – 1991</item>
+        <item>Российская федерация, 1991 - наст.время</item>
+    </string-array>
 
 
 </resources>

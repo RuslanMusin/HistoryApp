@@ -183,8 +183,8 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
         tiQuestion = view.findViewById(R.id.ti_question)
         liAnswers = view.findViewById(R.id.li_answers)
         btnAddAnswer = view.findViewById(R.id.btn_add_answer)
-        btnNextQuestion = view.findViewById(R.id.btn_next_question)
-        btnFinish = view.findViewById(R.id.btn_finish_questions)
+//        btnNextQuestion = view.findViewById(R.id.btn_next_question)
+//        btnFinish = view.findViewById(R.id.btn_finish_questions)
         spinner = view.findViewById(R.id.spinner)
         spinner!!.setItems(getString(R.string.test_type_one), getString(R.string.test_type_many))
 
@@ -218,8 +218,8 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
 
     private fun setListeners() {
         btnAddAnswer!!.setOnClickListener(this)
-        btnNextQuestion!!.setOnClickListener(this)
-        btnFinish!!.setOnClickListener(this)
+//        btnNextQuestion!!.setOnClickListener(this)
+//        btnFinish!!.setOnClickListener(this)
         spinner?.setOnItemSelectedListener(object : MaterialSpinner.OnItemSelectedListener<Any> {
             override fun onItemSelected(view: MaterialSpinner?, position: Int, id: Long, item: Any?) {
                 when (position) {
@@ -322,14 +322,14 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
 
         when (v.id) {
 
-            R.id.btn_finish_questions -> {
+          /*  R.id.btn_finish_questions -> {
                 finishQuestions()
 
             }
 
             R.id.btn_next_question -> {
                 nextQuestion()
-            }
+            }*/
 
             R.id.btn_add_answer -> {
                 if(answerSize < 5) {

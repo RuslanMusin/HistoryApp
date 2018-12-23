@@ -3,7 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="white">#FFFFFF</color>
 
     <color name="dialog_lender">#FF67B76A</color>
 
@@ -49,5 +48,6 @@
     <color name="game_card_prestige">#fbff00</color>
     <color name="game_card_hp">#ff5d5d</color>
     <color name="game_card_strength">#990000</color>
+    <color name="white">#fff</color>
 
 </resources>

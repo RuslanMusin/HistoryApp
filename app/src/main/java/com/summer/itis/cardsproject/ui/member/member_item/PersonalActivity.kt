@@ -19,14 +19,19 @@ import com.bumptech.glide.Glide
 
 import com.google.gson.Gson
 import com.summer.itis.cardsproject.R
+import com.summer.itis.cardsproject.model.Epoch
 import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.model.game.Lobby
 import com.summer.itis.cardsproject.model.game.LobbyPlayerData
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.repository.json.UserRepository
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
 import com.summer.itis.cardsproject.ui.cards.one_card_list.OneCardListActivity
+import com.summer.itis.cardsproject.ui.epoch.EpochListActivity
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
+import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment.Companion.ADD_EPOCH
 import com.summer.itis.cardsproject.ui.tests.one_test_list.OneTestListActivity
 import com.summer.itis.cardsproject.utils.ApplicationHelper
 import com.summer.itis.cardsproject.utils.Const
@@ -34,6 +39,7 @@ import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.ADD_FRIEND
 import com.summer.itis.cardsproject.utils.Const.ADD_REQUEST
 import com.summer.itis.cardsproject.utils.Const.DEFAULT_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.utils.Const.EPOCH_KEY
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.OWNER_TYPE
 import com.summer.itis.cardsproject.utils.Const.REMOVE_FRIEND
@@ -45,6 +51,7 @@ import com.summer.itis.cardsproject.utils.Const.USER_ID
 import com.summer.itis.cardsproject.utils.Const.USER_KEY
 import com.summer.itis.cardsproject.utils.Const.USER_TESTS
 import com.summer.itis.cardsproject.utils.Const.USER_TYPE
+import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.dialog_fast_game.*
 import kotlinx.android.synthetic.main.layout_expandable_text_view.*
 import kotlinx.android.synthetic.main.layout_personal.*
@@ -66,6 +73,8 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
 
     lateinit var gameDialog: MaterialDialog
     lateinit var types: List<String>
+
+    val lobby: Lobby = Lobby()
 
     var mProgressDialog: ProgressDialog? = null
 
@@ -100,6 +109,7 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
         li_tests!!.setOnClickListener(this)
         li_cards.setOnClickListener(this)
         btn_play_game.setOnClickListener(this)
+//        tv_add_epoches.setOnClickListener(this)
 
     }
 
@@ -165,6 +175,16 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
             R.id.li_cards -> showCards()
 
             R.id.btn_play_game -> playGame()
+
+//            R.id.tv_add_epoches -> createEpoches()
+        }
+    }
+
+    fun createEpoches() {
+        val list = resources.getStringArray(R.array.epoches).toList()
+        for(item in list) {
+
+            epochRepository.createEpoch(Epoch(item.toString())).subscribe()
         }
     }
 
@@ -181,6 +201,10 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
                         .build()
 
                 gameDialog.btn_create_game.setOnClickListener{ createGame() }
+                gameDialog.li_choose_epoch.setOnClickListener {
+                    val intent = Intent(this, EpochListActivity::class.java)
+                    startActivityForResult(intent, AddTestFragment.ADD_EPOCH)
+                }
 
                 types = listOf(getString(R.string.user_type), getString(R.string.official_type))
                 gameDialog.spinner.setItems(types)
@@ -210,7 +234,6 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
     }
 
     fun createGame() {
-        val lobby: Lobby = Lobby()
         lobby.cardNumber = gameDialog.seekBarCards.progress
         if(lobby.cardNumber >= 5) {
             if (types[gameDialog.spinner.selectedIndex].equals(getString(R.string.official_type))) {
@@ -312,6 +335,20 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
         if (mProgressDialog != null && mProgressDialog!!.isShowing) {
             mProgressDialog!!.dismiss()
         }
+    }
+
+    override fun onActivityResult(reqCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(reqCode, resultCode, data)
+
+        if(resultCode == Activity.RESULT_OK) {
+            if (reqCode == ADD_EPOCH) {
+                val epoch = gsonConverter.fromJson(data!!.getStringExtra(EPOCH_KEY), Epoch::class.java)
+                gameDialog.tv_epoch.text = epoch.name
+                lobby.epoch = epoch
+                lobby.epochId = epoch.id
+            }
+        }
+
     }
 
 

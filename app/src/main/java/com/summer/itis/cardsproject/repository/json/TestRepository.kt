@@ -8,7 +8,9 @@ import com.summer.itis.cardsproject.model.db_dop_models.ElementId
 import com.summer.itis.cardsproject.model.db_dop_models.Relation
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abstractCardRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.ADMIN_ROLE
 import com.summer.itis.cardsproject.utils.Const.AFTER_TEST
@@ -55,6 +57,7 @@ class TestRepository {
     private val FIELD_DESC = "desc"
     private val FIELD_TYPE = "type"
     private val FIELD_IMAGE_URL = "imageUrl"
+    private val FIELD_EPOCH_ID = "epochId"
 
 
     private val FIELD_RELATION = "relation"
@@ -77,8 +80,7 @@ class TestRepository {
         result[FIELD_QUESTIONS] = test.questions
         result[FIELD_TYPE] = test.type
         result[FIELD_IMAGE_URL] = test.imageUrl
-
-
+        result[FIELD_EPOCH_ID] = test.epochId
 
         return result
     }
@@ -240,6 +242,15 @@ class TestRepository {
                                                 childUpdates[USERS_CARDS + Const.SEP + userId + SEP + card.id] = addCardValues
                                                 val addTestValues = testRepository?.toMap(test.id, AFTER_TEST)
                                                 childUpdates[USERS_TESTS + Const.SEP + userId + SEP + test.id] = addTestValues
+                                                userEpochRepository.findUserEpoch(user.id, test.epochId).subscribe { userEpoch ->
+                                                    if(userEpoch.right == 0) {
+                                                        val right = test.rightQuestions.size
+                                                        val wrong = test.wrongQuestions.size
+                                                        userEpoch.right.plus(right)
+                                                        userEpoch.wrong.plus(wrong)
+                                                        userEpoch.ke += ((right - wrong) / (right + wrong)).toDouble()
+                                                    }
+                                                }
                                                 databaseReference.root.updateChildren(childUpdates)
                                                 e.onSuccess(true)
                                             }
@@ -262,7 +273,13 @@ class TestRepository {
             query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     test = dataSnapshot.getValue(Test::class.java)
-                   e.onSuccess(test!!)
+                    test?.let {
+                        epochRepository.findEpoch(it.epochId)
+                            .subscribe { epoch ->
+                                it.epoch = epoch
+                                e.onSuccess(it)
+                            }
+                    }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {}

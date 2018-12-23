@@ -39,6 +39,14 @@ class User {
     @Exclude
     private val tests: List<Test>? = null
 
+    var epochList: MutableList<UserEpoch> = ArrayList()
+
+    var level: Int = 1
+
+    var points: Long = 0
+
+    var nextLevel: Long = 0
+
     constructor() {}
 
     constructor(email: String, username: String) {
