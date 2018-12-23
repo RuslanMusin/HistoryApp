@@ -1,10 +1,9 @@
 package com.summer.itis.cardsproject.ui.statists.fragment.leader_stats
 
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.MvpPresenter
 import com.summer.itis.cardsproject.repository.RepositoryProvider
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
@@ -17,7 +16,7 @@ class LeaderStatsPresenter(): MvpPresenter<LeaderStatsView>() {
 
     fun loadStats() {
         val disposable =  RepositoryProvider.leaderStatRepository
-            .findStats(ApplicationHelper.currentUser)
+            .findStats(AppHelper.currentUser)
             .doOnSubscribe(Consumer<Disposable> { viewState.showLoading(it) })
             .doAfterTerminate(Action { viewState.hideLoading() })
             .subscribe({ viewState.changeDataSet(it) }, { viewState.handleError(it) })

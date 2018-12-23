@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.User
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.STUB_PATH
 
 class MemberItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,7 +36,7 @@ class MemberItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                         .into(imageView)
             } else {
                 //                ImageLoadHelper.loadPicture(imageView, items.getPhotoUrl());
-                val imageReference = ApplicationHelper.storageReference.child(item.photoUrl!!)
+                val imageReference = AppHelper.storageReference.child(item.photoUrl!!)
 
                 Glide.with(imageView.context)
                         .load(imageReference)

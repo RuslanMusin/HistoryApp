@@ -6,11 +6,13 @@ import com.google.firebase.database.*
 import com.summer.itis.cardsproject.model.*
 import com.summer.itis.cardsproject.model.db_dop_models.ElementId
 import com.summer.itis.cardsproject.model.db_dop_models.Relation
+import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abstractCardRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.ADMIN_ROLE
 import com.summer.itis.cardsproject.utils.Const.AFTER_TEST
@@ -26,6 +28,7 @@ import io.reactivex.Single
 
 import com.summer.itis.cardsproject.utils.Const.SEP
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
+import com.summer.itis.cardsproject.utils.Const.TEST_POINTS
 import com.summer.itis.cardsproject.utils.Const.USER_TYPE
 import com.summer.itis.cardsproject.utils.Const.WIN_GAME
 import com.summer.itis.cardsproject.utils.RxUtils
@@ -41,6 +44,8 @@ class TestRepository {
     private val USERS_TESTS = "users_tests"
     val USERS_CARDS = "users_cards"
     val USERS_ABSTRACT_CARDS = "users_abstract_cards"
+    private val USERS_EPOCHES = "users_epoches"
+
 
     private val TEST_QUESTIONS = "test_questions"
     private val TEST_CARDS = "test_cards"
@@ -58,6 +63,7 @@ class TestRepository {
     private val FIELD_TYPE = "type"
     private val FIELD_IMAGE_URL = "imageUrl"
     private val FIELD_EPOCH_ID = "epochId"
+    private val FIELD_USERS = "usersIds"
 
 
     private val FIELD_RELATION = "relation"
@@ -89,6 +95,12 @@ class TestRepository {
         val result = HashMap<String, Any?>()
         result[FIELD_ID] = id
         result[FIELD_RELATION] = relation
+        return result
+    }
+
+    fun toMapUser(test: Test): Map<String?, Any?> {
+        val result = HashMap<String?, Any?>()
+        result[""] = test.usersIds
         return result
     }
 
@@ -223,40 +235,45 @@ class TestRepository {
     fun finishTest(test: Test, user: User): Single<Boolean> {
         val childUpdates = HashMap<String, Any?>()
         val card = test.card
-        val single : Single<Boolean> =  Single.create { e ->
-            test.id?.let {
+        val single: Single<Boolean> = Single.create { e ->
+            test.id?.let { testId ->
                 user.id?.let { userId ->
-                    changeStatus(it, userId, AFTER_TEST).subscribe { relation ->
+                    changeStatus(testId, userId, AFTER_TEST).subscribe { relation ->
                         if (!relation.relBefore.equals(AFTER_TEST)) {
-                            card!!.cardId!!.let {
-                                user.id!!.let { userId ->
-                                    cardRepository?.findMyAbstractCardStates(it, userId)
-                                            ?.subscribe { winnerCards ->
-                                                Log.d(TAG_LOG,"add card after test")
-                                                if (winnerCards.size == 0) {
-                                                    Log.d(TAG_LOG,"add abstract card")
-                                                    val addAbstractCardValues = abstractCardRepository.toMapId(it)
-                                                    childUpdates[USERS_ABSTRACT_CARDS + Const.SEP + userId + SEP + it] = addAbstractCardValues
-                                                }
-                                                val addCardValues = cardRepository?.toMapId(card.id)
-                                                childUpdates[USERS_CARDS + Const.SEP + userId + SEP + card.id] = addCardValues
-                                                val addTestValues = testRepository?.toMap(test.id, AFTER_TEST)
-                                                childUpdates[USERS_TESTS + Const.SEP + userId + SEP + test.id] = addTestValues
-                                                userEpochRepository.findUserEpoch(user.id, test.epochId).subscribe { userEpoch ->
-                                                    if(userEpoch.right == 0) {
-                                                        val right = test.rightQuestions.size
-                                                        val wrong = test.wrongQuestions.size
-                                                        userEpoch.right.plus(right)
-                                                        userEpoch.wrong.plus(wrong)
-                                                        userEpoch.ke += ((right - wrong) / (right + wrong)).toDouble()
-                                                    }
-                                                }
-                                                databaseReference.root.updateChildren(childUpdates)
-                                                e.onSuccess(true)
-                                            }
-                                }
+                            card!!.cardId!!.let { cardId ->
+                                cardRepository?.findMyAbstractCardStates(cardId, userId)
+                                    ?.subscribe { winnerCards ->
+                                        Log.d(TAG_LOG, "add card after test")
+                                        if (winnerCards.size == 0) {
+                                            Log.d(TAG_LOG, "add abstract card")
+                                            val addAbstractCardValues = abstractCardRepository.toMapId(cardId)
+                                            childUpdates[USERS_ABSTRACT_CARDS + Const.SEP + userId + SEP + cardId] =
+                                                    addAbstractCardValues
+                                        }
+                                        val addCardValues = cardRepository?.toMapId(card.id)
+                                        childUpdates[USERS_CARDS + Const.SEP + userId + SEP + card.id] = addCardValues
+                                        val addTestValues = testRepository?.toMap(test.id, AFTER_TEST)
+                                        childUpdates[USERS_TESTS + Const.SEP + userId + SEP + test.id] = addTestValues
+                                        if (!test.usersIds.contains(userId)) {
+                                            test.usersIds.add(userId)
+                                        }
+//                                                val addUserValues = testRepository.toMapUser(test)
+//                                                childUpdates[TABLE_NAME + Const.SEP + test.id + SEP + FIELD_USERS] = addUserValues
+                                        databaseReference.child(testId).child(FIELD_USERS).setValue(test.usersIds)
+                                        user.points += TEST_POINTS
+                                        Log.d(TAG_LOG, "user points = ${user.points}")
+                                        if (user.points >= user.nextLevel) {
+                                            user.nextLevel = (1.5 * user.points + 20 * user.level).toLong()
+                                            user.level++
+                                        }
+                                        userRepository.updateUser(user)
+                                        databaseReference.root.updateChildren(childUpdates)
+                                        e.onSuccess(true)
+
+                                    }
                             }
                         }
+
                     }
 
 
@@ -355,6 +372,55 @@ class TestRepository {
 
                             }
                            e.onSuccess(cards)
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {}
+                    })
+
+                }
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
+
+
+        }
+        return single.compose(RxUtils.asyncSingle())
+    }
+
+    fun findUserFinishedTests(userId: String): Single<List<Test>> {
+        var query: Query = databaseReference.root.child(USERS_TESTS).child(userId)
+        val single: Single<List<Test>> = Single.create { e ->
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val relations = HashMap<String,Relation>()
+                    for (snapshot in dataSnapshot.children) {
+                        val elementId = snapshot.getValue(Relation::class.java)
+                        elementId?.let {
+                            if(AFTER_TEST.equals(it.relation)) {
+                                relations[it.id] = it
+                            }
+                        }
+                    }
+                    query = databaseReference
+                    query.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val cards: MutableList<Test> = ArrayList()
+                            for(snapshot in dataSnapshot.children) {
+                                val card = snapshot.getValue(Test::class.java)
+                                if(!card?.authorId.equals(userId)) {
+                                    if (relations.keys.contains(card?.id)) {
+                                        if(AFTER_TEST.equals(relations[card?.id]?.relation)) {
+                                            card?.testDone = true
+
+                                        }
+                                        card?.testRelation = relations[card?.id]
+                                    } else {
+                                        card?.testRelation = Relation()
+                                    }
+                                    card?.let { cards.add(it) }
+                                }
+
+                            }
+                            e.onSuccess(cards)
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {}

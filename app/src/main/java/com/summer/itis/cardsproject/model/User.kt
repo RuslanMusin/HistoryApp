@@ -45,7 +45,7 @@ class User {
 
     var points: Long = 0
 
-    var nextLevel: Long = 0
+    var nextLevel: Long = 60
 
     constructor() {}
 

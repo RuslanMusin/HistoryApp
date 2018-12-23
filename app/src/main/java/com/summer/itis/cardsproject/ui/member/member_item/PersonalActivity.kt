@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
@@ -22,7 +21,9 @@ import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.Epoch
 import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.game.LobbyData
 import com.summer.itis.cardsproject.model.game.LobbyPlayerData
+import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
@@ -33,24 +34,22 @@ import com.summer.itis.cardsproject.ui.epoch.EpochListActivity
 import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
 import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment.Companion.ADD_EPOCH
 import com.summer.itis.cardsproject.ui.tests.one_test_list.OneTestListActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 
 import com.summer.itis.cardsproject.utils.Const.ADD_FRIEND
 import com.summer.itis.cardsproject.utils.Const.ADD_REQUEST
-import com.summer.itis.cardsproject.utils.Const.DEFAULT_ABSTRACT_TESTS
+import com.summer.itis.cardsproject.utils.Const.CARD_NUMBER
 import com.summer.itis.cardsproject.utils.Const.EPOCH_KEY
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.OWNER_TYPE
 import com.summer.itis.cardsproject.utils.Const.REMOVE_FRIEND
 import com.summer.itis.cardsproject.utils.Const.REMOVE_REQUEST
-import com.summer.itis.cardsproject.utils.Const.STUB_PATH
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.TEST_LIST_TYPE
 import com.summer.itis.cardsproject.utils.Const.USER_ID
 import com.summer.itis.cardsproject.utils.Const.USER_KEY
 import com.summer.itis.cardsproject.utils.Const.USER_TESTS
-import com.summer.itis.cardsproject.utils.Const.USER_TYPE
 import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.dialog_fast_game.*
 import kotlinx.android.synthetic.main.layout_expandable_text_view.*
@@ -109,7 +108,7 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
         li_tests!!.setOnClickListener(this)
         li_cards.setOnClickListener(this)
         btn_play_game.setOnClickListener(this)
-//        tv_add_epoches.setOnClickListener(this)
+        tv_add_epoches.setOnClickListener(this)
 
     }
 
@@ -120,7 +119,7 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
         tvName = findViewById(R.id.nameEditText)
 
         if (type == OWNER_TYPE) {
-            user = ApplicationHelper.currentUser
+            user = AppHelper.currentUser
             setUserData()
         } else {
             setUserData()
@@ -132,8 +131,16 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
 
         expand_text_view.text = user.desc
 
+        tv_level.text = getString(R.string.level, user.level)
+
+        if(type.equals(OWNER_TYPE)) {
+            progressBar.max = user.nextLevel.toInt()
+            progressBar.progress = user.points.toInt()
+            progressBar.visibility = View.VISIBLE
+        }
+
         if (!user.isStandartPhoto) {
-            val imageReference = user.photoUrl?.let { ApplicationHelper.storageReference.child(it) }
+            val imageReference = user.photoUrl?.let { AppHelper.storageReference.child(it) }
 
             Log.d(TAG_LOG, "name " + (imageReference?.path ?: ""))
 
@@ -176,16 +183,60 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
 
             R.id.btn_play_game -> playGame()
 
-//            R.id.tv_add_epoches -> createEpoches()
+            R.id.tv_add_epoches -> createEpoches()
+        }
+    }
+
+    fun createUserEpoches() {
+        val enemyId = ""
+        val myId = AppHelper.currentUser.id
+        val lobby = LobbyData()
+        lobby.id = "1"
+        lobby.epochId = "-LUNEsg40wxf8PjssM8R"
+        val my_score = 3
+        val enemy_score = 5
+
+        userRepository.readUserById(enemyId).subscribe { enemy ->
+            cardRepository.findMyCards(myId).subscribe { cards ->
+                var i = 0;
+                for (card in cards) {
+                    if (i % 2 == 0) {
+                        RepositoryProvider.cardRepository.addCardAfterGame(card.id!!, myId, enemy.id)
+                            .subscribe { e ->
+                                RepositoryProvider.userEpochRepository.updateAfterGame(
+                                    lobby,
+                                    myId,
+                                    true,
+                                    my_score
+                                )
+
+                                RepositoryProvider.userEpochRepository.updateAfterGame(lobby, enemyId, false, enemy_score)
+                            }
+                    } else {
+                        RepositoryProvider.cardRepository.addCardAfterGame(card.id!!, myId, enemy.id)
+                            .subscribe { e ->
+                                RepositoryProvider.userEpochRepository.updateAfterGame(
+                                    lobby,
+                                    myId,
+                                    false,
+                                    my_score
+                                )
+                                RepositoryProvider.userEpochRepository.updateAfterGame(lobby, enemyId, true, enemy_score)
+                            }
+                    }
+                }
+            }
+
         }
     }
 
     fun createEpoches() {
-        val list = resources.getStringArray(R.array.epoches).toList()
+        /*val list = resources.getStringArray(R.array.epoches).toList()
         for(item in list) {
 
             epochRepository.createEpoch(Epoch(item.toString())).subscribe()
-        }
+        }*/
+        RepositoryProvider.userEpochRepository.createStartEpoches(user)
     }
 
     private fun playGame() {
@@ -235,7 +286,7 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
 
     fun createGame() {
         lobby.cardNumber = gameDialog.seekBarCards.progress
-        if(lobby.cardNumber >= 5) {
+        if(lobby.cardNumber >= CARD_NUMBER) {
             if (types[gameDialog.spinner.selectedIndex].equals(getString(R.string.official_type))) {
                 lobby.type = Const.OFFICIAL_TYPE
             }

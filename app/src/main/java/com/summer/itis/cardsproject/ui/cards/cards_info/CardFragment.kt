@@ -11,15 +11,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.summer.itis.cardsproject.R
-import com.summer.itis.cardsproject.R.id.*
 import com.summer.itis.cardsproject.model.AbstractCard
 import com.summer.itis.cardsproject.ui.cards.card_states.CardStatesActivity
 import com.summer.itis.cardsproject.ui.tests.one_test_list.OneTestListActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.ABSTRACT_CARD_ID
 import com.summer.itis.cardsproject.utils.Const.DEFAULT_ABSTRACT_TESTS
 import com.summer.itis.cardsproject.utils.Const.TEST_LIST_TYPE
@@ -92,7 +89,7 @@ class CardFragment : Fragment(), OnClickListener {
         }else{
             intent.putExtra(TEST_LIST_TYPE, USER_ABSTRACT_TESTS)
             intent.putExtra(ABSTRACT_CARD_ID, "" + card?.id)
-            intent.putExtra(USER_ID, ApplicationHelper.currentUser?.id)
+            intent.putExtra(USER_ID, AppHelper.currentUser?.id)
         }
         return intent
     }

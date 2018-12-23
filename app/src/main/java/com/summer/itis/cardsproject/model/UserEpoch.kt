@@ -1,8 +1,10 @@
 package com.summer.itis.cardsproject.model
 
 import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 import java.util.*
 
+@IgnoreExtraProperties
 class UserEpoch {
 
     lateinit var id: String
@@ -13,12 +15,13 @@ class UserEpoch {
     var sum: Int = win + lose
 
     @Exclude
-    lateinit var epoch: Epoch
+    @Transient
+    var epoch: Epoch? = null
 
     var right: Int = 0
     var wrong: Int = 0
 
-    var ge: Double = ((win - lose) / sum).toDouble()
+    var ge: Double = 0.0
     var lastGe: Double = 0.0
     var geSub: Double = ge - lastGe
     var ke: Double = 0.0
@@ -30,10 +33,15 @@ class UserEpoch {
     constructor() {}
 
     constructor(epoch: Epoch, user: User) {
+        this.id = epoch.id
         this.epoch = epoch
         this.userId = user.id
         this.epochId = epoch.id
         this.ge = 0.0
         this.updateDate = Date().time
+    }
+
+    fun updateGe() {
+        ge = ((win - lose) / sum).toDouble()
     }
 }

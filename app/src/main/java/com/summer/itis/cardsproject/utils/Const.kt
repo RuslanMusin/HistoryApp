@@ -13,6 +13,8 @@ object Const {
 
     const val TAG_LOG = "TEG"
 
+    const val DOUBLE_FORM = "%.2f"
+
     const val MAX_LENGTH = 80
     const val MORE_TEXT = "..."
 
@@ -66,12 +68,17 @@ object Const {
 
     const val EPOCH_KEY = "EPOCH_KEY"
 
+    const val GAME_WIN_POINTS = 20
+    const val GAME_LOSE_POINTS = 5
+    const val TEST_POINTS = 10
+
     //Crossing type
     const val WATCHER_TYPE = "watcher"
     const val OWNER_TYPE = "owner"
     const val RESTRICT_OWNER_TYPE = "restrict_owner"
     const val FOLLOWER_TYPE = "follower"
 
+    const val CARD_NUMBER = 3
     //Friend type
     const val ADD_FRIEND = "addF"
     const val REMOVE_FRIEND = "removeF"

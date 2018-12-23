@@ -281,7 +281,7 @@
     <string name="delete_game">Удаление игры</string>
     <string name="enemy_not_online">Игрок не в сети</string>
     <string name="choose_card_mode">Какие карты можно использовать</string>
-    <string name="default_card_number">5</string>
+    <string name="default_card_number">3</string>
     <string name="set_card_min">В игре должно быть минимум 5 карт</string>
     <string name="enemy_doesnt_have_card_min">У противника недостаточно карт для этой игры</string>
     <string name="you_dont_have_card_min">Вам не хватает карт для игры</string>
@@ -300,5 +300,12 @@
         <item>Российская федерация, 1991 - наст.время</item>
     </string-array>
 
+    <string name="level">Уровень: %1$d</string>
+    <string name="cardnumber">3</string>
+
+    <string name="ke_arg">Общий коэффициент Ke : %1$s</string>
+    <string name="ke_change_arg">Изменения Ke : %1$s</string>
+    <string name="right_arg">Правильных ответов : %1$d</string>
+    <string name="wrong_arg">Неправильных ответов : %1$d</string>
 
 </resources>

@@ -3,7 +3,6 @@ package com.summer.itis.cardsproject.ui.cards.add_card_list
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.util.Log
@@ -15,18 +14,15 @@ import android.widget.TextView
 import com.annimon.stream.Stream
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.summer.itis.cardsproject.R
-import com.summer.itis.cardsproject.R.id.progressBar
-import com.summer.itis.cardsproject.R.id.toolbar
 import com.summer.itis.cardsproject.model.Card
 import com.summer.itis.cardsproject.model.pojo.opensearch.Item
-import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.ui.base.BaseAdapter
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
 import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity
 import com.summer.itis.cardsproject.ui.cards.add_card.AddCardActivity.Companion.ITEM_JSON
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
 import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
 
 import java.util.ArrayList
@@ -104,7 +100,7 @@ class AddCardListActivity : NavigationBaseActivity(), AddCardListView, BaseAdapt
         val sep = "-----------"
         Log.d(TAG_LOG, sep)
 
-        val names: List<String> = ApplicationHelper.readFileFromAssets("regular.txt",this)
+        val names: List<String> = AppHelper.readFileFromAssets("regular.txt",this)
         for(name in names) {
             Log.d(TAG_LOG,"name = " + name)
         }

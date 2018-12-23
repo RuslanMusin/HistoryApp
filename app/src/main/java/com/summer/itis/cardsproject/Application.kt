@@ -18,22 +18,21 @@ package com.summer.itis.cardsproject
  */
 
 
-import android.content.Context
 import android.support.multidex.MultiDexApplication
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 
 class Application : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
 
-        ApplicationHelper.initUserState(this)
+        AppHelper.initUserState(this)
     }
 
 
 
     companion object {
 
-        val TAG = Application::class.java.simpleName
+        val TAG = "TEG"
     }
 }

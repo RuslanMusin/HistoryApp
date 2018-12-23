@@ -15,6 +15,7 @@ import com.summer.itis.cardsproject.model.Question
 import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
 import com.summer.itis.cardsproject.ui.base.BaseBackActivity
 import com.summer.itis.cardsproject.ui.base.OnBackPressedListener
 import com.summer.itis.cardsproject.ui.base.OnOkListener
@@ -22,13 +23,11 @@ import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.WINNED_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.test_item.fragments.check_answers.AnswersFragment
 import com.summer.itis.cardsproject.ui.tests.test_item.fragments.winned_card.TestCardFragment
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_finish_test.*
@@ -90,11 +89,12 @@ class FinishFragment : Fragment(), View.OnClickListener, OnBackPressedListener, 
             Log.d(TAG_LOG, "finish it")
             tv_winned_card.text = test.card?.abstractCard?.name
             test.testDone = true
-            ApplicationHelper.currentUser?.let { testRepository.finishTest(test, it).subscribe() }
+            AppHelper.currentUser?.let { testRepository.finishTest(test, it).subscribe() }
 
         } else {
             tv_winned_card.text = getText(R.string.test_failed)
         }
+        userEpochRepository.updateAfterTest(AppHelper.currentUser.id, test).subscribe()
     }
 
 

@@ -2,14 +2,17 @@ package com.summer.itis.cardsproject.repository.json
 
 import android.util.Log
 import com.google.firebase.database.*
-import com.summer.itis.cardsproject.model.LeaderStat
-import com.summer.itis.cardsproject.model.User
-import com.summer.itis.cardsproject.model.UserEpoch
-import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.*
+import com.summer.itis.cardsproject.model.game.LobbyData
+import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.leaderStatRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.GAME_LOSE_POINTS
+import com.summer.itis.cardsproject.utils.Const.GAME_WIN_POINTS
+import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Single
 
@@ -17,7 +20,7 @@ class UserEpochRepository {
 
     var databaseReference: DatabaseReference
 
-    val TABLE_NAME = "user_epoches"
+    val TABLE_NAME = "users_epoches"
 
     private val FIELD_ID = "id"
     private val FIELD_USER_ID = "userId"
@@ -134,13 +137,11 @@ class UserEpochRepository {
             val query: Query = databaseReference.child(userId).child(epochId)
             query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    var epoch: UserEpoch
-                    if(dataSnapshot.exists()) {
-                        epoch = dataSnapshot.getValue(UserEpoch::class.java)!!
-                    } else {
-                        epoch = UserEpoch()
+                    val epoch: UserEpoch = dataSnapshot.getValue(UserEpoch::class.java)!!
+                    epochRepository.findEpoch(epoch.epochId).subscribe { ep ->
+                        epoch.epoch = ep
+                        e.onSuccess(epoch)
                     }
-                    e.onSuccess(epoch)
 
                 }
 
@@ -155,33 +156,48 @@ class UserEpochRepository {
 
     fun findUserEpoches(userId: String): Single<List<UserEpoch>> {
         val single: Single<List<UserEpoch>> = Single.create{ e ->
-            val query: Query = databaseReference.child(userId)
-            query.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val comments: MutableList<UserEpoch> = ArrayList()
-                    for (postSnapshot in dataSnapshot.children) {
-                        comments.add(postSnapshot.getValue(UserEpoch::class.java)!!)
+            epochRepository.findEpoches().subscribe { epoches ->
+                val query: Query = databaseReference.child(userId)
+                query.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val comments: MutableList<UserEpoch> = ArrayList()
+                        for (postSnapshot in dataSnapshot.children) {
+                            val userEpoch = postSnapshot.getValue(UserEpoch::class.java)!!
+                            userEpoch.epoch = findEpochById(epoches, userEpoch.epochId)
+                            comments.add(userEpoch)
+                        }
+                        e.onSuccess(comments)
+
                     }
-                    e.onSuccess(comments)
 
-                }
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        Log.d(Const.TAG_LOG, "loadPost:onCancelled", databaseError.toException())
+                    }
+                })
+            }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    Log.d(Const.TAG_LOG, "loadPost:onCancelled", databaseError.toException())
-                }
-            })
 
         }
         return single.compose(RxUtils.asyncSingle())
     }
 
+    fun findEpochById(epoches: List<Epoch>, epochId: String): Epoch {
+        for(ep in epoches) {
+            if(ep.id.equals(epochId)) {
+                return ep
+            }
+        }
+        return Epoch()
+    }
+
     fun updateUserEpoch(userEpoch: UserEpoch): Single<Boolean> {
         val single: Single<Boolean> = Single.create { e ->
 
-            val key = databaseReference.child(userEpoch.userId).push().key
-            key?.let { userEpoch.id = it }
-            val query: Query = databaseReference.child(userEpoch.userId).child(userEpoch.id)
-            query.addListenerForSingleValueEvent(object : ValueEventListener {
+            val ref : DatabaseReference = databaseReference.child(userEpoch.userId).child(userEpoch.id)
+            ref.setValue(userEpoch).addOnCompleteListener { lis ->
+                e.onSuccess(true)
+            }
+           /* query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     databaseReference.child(userEpoch.userId).child(userEpoch.id).setValue(userEpoch)
                     e.onSuccess(true)
@@ -190,7 +206,7 @@ class UserEpochRepository {
                 override fun onCancelled(databaseError: DatabaseError) {
                     Log.d(Const.TAG_LOG, "loadPost:onCancelled", databaseError.toException())
                 }
-            })
+            })*/
 
         }
         return single.compose(RxUtils.asyncSingle())
@@ -199,20 +215,33 @@ class UserEpochRepository {
     fun createStartEpoches(user: User) {
         epochRepository.findEpoches().subscribe { epoches ->
             for(item in epoches) {
-                updateUserEpoch(UserEpoch(item, user)).subscribe()
+                updateUserEpoch(UserEpoch(item, user)).subscribe { e ->
+                    Log.d(TAG_LOG, "updated user epoch ${item.name}")
+                }
             }
         }
 
     }
 
-    fun updateAfterGame(lobby: Lobby, playerId: String?, isWin: Boolean, score: Int) {
+    fun updateAfterGame(lobby: LobbyData, playerId: String?, isWin: Boolean, score: Int) {
         playerId?.let {
             userRepository.readUserById(it).subscribe { user ->
                 findUserEpoch(it, lobby.epochId).subscribe { epoch ->
                     if(isWin) {
                         epoch.win++
+                        user.points += GAME_WIN_POINTS
                     } else {
                         epoch.lose++
+                        user.points += GAME_LOSE_POINTS
+                    }
+                    if(user.points >= user.nextLevel) {
+                        user.nextLevel = (1.5 * user.points + 20 * user.level).toLong()
+                        user.level++
+                    }
+                    epoch.updateGe()
+                    userRepository.updateUser(user)
+                    if(user.id.equals(AppHelper.currentUser.id)) {
+                        AppHelper.currentUser = user
                     }
                     epoch.right.plus(score)
                     epoch.wrong.plus(lobby.cardNumber - score)
@@ -227,6 +256,23 @@ class UserEpochRepository {
 
             }
         }
+    }
+
+    fun updateAfterTest(userId: String, test: Test): Single<Boolean> {
+        val single: Single<Boolean> = Single.create { e ->
+            findUserEpoch(userId, test.epochId).subscribe { userEpoch ->
+                Log.d(TAG_LOG, "epoch was finded")
+                val right = test.rightQuestions.size
+                val wrong = test.wrongQuestions.size
+                userEpoch.right += right
+                userEpoch.wrong += wrong
+                userEpoch.ke += ((right - wrong).toDouble() / (right + wrong))
+                Log.d(TAG_LOG, "userEpoch.ke = ${userEpoch.ke}")
+                updateUserEpoch(userEpoch).subscribe { flag  -> e.onSuccess(true)}
+            }
+        }
+        return single.compose(RxUtils.asyncSingle())
+
     }
 
     /*  fun findMyCards(userId: String): Single<List<Card>> {

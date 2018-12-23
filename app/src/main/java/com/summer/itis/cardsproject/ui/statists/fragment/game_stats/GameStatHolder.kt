@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_game_stat.view.*
 class GameStatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(item: UserEpoch) {
-        itemView.tv_name.text = item.epoch.name
+        itemView.tv_name.text = item.epoch?.name
         itemView.tv_ge.text = item.ge.toString()
         itemView.tv_ge_change.text = item.geSub.toString()
         itemView.tv_win.text = item.win.toString()

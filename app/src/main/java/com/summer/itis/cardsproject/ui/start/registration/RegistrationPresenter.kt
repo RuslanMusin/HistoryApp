@@ -1,23 +1,15 @@
 package com.summer.itis.cardsproject.ui.start.registration
 
-import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 
 
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.repository.RepositoryProvider
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.AVATAR
 
@@ -25,9 +17,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-import com.summer.itis.cardsproject.utils.Const.IMAGE_START_PATH
-import com.summer.itis.cardsproject.utils.Const.SEP
-import com.summer.itis.cardsproject.utils.Const.STUB_PATH
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 
 class RegistrationPresenter(private val regView: RegistrationActivity) {
@@ -92,7 +81,7 @@ class RegistrationPresenter(private val regView: RegistrationActivity) {
         if (!regView.isStandartPhoto) {
             user.photoUrl = (Const.IMAGE_START_PATH + user.id + Const.SEP
                     + AVATAR)
-            val childRef = ApplicationHelper.storageReference.child(user.photoUrl!!)
+            val childRef = AppHelper.storageReference.child(user.photoUrl!!)
 
             //uploading the image
             val uploadTask = childRef.putFile(regView.imageUri!!)
@@ -132,8 +121,8 @@ class RegistrationPresenter(private val regView: RegistrationActivity) {
         regView.hideProgressDialog()
         if (firebaseUser != null) {
             regView.user?.let {
-                ApplicationHelper.currentUser = it
-                ApplicationHelper.userInSession = true
+                AppHelper.currentUser = it
+                AppHelper.userInSession = true
             }
             regView.goToBookList()
         }

@@ -21,7 +21,7 @@ import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abst
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
 import com.summer.itis.cardsproject.repository.json.UserRepository
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
 
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
@@ -160,8 +160,8 @@ class LoginPresenter(private val logView: LoginActivity) {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         val user = dataSnapshot.getValue(User::class.java)
                         user?.let {
-                            ApplicationHelper.currentUser = it
-                            ApplicationHelper.userInSession = true
+                            AppHelper.currentUser = it
+                            AppHelper.userInSession = true
                         }
                         user?.let {
                             it.status = ONLINE_STATUS
@@ -194,7 +194,7 @@ class LoginPresenter(private val logView: LoginActivity) {
         cardRepository?.readCard("-LHEW5YqlXQrV8quuLrd")?.subscribe { e ->
             val test: Test = e.test
             test.card = e
-            ApplicationHelper.currentUser?.let {
+            AppHelper.currentUser?.let {
                 testRepository?.finishTest(test, it)?.subscribe { t ->
                     Log.d(TAG_LOG, "after first finish")
                     cardRepository!!.readCard("-LHEWO92FO6szrtwuU40").subscribe { r ->
@@ -240,7 +240,7 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findMyTests() {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             testRepository?.findMyTests(it)?.subscribe { e ->
                 Log.d(TAG_LOG, "myTests")
                 for (test in e) {
@@ -268,7 +268,7 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findOfficialMyCards() {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             cardRepository?.findOfficialMyCards(it)?.subscribe { e ->
                 Log.d(TAG_LOG, "official_cards")
                 for (card in e) {
@@ -283,7 +283,7 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findMyCards() {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             cardRepository?.findMyCards(it)?.subscribe { e ->
                 Log.d(TAG_LOG, "user_cards")
                 for (card in e) {
@@ -309,7 +309,7 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findMyAbstractCardStates() {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             cardRepository?.findMyAbstractCardStates("-LHEW5Yke-A-EtXQDqbG", it)?.subscribe { e ->
             Log.d(TAG_LOG, "my_card_states")
             for (card in e) {
@@ -336,7 +336,7 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findMyAbstractCardTests() {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             cardRepository?.findMyAbstractCardTests("-LHEWO92FO6szrtwuU4-", it)?.subscribe { e ->
             Log.d(TAG_LOG, "user_card_tests")
             for (test in e) {
@@ -350,7 +350,7 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findDefaultAbstractCards() {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             abstractCardRepository.findDefaultAbstractCards(it).subscribe { e ->
                 Log.d(TAG_LOG, "default_abstract_cards")
                 for (card in e) {
@@ -366,7 +366,7 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findMyAbstractCards() {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             abstractCardRepository.findMyAbstractCards(it).subscribe { e ->
                 Log.d(TAG_LOG, "my_abstract_cards")
                 for (card in e) {

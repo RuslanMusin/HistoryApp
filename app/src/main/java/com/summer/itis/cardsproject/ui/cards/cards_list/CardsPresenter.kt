@@ -4,7 +4,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.summer.itis.cardsproject.model.AbstractCard
 import com.summer.itis.cardsproject.repository.RepositoryProvider
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
@@ -20,7 +20,7 @@ open class CardsPresenter: MvpPresenter<CardsView>() {
     }
 
     fun getAbstractCardsList(){
-        ApplicationHelper.currentUser?.id?.let{it ->
+        AppHelper.currentUser?.id?.let{ it ->
             RepositoryProvider
                     .abstractCardRepository?.findDefaultAbstractCards(it)
                     .doOnSubscribe(Consumer<Disposable> { viewState.showLoading(it) })
@@ -30,7 +30,7 @@ open class CardsPresenter: MvpPresenter<CardsView>() {
     }
 
     fun getUserAbstractCardsList(){
-        ApplicationHelper.currentUser?.id?.let{it ->
+        AppHelper.currentUser?.id?.let{ it ->
             RepositoryProvider
                     .abstractCardRepository?.findMyAbstractCards(it)
                     .doOnSubscribe(Consumer<Disposable> { viewState.showLoading(it) })

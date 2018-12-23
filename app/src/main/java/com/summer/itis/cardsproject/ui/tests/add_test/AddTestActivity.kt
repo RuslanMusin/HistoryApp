@@ -3,37 +3,20 @@ package com.summer.itis.cardsproject.ui.tests.add_test
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
-import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.Question
 import com.summer.itis.cardsproject.model.Test
-import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
 import com.summer.itis.cardsproject.ui.base.*
 import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
 import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
-import com.summer.itis.cardsproject.ui.tests.add_test.fragments.question.AddQuestionFragment
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.FINISH_FRAGMENT
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_FRAGMENT
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.WINNED_FRAGMENT
-import com.summer.itis.cardsproject.ui.tests.test_item.fragments.main.TestFragment
-import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
-import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.activity_with_frame_and_toolbar.*
 import kotlinx.android.synthetic.main.back_forward.*
 
@@ -139,7 +122,7 @@ class AddTestActivity : BaseBackActivity(), AddTestView, ChangeToolbarListener {
 
     override fun createTest() {
         testRepository.
-                createTest(test!!, ApplicationHelper.currentUser!!)
+                createTest(test!!, AppHelper.currentUser!!)
                 .subscribe{e -> TestActivity.start(this, test!!)}
 
     }

@@ -23,7 +23,6 @@ import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.bumptech.glide.Glide
-import com.google.android.gms.flags.impl.SharedPreferencesFactory.getSharedPreferences
 import com.google.firebase.auth.FirebaseAuth
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.game.GameData
@@ -41,10 +40,10 @@ import com.summer.itis.cardsproject.ui.member.member_list.reader.ReaderListActiv
 import com.summer.itis.cardsproject.ui.start.login.LoginActivity
 import com.summer.itis.cardsproject.ui.statists.activity.StatListActivity
 import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.ApplicationHelper.Companion.offlineFunction
-import com.summer.itis.cardsproject.utils.ApplicationHelper.Companion.onlineFunction
-import com.summer.itis.cardsproject.utils.ApplicationHelper.Companion.userStatus
+import com.summer.itis.cardsproject.utils.AppHelper
+import com.summer.itis.cardsproject.utils.AppHelper.Companion.offlineFunction
+import com.summer.itis.cardsproject.utils.AppHelper.Companion.onlineFunction
+import com.summer.itis.cardsproject.utils.AppHelper.Companion.userStatus
 import com.summer.itis.cardsproject.utils.Const.IN_GAME_STATUS
 import com.summer.itis.cardsproject.utils.Const.OFFLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.ONLINE_GAME
@@ -143,7 +142,7 @@ open class NavigationBaseActivity : MvpAppCompatActivity() {
             if (relation.relation.equals(IN_GAME_STATUS)) {
                 gamesRepository.findLobby(relation.id).subscribe { lobby ->
                     if (!isStopped) {
-                        ApplicationHelper.currentUser.let {
+                        AppHelper.currentUser.let {
                             it.gameLobby = lobby
                             val gameData: GameData = GameData()
                             gameData.gameMode = ONLINE_GAME
@@ -238,7 +237,7 @@ open class NavigationBaseActivity : MvpAppCompatActivity() {
                 R.id.menu_friends -> ReaderListActivity.start(this)
 
                 R.id.menu_logout -> {
-                    val user = ApplicationHelper.currentUser
+                    val user = AppHelper.currentUser
                     user?.let {
                         it.status = OFFLINE_STATUS
                         userRepository.changeUserStatus(user).subscribe()
@@ -254,12 +253,12 @@ open class NavigationBaseActivity : MvpAppCompatActivity() {
 
         val header = mNavigationView.getHeaderView(0)
         headerImage = header.findViewById(R.id.iv_crossing)
-//        ApplicationHelper.loadUserPhoto(headerImage)
-        ApplicationHelper.currentUser.let{
+//        AppHelper.loadUserPhoto(headerImage)
+        AppHelper.currentUser.let{
             header.tv_menu.text = it.username
 
             if (!it.isStandartPhoto) {
-                val imageReference = it.photoUrl?.let { ApplicationHelper.storageReference.child(it) }
+                val imageReference = it.photoUrl?.let { AppHelper.storageReference.child(it) }
 
                 Log.d(TAG_LOG, "name " + (imageReference?.path ?: ""))
 

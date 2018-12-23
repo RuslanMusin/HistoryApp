@@ -42,6 +42,7 @@ import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
 import com.summer.itis.cardsproject.ui.service.GameService
 import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
 import com.summer.itis.cardsproject.utils.Const
+import com.summer.itis.cardsproject.utils.Const.CARD_NUMBER
 import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
 import com.summer.itis.cardsproject.utils.Const.OFFICIAL_TYPE
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
@@ -99,7 +100,7 @@ class AddGameActivity : NavigationBaseActivity(), AddGameView, View.OnClickListe
 
             R.id.btn_create_game -> {
                 lobby.cardNumber = seekBarCards.progress
-                if(lobby.cardNumber >= 5) {
+                if(lobby.cardNumber >= CARD_NUMBER) {
                     if (types[spinner.selectedIndex].equals(getString(R.string.official_type))) {
                         lobby.type = OFFICIAL_TYPE
                     } else {

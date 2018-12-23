@@ -6,16 +6,8 @@ import android.content.Intent
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 import android.util.Log
-import com.afollestad.materialdialogs.DialogAction
-import com.afollestad.materialdialogs.MaterialDialog
 import com.summer.itis.cardsproject.R
-import com.summer.itis.cardsproject.model.game.GameData
-import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
-import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
-import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.Const.ONLINE_GAME
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import android.app.PendingIntent
 import android.support.v4.app.NotificationCompat.PRIORITY_HIGH
@@ -62,7 +54,7 @@ class GameService : Service() {
                     .negativeText(R.string.disagree)
                     .onPositive(object :MaterialDialog.SingleButtonCallback {
                         override fun onClick(dialog: MaterialDialog, which: DialogAction) {
-                            ApplicationHelper.currentUser?.let {
+                            AppHelper.currentUser?.let {
                                 it.gameLobby = lobby
                                 val gameData: GameData = GameData()
                                 lobby.invited?.playerId?.let{

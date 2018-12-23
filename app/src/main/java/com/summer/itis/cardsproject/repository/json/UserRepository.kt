@@ -10,12 +10,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
+import com.summer.itis.cardsproject.Application.Companion.TAG
 import com.summer.itis.cardsproject.model.Comment
 import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.model.db_dop_models.ElementId
 import com.summer.itis.cardsproject.model.db_dop_models.Relation
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 
 import java.util.ArrayList
 import java.util.HashMap
@@ -102,8 +103,7 @@ class UserRepository {
     }
 
     fun updateUser(user: User) {
-        val updatedValues = HashMap<String, Any>()
-        databaseReference.child(user.id!!).updateChildren(updatedValues)
+        databaseReference.child(user.id).setValue(user)
     }
 
     fun loadDefaultUsers(): Single<List<User>> {
@@ -331,8 +331,8 @@ class UserRepository {
     fun changeJustUserStatus(status: String): Single<Boolean> {
         Log.d(TAG_LOG,"chageJustUserStatus = $status")
         val single: Single<Boolean> = Single.create{e ->
-            if(ApplicationHelper.userInSession) {
-                ApplicationHelper.currentUser?.let { user ->
+            if(AppHelper.userInSession) {
+                AppHelper.currentUser?.let { user ->
                     user.status = status
                     user.id.let { databaseReference.child(it).child(FIELD_STATUS).setValue(user.status) }
                     user.lobbyId?.let {
@@ -360,8 +360,8 @@ class UserRepository {
     }
 
     fun checkUserConnection(checkIt: () -> (Unit)) {
-        if(ApplicationHelper.userInSession) {
-            ApplicationHelper.currentUser.let {
+        if(AppHelper.userInSession) {
+            AppHelper.currentUser.let {
                 if(it.status.equals(OFFLINE_STATUS)) {
                     checkIt()
                 }
@@ -386,8 +386,8 @@ class UserRepository {
     }
 
     fun setOnOfflineStatus() {
-        if(ApplicationHelper.userInSession) {
-            ApplicationHelper.currentUser.let {
+        if(AppHelper.userInSession) {
+            AppHelper.currentUser.let {
                 val myConnect = databaseReference.root.child(UserRepository.TABLE_NAME).child(it.id).child(UserRepository.FIELD_STATUS)
                 myConnect.onDisconnect().setValue(OFFLINE_STATUS)
 
@@ -396,8 +396,6 @@ class UserRepository {
     }
 
     companion object {
-
-        private val TAG = "UserRepository"
 
         const val TABLE_NAME = "users"
 

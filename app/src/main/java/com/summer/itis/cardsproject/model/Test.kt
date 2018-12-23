@@ -51,4 +51,23 @@ class Test {
 
     @Exclude
     lateinit var wrongQuestions: List<Question>
+
+    var usersIds: MutableList<String> = ArrayList()
+    var usersList: MutableList<User> = ArrayList()
+
+    var likes = 0.0
+
+    override fun equals(other: Any?): Boolean {
+        var flag = super.equals(other)
+        val test = other as Test
+        if(id?.equals(test.id)!!) {
+            flag = true
+        }
+        return flag
+    }
+
+    override fun hashCode(): Int {
+        var hash = 31 * id.hashCode()
+        return hash
+    }
 }

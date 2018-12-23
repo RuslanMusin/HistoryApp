@@ -2,17 +2,22 @@ package com.summer.itis.cardsproject.repository.json
 
 import android.util.Log
 import com.google.firebase.database.*
-import com.summer.itis.cardsproject.model.Epoch
+import com.summer.itis.cardsproject.model.LeaderStat
+import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.model.UserEpoch
+import com.summer.itis.cardsproject.model.game.Lobby
+import com.summer.itis.cardsproject.model.game.LobbyData
+import com.summer.itis.cardsproject.repository.RepositoryProvider
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Single
 
-class EpochRepository {
+class GameFakeRepository {
 
     var databaseReference: DatabaseReference
 
-    val TABLE_NAME = "epoches"
+    val TABLE_NAME = "lobby_data"
 
     private val FIELD_ID = "id"
     private val FIELD_USER_ID = "userId"
@@ -75,13 +80,13 @@ class EpochRepository {
         return databaseReference!!.child(crossingId).push().key
     }
 
-    fun findEpoch(id: String): Single<Epoch> {
-        val single: Single<Epoch> = Single.create{ e ->
-            val query: Query = databaseReference.child(id)
+    fun findUserEpoch(userId: String, epochId: String): Single<UserEpoch> {
+        val single: Single<UserEpoch> = Single.create{ e ->
+            val query: Query = databaseReference.child(userId).child(epochId)
             query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val epoch = dataSnapshot.getValue(Epoch::class.java)
-                    epoch?.let { e.onSuccess(it) }
+                    val epoch: UserEpoch = dataSnapshot.getValue(UserEpoch::class.java)!!
+                    e.onSuccess(epoch)
 
                 }
 
@@ -94,16 +99,17 @@ class EpochRepository {
         return single.compose(RxUtils.asyncSingle())
     }
 
-    fun findEpoches(): Single<List<Epoch>> {
-        val single: Single<List<Epoch>> = Single.create{ e ->
-            val query: Query = databaseReference
+    fun findUserEpoches(userId: String): Single<List<UserEpoch>> {
+        val single: Single<List<UserEpoch>> = Single.create{ e ->
+            val query: Query = databaseReference.child(userId)
             query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val comments: MutableList<Epoch> = ArrayList()
+                    val comments: MutableList<UserEpoch> = ArrayList()
                     for (postSnapshot in dataSnapshot.children) {
-                        comments.add(postSnapshot.getValue(Epoch::class.java)!!)
+                        comments.add(postSnapshot.getValue(UserEpoch::class.java)!!)
                     }
                     e.onSuccess(comments)
+
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -115,27 +121,18 @@ class EpochRepository {
         return single.compose(RxUtils.asyncSingle())
     }
 
-    fun createEpoch(epoch: Epoch): Single<Boolean> {
+    fun updateLobby(lobbyData: LobbyData): Single<Boolean> {
         val single: Single<Boolean> = Single.create { e ->
 
-            val key = databaseReference.push().key
-            key?.let { epoch.id = it }
-            databaseReference.child(epoch.id).setValue(epoch)
-            e.onSuccess(true)
-            /*query.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if(!dataSnapshot.exists()) {
-                        databaseReference.child(userEpoch.userId).child(userEpoch.id).setValue(userEpoch)
-                        e.onSuccess(true)
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    Log.d(Const.TAG_LOG, "loadPost:onCancelled", databaseError.toException())
-                }
-            })*/
+        /*    val key = databaseReference.child(userEpoch.userId).push().key
+            key?.let { userEpoch.id = it }*/
+            val ref : DatabaseReference = databaseReference.child(lobbyData.id)
+            ref.setValue(lobbyData).addOnCompleteListener { lis ->
+                e.onSuccess(true)
+            }
 
         }
         return single.compose(RxUtils.asyncSingle())
     }
+
 }

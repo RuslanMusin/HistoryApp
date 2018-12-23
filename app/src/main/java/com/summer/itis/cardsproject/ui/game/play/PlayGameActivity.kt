@@ -24,12 +24,11 @@ import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
 import com.summer.itis.cardsproject.repository.json.GamesRepository
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
-import com.summer.itis.cardsproject.ui.game.bot_play.BotGameActivity.Companion.setWeight
 import com.summer.itis.cardsproject.ui.game.game_list.game.GameListActivity
 import com.summer.itis.cardsproject.ui.game.play.change_list.GameChangeListAdapter
 import com.summer.itis.cardsproject.ui.game.play.list.GameCardsListAdapter
 import com.summer.itis.cardsproject.ui.widget.CenterZoomLayoutManager
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.IN_GAME_STATUS
 import com.summer.itis.cardsproject.utils.Const.MODE_CARD_VIEW
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
@@ -84,7 +83,7 @@ class PlayGameActivity : NavigationBaseActivity(), PlayGameView {
         btnCancel.setOnClickListener{quitGameBeforeGameStart()}
 
         rv_game_start_cards.layoutManager = CenterZoomLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        ApplicationHelper.currentUser?.gameLobby?.let {
+        AppHelper.currentUser?.gameLobby?.let {
             presenter.setInitState(it)
         }
     }
@@ -520,7 +519,7 @@ class PlayGameActivity : NavigationBaseActivity(), PlayGameView {
     }
 
     fun setCard(view: View, card: Card) {
-        view.tv_card_person_name.text = card.abstractCard.name?.let { ApplicationHelper.cutLongDescription(it, MAX_LENGTH) }
+        view.tv_card_person_name.text = card.abstractCard.name?.let { AppHelper.cutLongDescription(it, MAX_LENGTH) }
 
         Glide.with(this)
                 .load(card.abstractCard.photoUrl)

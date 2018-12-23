@@ -26,36 +26,27 @@ import java.util.ArrayList
 
 import android.app.Activity.RESULT_OK
 import android.content.Context
-import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.util.Log
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
-import com.summer.itis.cardsproject.R.string.answer
 import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
-import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.ui.base.BaseBackActivity
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
 import com.summer.itis.cardsproject.ui.base.OnFourActionListener
-import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
 import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_QUESTION_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_TEST_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.cardsproject.ui.tests.test_item.fragments.check_answers.AnswersFragment
-import com.summer.itis.cardsproject.ui.tests.test_item.fragments.finish.FinishFragment
 import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.TEST_MANY_TYPE
 import com.summer.itis.cardsproject.utils.Const.TEST_ONE_TYPE
 import com.summer.itis.cardsproject.utils.Const.gsonConverter
-import java.util.Arrays.copyOf
 
 class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListener {
 
@@ -266,7 +257,7 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
         prepareQuestion()
 //        addTestView!!.createTest()
         if(checkQuestion()) {
-            ApplicationHelper.currentUser?.let {
+            AppHelper.currentUser?.let {
                 testRepository
                         .createTest(test, it)
                         .subscribe { e -> TestActivity.start(activity as Activity, test) }

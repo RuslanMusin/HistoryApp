@@ -1,19 +1,13 @@
 package com.summer.itis.cardsproject.ui.game.game_list
 
-import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.summer.itis.cardsproject.R
-import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.model.game.Lobby
-import com.summer.itis.cardsproject.model.game.LobbyPlayerData
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
 import com.summer.itis.cardsproject.ui.base.BaseAdapter
-import com.summer.itis.cardsproject.ui.game.add_game.AddGameActivity
-import com.summer.itis.cardsproject.ui.tests.test_list.TestItemHolder
-import com.summer.itis.cardsproject.utils.ApplicationHelper
 import kotlinx.android.synthetic.main.item_game.view.*
 
 class GameAdapter(items: MutableList<Lobby>) : BaseAdapter<Lobby, GameItemHolder>(items) {
