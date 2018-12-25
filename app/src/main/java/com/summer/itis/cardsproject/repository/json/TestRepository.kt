@@ -185,13 +185,15 @@ class TestRepository {
                         Log.d(TAG_LOG, "create")
                         val crossingKey = databaseReference.push().key
                         test.id = crossingKey
-                        if (ADMIN_ROLE.equals(user.role)) {
+                        /*if (ADMIN_ROLE.equals(user.role)) {
                             test.type = OFFICIAL_TYPE
                             card?.type = OFFICIAL_TYPE
                         } else {
                             test.type = USER_TYPE
                             card?.type = USER_TYPE
-                        }
+                        }*/
+                        test.type = OFFICIAL_TYPE
+                        card?.type = OFFICIAL_TYPE
 
                         Log.d(TAG_LOG, "abstract")
                         card?.testId = test.id
@@ -265,6 +267,7 @@ class TestRepository {
                                         if (user.points >= user.nextLevel) {
                                             user.nextLevel = (1.5 * user.points + 20 * user.level).toLong()
                                             user.level++
+                                            user.points = 0
                                         }
                                         userRepository.updateUser(user)
                                         databaseReference.root.updateChildren(childUpdates)
@@ -410,13 +413,12 @@ class TestRepository {
                                     if (relations.keys.contains(card?.id)) {
                                         if(AFTER_TEST.equals(relations[card?.id]?.relation)) {
                                             card?.testDone = true
+                                            card?.testRelation = relations[card?.id]
+                                            card?.let { cards.add(it) }
 
                                         }
-                                        card?.testRelation = relations[card?.id]
-                                    } else {
-                                        card?.testRelation = Relation()
+
                                     }
-                                    card?.let { cards.add(it) }
                                 }
 
                             }

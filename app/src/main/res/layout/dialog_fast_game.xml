@@ -63,7 +63,7 @@
             </LinearLayout>
 
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/choose_card_mode"/>
@@ -75,7 +75,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/select_game_type"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,7 +99,7 @@
                         android:id="@+id/seekBarCards"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:progress="5"
+                        android:progress="3"
                         android:layout_weight="15"
                         android:max="15" />
                     <TextView

@@ -89,9 +89,9 @@ class StatListActivity : NavigationBaseActivity(), StatListView {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(CommonStatsFragment.newInstance(), Const.COMMON_LIST)
-        adapter.addFragment(GameStatsFragment.newInstance(), Const.MY_GAME_LIST)
-        adapter.addFragment(LeaderStatsFragment.newInstance(), Const.LEADER_LIST)
+        adapter.addFragment(CommonStatsFragment.newInstance(), getString(R.string.common_stats))
+        adapter.addFragment(GameStatsFragment.newInstance(), getString(R.string.game_stats))
+        adapter.addFragment(LeaderStatsFragment.newInstance(), getString(R.string.leaderboard))
         viewPager.adapter = adapter
     }
 

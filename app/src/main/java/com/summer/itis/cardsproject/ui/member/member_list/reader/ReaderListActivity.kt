@@ -60,7 +60,7 @@ class ReaderListActivity : NavigationBaseActivity(), ReaderListView {
 
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         supportActionBar(toolbar!!)
-
+        setToolbarTitle(getString(R.string.users))
         viewPager = findViewById<View>(R.id.viewpager) as ViewPager
         setupViewPager(viewPager!!)
 
@@ -97,9 +97,9 @@ class ReaderListActivity : NavigationBaseActivity(), ReaderListView {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(ReaderListFragment.newInstance(READER_LIST, this), READER_LIST)
-        adapter.addFragment(ReaderListFragment.newInstance(FRIEND_LIST, this), FRIEND_LIST)
-        adapter.addFragment(ReaderListFragment.newInstance(REQUEST_LIST, this),REQUEST_LIST)
+        adapter.addFragment(ReaderListFragment.newInstance(READER_LIST, this), getString(R.string.all_users))
+        adapter.addFragment(ReaderListFragment.newInstance(FRIEND_LIST, this), getString(R.string.friends))
+        adapter.addFragment(ReaderListFragment.newInstance(REQUEST_LIST, this),getString(R.string.requests))
         this.currentType = READER_LIST
         viewPager.adapter = adapter
     }

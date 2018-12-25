@@ -53,4 +53,22 @@ class User {
         this.email = email
         this.username = username
     }
+
+    override fun equals(other: Any?): Boolean {
+        var flag = false
+        val user = other as User
+        if(id.equals(user.id)) {
+            flag = true
+        }
+        return flag
+    }
+
+    override fun hashCode(): Int {
+        var arr = id.toCharArray()
+        var hash = 31
+        for(a in arr) {
+            hash += a.toInt()
+        }
+        return hash
+    }
 }

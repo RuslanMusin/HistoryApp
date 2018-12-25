@@ -55,7 +55,7 @@ class GameListFragment : Fragment() {
         initRecycler()
 
         if (!isLoaded && type.equals(Const.OFFICIAL_LIST)) {
-            parentView!!.changeAdapter(0)
+//            parentView!!.changeAdapter(0)
         }
 
         super.onViewCreated(view, savedInstanceState)

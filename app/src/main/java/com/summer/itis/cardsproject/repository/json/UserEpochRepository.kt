@@ -3,6 +3,7 @@ package com.summer.itis.cardsproject.repository.json
 import android.util.Log
 import com.google.firebase.database.*
 import com.summer.itis.cardsproject.model.*
+import com.summer.itis.cardsproject.model.game.Lobby
 import com.summer.itis.cardsproject.model.game.LobbyData
 import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
@@ -223,39 +224,49 @@ class UserEpochRepository {
 
     }
 
-    fun updateAfterGame(lobby: LobbyData, playerId: String?, isWin: Boolean, score: Int) {
-        playerId?.let {
-            userRepository.readUserById(it).subscribe { user ->
-                findUserEpoch(it, lobby.epochId).subscribe { epoch ->
-                    if(isWin) {
-                        epoch.win++
-                        user.points += GAME_WIN_POINTS
-                    } else {
-                        epoch.lose++
-                        user.points += GAME_LOSE_POINTS
-                    }
-                    if(user.points >= user.nextLevel) {
-                        user.nextLevel = (1.5 * user.points + 20 * user.level).toLong()
-                        user.level++
-                    }
-                    epoch.updateGe()
-                    userRepository.updateUser(user)
-                    if(user.id.equals(AppHelper.currentUser.id)) {
-                        AppHelper.currentUser = user
-                    }
-                    epoch.right.plus(score)
-                    epoch.wrong.plus(lobby.cardNumber - score)
-                    updateUserEpoch(epoch).subscribe { e ->
-                        findUserEpoches(playerId).subscribe {epoches ->
-                            user.epochList = epoches.toMutableList()
-                            val leaderStat = LeaderStat(user)
-                            leaderStatRepository.updateLeaderStat(leaderStat).subscribe()
+    fun updateAfterGame(lobby: Lobby, playerId: String?, isWin: Boolean, score: Int): Single<Boolean> {
+        Log.d(TAG_LOG, "update after game")
+        val single: Single<Boolean> = Single.create { e ->
+            playerId?.let {
+                userRepository.readUserById(it).subscribe { user ->
+                    findUserEpoch(it, lobby.epochId).subscribe { epoch ->
+                        Log.d(TAG_LOG, "find epoch after game")
+                        if (isWin) {
+                            epoch.win++
+                            user.points += GAME_WIN_POINTS
+                        } else {
+                            epoch.lose++
+                            user.points += GAME_LOSE_POINTS
+                        }
+                        if (user.points >= user.nextLevel) {
+                            user.nextLevel = (1.5 * user.points + 20 * user.level).toLong()
+                            user.level++
+                            user.points = 0
+                        }
+                        epoch.updateGe()
+                        userRepository.updateUser(user)
+                        Log.d(TAG_LOG, "after update user")
+                        if (user.id.equals(AppHelper.currentUser.id)) {
+                            AppHelper.currentUser = user
+                        }
+                        epoch.right += score
+                        epoch.wrong += (lobby.cardNumber - score)
+                        updateUserEpoch(epoch).subscribe { e ->
+                            findUserEpoches(playerId).subscribe { epoches ->
+                                user.epochList = epoches.toMutableList()
+                                val leaderStat = LeaderStat(user)
+                                Log.d(TAG_LOG, "create leader stat")
+                                leaderStatRepository.updateLeaderStat(leaderStat).subscribe { e ->
+                                    Log.d(TAG_LOG, "created leaderStat")
+                                }
+                            }
                         }
                     }
-                }
 
+                }
             }
         }
+        return single.compose(RxUtils.asyncSingle())
     }
 
     fun updateAfterTest(userId: String, test: Test): Single<Boolean> {

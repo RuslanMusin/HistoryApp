@@ -65,7 +65,6 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
     lateinit var user: User
     //SET-GET
 
-
     var type: String? = null
 
     lateinit var presenter: PersonalPresenter
@@ -187,7 +186,7 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
         }
     }
 
-    fun createUserEpoches() {
+    /*fun createUserEpoches() {
         val enemyId = ""
         val myId = AppHelper.currentUser.id
         val lobby = LobbyData()
@@ -228,15 +227,15 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
             }
 
         }
-    }
+    }*/
 
     fun createEpoches() {
-        /*val list = resources.getStringArray(R.array.epoches).toList()
+        val list = resources.getStringArray(R.array.epoches).toList()
         for(item in list) {
 
             epochRepository.createEpoch(Epoch(item.toString())).subscribe()
-        }*/
-        RepositoryProvider.userEpochRepository.createStartEpoches(user)
+        }
+//        RepositoryProvider.userEpochRepository.createStartEpoches(user)
     }
 
     private fun playGame() {
@@ -257,8 +256,8 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
                     startActivityForResult(intent, AddTestFragment.ADD_EPOCH)
                 }
 
-                types = listOf(getString(R.string.user_type), getString(R.string.official_type))
-                gameDialog.spinner.setItems(types)
+              /*  types = listOf(getString(R.string.user_type), getString(R.string.official_type))
+                gameDialog.spinner.setItems(types)*/
                 gameDialog.seekBarCards.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
                     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                         val strProgress: String = seekBar?.progress.toString()
@@ -287,13 +286,13 @@ class PersonalActivity : NavigationBaseActivity(), View.OnClickListener {
     fun createGame() {
         lobby.cardNumber = gameDialog.seekBarCards.progress
         if(lobby.cardNumber >= CARD_NUMBER) {
-            if (types[gameDialog.spinner.selectedIndex].equals(getString(R.string.official_type))) {
+            /*if (types[gameDialog.spinner.selectedIndex].equals(getString(R.string.official_type))) {
                 lobby.type = Const.OFFICIAL_TYPE
-            }
-            cardRepository.findCardsByType(user.id,lobby.type).subscribe{ cards ->
+            }*/
+            cardRepository.findCardsByType(user.id,lobby.type, lobby.epochId).subscribe{ cards ->
                 val cardNumber = cards.size
                 if(cardNumber >= lobby.cardNumber) {
-                    cardRepository.findCardsByType(UserRepository.currentId, lobby.type).subscribe { myCards ->
+                    cardRepository.findCardsByType(UserRepository.currentId, lobby.type, lobby.epochId).subscribe { myCards ->
                         val mySize = myCards.size
                         if (mySize >= lobby.cardNumber) {
                             gameDialog.hide()

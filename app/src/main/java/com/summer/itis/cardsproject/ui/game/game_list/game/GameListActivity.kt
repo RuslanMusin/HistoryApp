@@ -1,5 +1,6 @@
 package com.summer.itis.cardsproject.ui.game.game_list.game
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
@@ -16,22 +19,29 @@ import android.view.Menu
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
+import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.game.Lobby
 import com.summer.itis.cardsproject.repository.json.UserRepository
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.game.add_game.AddGameActivity
 import com.summer.itis.cardsproject.ui.game.bot_play.BotGameActivity
 import com.summer.itis.cardsproject.ui.game.game_list.GameAdapter
 import com.summer.itis.cardsproject.ui.game.game_list.fragment.GameListFragment
 import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
 import com.summer.itis.cardsproject.ui.service.GameService
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_test_list.*
+import java.util.ArrayList
 
 class GameListActivity : NavigationBaseActivity(), GameListView {
 
@@ -51,6 +61,9 @@ class GameListActivity : NavigationBaseActivity(), GameListView {
 
     var isClickable: Boolean = true
 
+    private var recyclerView: EmptyStateRecyclerView? = null
+    private var tvEmpty: TextView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setStatus(ONLINE_STATUS)
@@ -58,69 +71,82 @@ class GameListActivity : NavigationBaseActivity(), GameListView {
         super.onCreate(savedInstanceState)
 
         val contentFrameLayout = findViewById<FrameLayout>(R.id.container)
-        layoutInflater.inflate(R.layout.activity_test_pager, contentFrameLayout)
+        layoutInflater.inflate(R.layout.activity_game_list, contentFrameLayout)
 
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         toolbar?.title = getString(R.string.games)
         supportActionBar(toolbar!!)
 
-        viewPager = findViewById<View>(R.id.viewpager) as ViewPager
-        setupViewPager(viewPager!!)
-
-        tabLayout = findViewById<View>(R.id.tabs) as TabLayout
-        tabLayout!!.setupWithViewPager(viewPager)
-
-        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-
-        setTabListener()
-
+        initViews()
+        initRecycler()
+        presenter.loadOfficialTests()
     }
 
-    private fun setTabListener() {
-        tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                Log.d(Const.TAG_LOG, "on tab selected")
-                viewPager!!.currentItem = tab.position
-                this@GameListActivity.changeAdapter(tab.position)
+    private fun initViews() {
+        progressBar = findViewById(R.id.pg_comics_list)
+        recyclerView = findViewById(R.id.rv_comics_list)
+        tvEmpty = findViewById(R.id.tv_empty)
+    }
+
+    private fun initRecycler() {
+        adapter = GameAdapter(ArrayList<Lobby>())
+        val manager = LinearLayoutManager(this)
+        recyclerView!!.layoutManager = manager
+        recyclerView!!.setEmptyView(tvEmpty!!)
+        adapter!!.attachToRecyclerView(recyclerView!!)
+        adapter!!.setOnItemClickListener(this)
+        recyclerView!!.adapter = adapter
+
+        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && floating_button.getVisibility() == View.VISIBLE) {
+                    floating_button.hide();
+                } else if (dy < 0 && floating_button.getVisibility() != View.VISIBLE) {
+                    floating_button.show();
+                }
             }
+        })
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
+        floating_button.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                Log.d(Const.TAG_LOG, "act float btn")
+                MaterialDialog.Builder(this@GameListActivity)
+                    .title(R.string.create_new_game)
+                    .content(R.string.old_game_will_be_deleted)
+                    .positiveText("Создать")
+                    .onPositive(object :MaterialDialog.SingleButtonCallback {
+                        override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+                            AppHelper.currentUser?.let { it.lobbyId?.let { it1 ->
+                                adapter?.removeItemById(it1)
+                            } }
+                            AddGameActivity.start(this@GameListActivity)
+                        }
 
-            }
+                    })
+                    .negativeText("Отмена")
+                    .onNegative{ dialog, action -> dialog.cancel()}
+                    .show()
 
-            override fun onTabReselected(tab: TabLayout.Tab) {
 
             }
         })
-    }
 
-    override fun changeAdapter(position: Int) {
-        val fragment = (viewPager!!.adapter as ViewPagerAdapter).getFragmentForChange(position)
-        fragment.changeDataInAdapter()
     }
-
-    private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(GameListFragment.newInstance(Const.OFFICIAL_LIST, this), Const.OFFICIAL_LIST)
-        adapter.addFragment(GameListFragment.newInstance(Const.USER_LIST, this), Const.USER_LIST)
-        this.currentType = Const.OFFICIAL_LIST
-        viewPager.adapter = adapter
-    }
-
-    /*override fun waitEnemy() {
-        startService(
-                Intent(this, GameService::class.java))
-    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.game_list_menu, menu)
 
-        val botItem = menu.findItem(R.id.action_find_bot)
-        botItem.setOnMenuItemClickListener{
+        val botItem = menu.findItem(R.id.update_list)
+        botItem.setOnMenuItemClickListener {
+            presenter.loadOfficialTests()
+            true
+        }
+       /* botItem.setOnMenuItemClickListener{
             Log.d(TAG_LOG,"find bot")
             presenter.findBotGame()
             true
-        }
+        }*/
 
         val searchItem = menu.findItem(R.id.action_search)
 
@@ -151,32 +177,6 @@ class GameListActivity : NavigationBaseActivity(), GameListView {
             })
         }
         return super.onCreateOptionsMenu(menu)
-    }
-
-    internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-        private val mFragmentList = ArrayList<Fragment>()
-        private val mFragmentTitleList = ArrayList<String>()
-
-        override fun getItem(position: Int): Fragment {
-            return mFragmentList[position]
-        }
-
-        fun getFragmentForChange(position: Int): GameListFragment {
-            return mFragmentList[position] as GameListFragment
-        }
-
-        override fun getCount(): Int {
-            return mFragmentList.size
-        }
-
-        fun addFragment(fragment: Fragment, title: String) {
-            mFragmentList.add(fragment)
-            mFragmentTitleList.add(title)
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return mFragmentTitleList[position]
-        }
     }
 
     override fun onItemClick(item: Lobby) {
@@ -215,8 +215,6 @@ class GameListActivity : NavigationBaseActivity(), GameListView {
         Log.d(Const.TAG_LOG, "load friends")
         presenter!!.loadUserTests(UserRepository.currentId)
     }
-
-
 
 
     override fun setProgressBar(progressBar: ProgressBar?) {

@@ -19,7 +19,7 @@ class Lobby {
     var photoUrl: String? = null
     var cardNumber: Int = CARD_NUMBER
     var status: String = ONLINE_STATUS
-    var type: String = USER_TYPE
+    var type: String = OFFICIAL_TYPE
     var isFastGame: Boolean = false
 
     @Exclude
@@ -34,6 +34,10 @@ class Lobby {
     @Exclude
     var lobbyData: LobbyData? = null
 
+    var usersIds: MutableList<String> = ArrayList()
+
+    @Exclude
+    var userList: MutableList<User> = ArrayList()
 
     companion object {
         val PARAM_creator = "creator"

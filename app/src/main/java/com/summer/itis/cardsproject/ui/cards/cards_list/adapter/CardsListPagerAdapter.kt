@@ -14,8 +14,8 @@ import com.summer.itis.cardsproject.ui.cards.cards_list.tabs.MyCardsTabFragment
 class CardsListPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm){
 
     private val NUMOFTABS = 2
-    val TABALLNAME = "All"
-    val TABMYNAME = "My"
+    val TABALLNAME = "Все"
+    val TABMYNAME = "Мои"
 
     override fun getItem(position: Int): Fragment? {
         return when (position){

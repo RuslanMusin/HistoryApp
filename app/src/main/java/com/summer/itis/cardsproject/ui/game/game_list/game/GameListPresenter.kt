@@ -83,7 +83,7 @@ class GameListPresenter : MvpPresenter<GameListView>() {
         Log.d(TAG_LOG,"find game online")
         val gameData: GameData = GameData()
         lobby.creator?.playerId?.let{ gameData.enemyId = it}
-        cardRepository.findCardsByType(gameData.enemyId,lobby.type).subscribe{ enemyCards ->
+        cardRepository.findCardsByType(gameData.enemyId, lobby.type, lobby.epochId).subscribe{ enemyCards ->
             val cardsSize = enemyCards.size
             if(cardsSize >= lobby.cardNumber) {
                 gameData.role = FIELD_INVITED

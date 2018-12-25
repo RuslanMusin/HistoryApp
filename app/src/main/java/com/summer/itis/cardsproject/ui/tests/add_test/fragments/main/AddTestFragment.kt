@@ -49,7 +49,6 @@ import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.gsonConverter
 import kotlinx.android.synthetic.main.fragment_add_test.*
-import kotlinx.android.synthetic.main.item_game_card_medium.*
 
 class AddTestFragment : Fragment(), View.OnClickListener, OnBackPressedListener {
 
@@ -127,6 +126,9 @@ class AddTestFragment : Fragment(), View.OnClickListener, OnBackPressedListener 
         btnAddCard = view.findViewById(R.id.btn_add_card)
         btnCreateQuestions = view.findViewById(R.id.btn_create_questions)
         tvAddedCards = view.findViewById(R.id.tv_added_cards)
+
+        et_test_desc.setText("Desc")
+        et_test_name.setText("Name")
     }
 
     private fun setListeners() {

@@ -47,6 +47,7 @@ import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.TEST_MANY_TYPE
 import com.summer.itis.cardsproject.utils.Const.TEST_ONE_TYPE
 import com.summer.itis.cardsproject.utils.Const.gsonConverter
+import kotlinx.android.synthetic.main.fragment_add_question.*
 
 class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListener {
 
@@ -160,6 +161,7 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
     private fun setQuestionData() {
         Log.d(TAG_LOG,"set question data")
         etQuestion?.setText(question.question)
+//        etQuestion?.setText("вопрос")
         for(i in question.answers.indices) {
             if(i >= checkBoxes.size) {
                 addAnswer()
@@ -199,7 +201,7 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
 
         }
 
-
+        et_question.setText("Вопрос")
         for (i in 0..2) {
            addAnswer()
 
@@ -343,7 +345,12 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
         val view: View = layoutInflater.inflate(R.layout.layout_item_add_question,liAnswers,false)
         val editText: EditText = view.findViewById(R.id.et_answer)
         val checkBox: CheckBox = view.findViewById(R.id.checkbox)
-
+        if(answerSize == 1) {
+            checkBox.isChecked = true
+            editText.setText("п")
+        } else {
+            editText.setText("н")
+        }
        checkBox.setOnClickListener(checkListener)
 
         editTexts?.add(editText)

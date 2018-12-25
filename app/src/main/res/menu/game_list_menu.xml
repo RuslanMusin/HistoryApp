@@ -2,12 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+   <!-- <item
         android:id="@+id/action_find_bot"
         android:icon="@drawable/ic_adb_black_24dp"
         android:title="@string/find_bot"
         app:showAsAction="ifRoom|collapseActionView"
-        />
+        />-->
+
+    <item
+            android:id="@+id/update_list"
+            android:icon="@drawable/ic_autorenew_white_24dp"
+            android:title="@string/update_list"
+            app:showAsAction="ifRoom|collapseActionView"
+    />
 
     <item
         android:id="@+id/action_search"

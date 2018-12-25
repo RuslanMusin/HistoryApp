@@ -92,10 +92,12 @@ class TestListPresenter : MvpPresenter<TestListView>() {
                 isRec = true
             }
             if (isRec) {
-                 sortByRec(tests, finishedTests).subscribe { tests ->
+                Log.d(TAG_LOG, "sort by rec")
+                sortByRec(tests, finishedTests).subscribe { tests ->
                      e.onSuccess(tests)
                  }
             } else {
+                Log.d(TAG_LOG, "sort by ke")
                 sortByKe(tests).subscribe {tests ->
                     e.onSuccess(tests)
                 }
@@ -111,10 +113,12 @@ class TestListPresenter : MvpPresenter<TestListView>() {
             for (test in notFinished) {
                 findLikes(AppHelper.currentUser, test, notFinished).subscribe { likes ->
                     test.likes = likes
+                    Log.d(TAG_LOG, "test = ${test.id} and likes = ${likes}")
                     if (i == notFinished.size) {
-                        val sorted = notFinished.sortedWith(compareBy(Test::likes))
+                        val sorted = notFinished.sortedWith(compareByDescending((Test::likes)))
                         e.onSuccess(sorted)
                     }
+                    i++
                 }
             }
         }
@@ -127,19 +131,26 @@ class TestListPresenter : MvpPresenter<TestListView>() {
         notFinished: MutableList<Test>
     ): Single<Double> {
         val single: Single<Double> = Single.create { e ->
-            RepositoryProvider.userRepository.findUsers(test.usersIds).subscribe { users ->
-                var sumSim = 0.0
-                var i = 1
-                for (user in users) {
-                    findSim(currentUser, user).subscribe { sim ->
-                        sumSim += sim
-                        if(i == users.size) {
-                            val likes = sumSim / users.size
-                            e.onSuccess(likes)
+            if(test.usersIds.size > 0) {
+                RepositoryProvider.userRepository.findUsers(test.usersIds).subscribe { users ->
+                    users.toMutableList().remove(currentUser)
+                    var sumSim = 0.0
+                    var i = 1
+                    for (user in users) {
+                        findSim(currentUser, user).subscribe { sim ->
+                            sumSim += sim
+                            Log.d(TAG_LOG, "sim between me and user = ${user.username} = $sim")
+                            if (i == users.size) {
+                                Log.d(TAG_LOG, "sumSim = ${sumSim} and users = ${users.size}")
+                                val likes = sumSim / users.size
+                                e.onSuccess(likes)
+                            }
+                            i++
                         }
-                        i++
                     }
                 }
+            } else {
+                e.onSuccess(0.0)
             }
         }
         return single.compose(RxUtils.asyncSingle())
@@ -150,11 +161,20 @@ class TestListPresenter : MvpPresenter<TestListView>() {
         val single: Single<Double> = Single.create { e ->
             RepositoryProvider.testRepository.findUserFinishedTests(user.id).subscribe { userTests ->
                 RepositoryProvider.testRepository.findUserFinishedTests(currentUser.id).subscribe { finishedTests ->
-                    val set: MutableSet<Test> = HashSet()
+                    var set: MutableSet<Test> = HashSet()
+                   /* for(test in userTests) {
+                        Log.d(TAG_LOG, "hash of usersTests = ${test.hashCode()}")
+                    }
+                    for(test in userTests) {
+                        Log.d(TAG_LOG, "hash of finishedTests = ${test.hashCode()}")
+                    }*/
                     set.addAll(userTests)
-                    set.addAll(finishedTests)
+                    val setTwo: MutableSet<Test> = HashSet()
+                    setTwo.addAll(finishedTests)
+                    set = set.intersect(setTwo).toMutableSet()
                     val common = set.size
-                    val count = finishedTests.size + userTests.size
+                    val count = finishedTests.size + userTests.size - set.size
+                    Log.d(TAG_LOG, "common = $common and count = $count")
                     val sim = common.toDouble() / count
                     e.onSuccess(sim)
                 }
@@ -177,7 +197,7 @@ class TestListPresenter : MvpPresenter<TestListView>() {
         val single: Single<List<Test>> = Single.create { e ->
             val sortTests: MutableList<Test> = ArrayList()
             RepositoryProvider.userEpochRepository.findUserEpoches(AppHelper.currentUser.id).subscribe { epoches ->
-                val sortEps = epoches.sortedWith(compareBy(UserEpoch::ke))
+                val sortEps = epoches.sortedWith(compareByDescending ((UserEpoch::ke)))
                 for (ep in sortEps) {
                     val testPart = findTestByEp(ep, tests)
                     sortTests.addAll(testPart)
@@ -204,7 +224,9 @@ class TestListPresenter : MvpPresenter<TestListView>() {
     fun findTestCount(tests: List<Test>): MutableList<Test> {
         val finishedTests: MutableList<Test> = ArrayList()
         for(test in tests) {
-            if(test.testRelation?.equals(AFTER_TEST)!!) {
+            Log.d(TAG_LOG, "test relation = ${test.testRelation?.relation}")
+            if(test.testRelation?.relation.equals(AFTER_TEST)!!) {
+                Log.d(TAG_LOG, "added test after test")
                 finishedTests.add(test)
             }
         }

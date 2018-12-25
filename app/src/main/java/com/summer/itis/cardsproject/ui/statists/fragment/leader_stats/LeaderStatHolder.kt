@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.LeaderStat
+import com.summer.itis.cardsproject.utils.Const
 import kotlinx.android.synthetic.main.item_leader_stat.view.*
 
 class LeaderStatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(item: LeaderStat) {
         itemView.tv_name.text = item.name
-        itemView.tv_level.text = item.level.toString()
-        itemView.tv_kg.text = item.kg.toString()
-        itemView.tv_win.text = item.win.toString()
-        itemView.tv_lose.text = item.lose.toString()
+        itemView.tv_level.text = itemView.context.getString(R.string.level, item.level)
+        itemView.tv_kg.text = itemView.context.getString(R.string.kg_arg, Const.DOUBLE_FORM.format(item.kg))
+        itemView.tv_win.text = itemView.context.getString(R.string.win_arg, item.win)
+        itemView.tv_lose.text = itemView.context.getString(R.string.lose_arg, item.lose)
     }
 
 

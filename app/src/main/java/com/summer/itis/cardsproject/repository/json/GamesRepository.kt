@@ -11,6 +11,7 @@ import com.summer.itis.cardsproject.model.game.Lobby
 import com.summer.itis.cardsproject.model.game.LobbyPlayerData
 import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.repository.json.UserRepository.Companion.FIELD_LOBBY_ID
@@ -242,6 +243,15 @@ class GamesRepository {
 //        creatorLobbyRef!!.child(LobbyPlayerData.PARAM_online).onDisconnect().setValue(false)
         //TODO remove lobby on disconnect?
         onFind()
+    }
+
+    fun updateLobby(lobby: Lobby): Single<Boolean> {
+        val single: Single<Boolean> = Single.create { e ->
+            databaseReference.child(lobby.id).setValue(lobby).addOnCompleteListener {
+                e.onSuccess(true)
+            }
+        }
+        return single.compose(RxUtils.asyncSingle())
     }
 
     fun removeFastLobby(userId: String, lobby: Lobby): Single<Boolean> {
@@ -657,12 +667,12 @@ class GamesRepository {
         listeners.put(enemyLobbyRef!!.child(LobbyPlayerData.PARAM_online), enemyConnectionListener)*/
     }
 
-    private fun readCardsByType(lobbyId: String, type: String): Single<List<Card>> {
+    private fun readCardsByType(lobbyId: String, lobby: Lobby): Single<List<Card>> {
         val singleCards: Single<List<Card>>
-        if(type.equals(OFFICIAL_TYPE)) {
-            singleCards = cardRepository.findOfficialMyCards(lobbyId)
+        if(lobby.type.equals(OFFICIAL_TYPE)) {
+            singleCards = cardRepository.findOfficialMyCards(lobbyId, lobby.epochId)
         } else {
-            singleCards = cardRepository.findOfficialMyCards(lobbyId)
+            singleCards = cardRepository.findOfficialMyCards(lobbyId, lobby.epochId)
         }
         return singleCards
     }
@@ -670,8 +680,8 @@ class GamesRepository {
     private fun selectOnLoseCard(lobby: Lobby) {
 
         lobby.gameData?.enemyId?.let {
-            readCardsByType(it,lobby.type).subscribe { enemyCards: List<Card>? ->
-            readCardsByType(UserRepository.currentId,lobby.type).subscribe { myCards: List<Card>? ->
+            readCardsByType(it,lobby).subscribe { enemyCards: List<Card>? ->
+            readCardsByType(UserRepository.currentId,lobby).subscribe { myCards: List<Card>? ->
                 onYouLoseCard = ArrayList(myCards).minus(enemyCards!!).getRandom()
                 if(onYouLoseCard == null) {
                     onYouLoseCard = myCards?.getRandom()
@@ -1013,9 +1023,17 @@ class GamesRepository {
         lobby.gameData?.enemyId?.let {
             RepositoryProvider.cardRepository.addCardAfterGame(onEnemyLoseCard!!.id!!, getPlayerId()!!, it)
                 .subscribe { e ->
-                    userEpochRepository.updateAfterGame(lobby.lobbyData!!, getPlayerId(), true, my_score)
-                    userEpochRepository.updateAfterGame(lobby.lobbyData!!, it, false, enemy_score)
-                }
+                    Log.d(TAG_LOG, "card added after game")
+
+                    }
+        getPlayerId()?.let { it1 ->
+            if(!lobby.usersIds.contains(it1)) {
+                lobby.usersIds.add(it1)
+            }
+                gamesRepository.updateLobby(lobby).subscribe()
+                userEpochRepository.updateAfterGame(lobby, getPlayerId(), true, my_score).subscribe()
+                userEpochRepository.updateAfterGame(lobby, it, false, enemy_score).subscribe()
+            }
         }
     }
 

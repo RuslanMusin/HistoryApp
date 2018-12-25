@@ -39,7 +39,5 @@ interface TestListView : MvpView, BaseAdapter.OnItemClickListener<Test> {
 
     fun setProgressBar(progressBar: ProgressBar?)
 
-    fun changeAdapter(position: Int)
-
     fun changeDataSet(friends: List<Test>)
 }

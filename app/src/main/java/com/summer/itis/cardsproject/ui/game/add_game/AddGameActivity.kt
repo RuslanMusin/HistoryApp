@@ -75,8 +75,8 @@ class AddGameActivity : NavigationBaseActivity(), AddGameView, View.OnClickListe
         setSupportActionBar(toolbar)
         setBackArrow(toolbar!!)
         setToolbarTitle("Новая игра")
-        types = listOf(getString(R.string.user_type), getString(R.string.official_type))
-        spinner.setItems(types)
+       /* types = listOf(getString(R.string.user_type), getString(R.string.official_type))
+        spinner.setItems(types)*/
         btn_add_game_photo.setOnClickListener(this)
         li_choose_epoch.setOnClickListener(this)
         btn_create_game.setOnClickListener(this)
@@ -101,13 +101,13 @@ class AddGameActivity : NavigationBaseActivity(), AddGameView, View.OnClickListe
             R.id.btn_create_game -> {
                 lobby.cardNumber = seekBarCards.progress
                 if(lobby.cardNumber >= CARD_NUMBER) {
-                    if (types[spinner.selectedIndex].equals(getString(R.string.official_type))) {
+                   /* if (types[spinner.selectedIndex].equals(getString(R.string.official_type))) {
                         lobby.type = OFFICIAL_TYPE
                     } else {
                         lobby.type = USER_TYPE
-                    }
+                    }*/
                     Log.d(TAG_LOG,"lobby type = ${lobby.type}")
-                    cardRepository.findCardsByType(UserRepository.currentId,lobby.type).subscribe { myCards ->
+                    cardRepository.findCardsByType(UserRepository.currentId,lobby.type, lobby.epochId).subscribe { myCards ->
                         val mySize = myCards.size
                         Log.d(TAG_LOG,"mySize = $mySize and cardNumber = ${lobby.cardNumber}")
                         if (mySize >= lobby.cardNumber) {

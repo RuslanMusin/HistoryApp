@@ -268,8 +268,8 @@ class LoginPresenter(private val logView: LoginActivity) {
     }
 
     fun findOfficialMyCards() {
-        AppHelper.currentUser?.id?.let {
-            cardRepository?.findOfficialMyCards(it)?.subscribe { e ->
+       /* AppHelper.currentUser?.id?.let {
+            cardRepository?.findOfficialMyCards(it, lobby.epochId)?.subscribe { e ->
                 Log.d(TAG_LOG, "official_cards")
                 for (card in e) {
                     Log.d(TAG_LOG, "card id = " + card.id)
@@ -278,7 +278,7 @@ class LoginPresenter(private val logView: LoginActivity) {
                 separate()
                 this.findMyCards()
             }
-        }
+        }*/
 
     }
 

@@ -161,8 +161,8 @@ open class NavigationBaseActivity : MvpAppCompatActivity() {
                             }
                             it.gameLobby?.gameData = gameData
                             val dialog: MaterialDialog = MaterialDialog.Builder(this)
-                                    .title(R.string.question_dialog_title)
-                                    .content(R.string.question_dialog_content)
+                                    .title(R.string.game_dialog)
+                                    .content(R.string.game_dialog_content)
                                     .positiveText(R.string.agree)
                                     .negativeText(R.string.disagree)
                                     .onPositive(object : MaterialDialog.SingleButtonCallback {

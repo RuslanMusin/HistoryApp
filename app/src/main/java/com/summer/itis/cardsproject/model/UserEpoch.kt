@@ -13,7 +13,7 @@ class UserEpoch {
     var win: Int = 0
     var lose: Int = 0
     var sum: Int = win + lose
-
+         get() = win + lose
     @Exclude
     @Transient
     var epoch: Epoch? = null
@@ -24,10 +24,11 @@ class UserEpoch {
     var ge: Double = 0.0
     var lastGe: Double = 0.0
     var geSub: Double = ge - lastGe
+        get() = ge - lastGe
     var ke: Double = 0.0
     var lastKe: Double = 0.0
     var keSub: Double = ke - lastKe
-
+        get() = ke - lastKe
     var updateDate: Long = 0
 
     constructor() {}

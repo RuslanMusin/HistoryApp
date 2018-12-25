@@ -58,7 +58,7 @@ class Test {
     var likes = 0.0
 
     override fun equals(other: Any?): Boolean {
-        var flag = super.equals(other)
+        var flag = false
         val test = other as Test
         if(id?.equals(test.id)!!) {
             flag = true
@@ -67,7 +67,11 @@ class Test {
     }
 
     override fun hashCode(): Int {
-        var hash = 31 * id.hashCode()
+        var arr = id?.toCharArray()
+        var hash = 31
+        for(a in arr!!) {
+            hash += a.toInt()
+        }
         return hash
     }
 }
