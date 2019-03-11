@@ -3,26 +3,15 @@ package com.summer.itis.cardsproject.ui.game.bot_play
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.summer.itis.cardsproject.R.string.card
 import com.summer.itis.cardsproject.model.Card
 import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.model.game.CardChoose
-import com.summer.itis.cardsproject.model.game.GameData
 import com.summer.itis.cardsproject.model.game.Lobby
-import com.summer.itis.cardsproject.model.game.LobbyPlayerData
 import com.summer.itis.cardsproject.repository.RepositoryProvider
-import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.repository.json.GamesRepository
-import com.summer.itis.cardsproject.repository.json.GamesRepository.Companion.FIELD_ONLINE
 import com.summer.itis.cardsproject.repository.json.UserRepository
-import com.summer.itis.cardsproject.ui.game.play.PlayGameView
 import com.summer.itis.cardsproject.utils.Const
-import com.summer.itis.cardsproject.utils.Const.OFFLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.getRandom
 import io.reactivex.Single
@@ -45,7 +34,7 @@ class BotGamePresenter() : MvpPresenter<BotGameView>(), GamesRepository.InGameCa
         gamesRepository.setLobbyRefs(lobby.id)
         val single: Single<List<Card>>
         if(lobby.type.equals(Const.OFFICIAL_TYPE)) {
-            single = cardsRepository.findOfficialMyCards(UserRepository.currentId)
+            single = cardsRepository.findOfficialMyCards(UserRepository.currentId, lobby.epochId)
         } else {
             single = cardsRepository.findMyCards(UserRepository.currentId)
         }
@@ -89,7 +78,7 @@ class BotGamePresenter() : MvpPresenter<BotGameView>(), GamesRepository.InGameCa
             Log.d(Const.TAG_LOG, "find bot cards")
             val single: Single<List<Card>>
             if (lobby.type.equals(Const.OFFICIAL_TYPE)) {
-                single = cardsRepository.findOfficialMyCards(Const.BOT_ID)
+                single = cardsRepository.findOfficialMyCards(Const.BOT_ID, lobby.epochId)
             } else {
                 single = cardsRepository.findMyCards(Const.BOT_ID)
             }

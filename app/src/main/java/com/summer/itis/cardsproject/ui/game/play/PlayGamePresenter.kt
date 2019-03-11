@@ -36,7 +36,7 @@ class PlayGamePresenter() : MvpPresenter<PlayGameView>(), GamesRepository.InGame
         gamesRepository.watchMyStatus()
         val single: Single<List<Card>>
         if(lobby.type.equals(OFFICIAL_TYPE)) {
-            single = cardsRepository.findOfficialMyCards(UserRepository.currentId)
+            single = cardsRepository.findOfficialMyCards(UserRepository.currentId, lobby.epochId)
         } else {
             single = cardsRepository.findMyCards(UserRepository.currentId)
         }
@@ -96,7 +96,7 @@ class PlayGamePresenter() : MvpPresenter<PlayGameView>(), GamesRepository.InGame
                 Log.d(TAG_LOG, "find bot cards")
                 val single: Single<List<Card>>
                 if (lobby.type.equals(OFFICIAL_TYPE)) {
-                    single = cardsRepository.findOfficialMyCards(BOT_ID)
+                    single = cardsRepository.findOfficialMyCards(BOT_ID, lobby.epochId)
                 } else {
                     single = cardsRepository.findMyCards(BOT_ID)
                 }

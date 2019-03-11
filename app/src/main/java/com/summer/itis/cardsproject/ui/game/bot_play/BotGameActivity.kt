@@ -18,22 +18,16 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.bumptech.glide.Glide
 import com.ms.square.android.expandabletextview.ExpandableTextView
 import com.summer.itis.cardsproject.R
-import com.summer.itis.cardsproject.R.id.*
 import com.summer.itis.cardsproject.model.Card
 import com.summer.itis.cardsproject.model.Question
 import com.summer.itis.cardsproject.model.User
-import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.json.GamesRepository
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
 import com.summer.itis.cardsproject.ui.game.game_list.game.GameListActivity
-import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
-import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity.Companion.setWeight
-import com.summer.itis.cardsproject.ui.game.play.PlayGamePresenter
-import com.summer.itis.cardsproject.ui.game.play.PlayGameView
 import com.summer.itis.cardsproject.ui.game.play.change_list.GameChangeListAdapter
 import com.summer.itis.cardsproject.ui.game.play.list.GameCardsListAdapter
 import com.summer.itis.cardsproject.ui.widget.CenterZoomLayoutManager
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.getRandom
 import kotlinx.android.synthetic.main.activity_game.*
@@ -77,7 +71,7 @@ class BotGameActivity : NavigationBaseActivity(), BotGameView {
         setContentView(R.layout.layout_change_card)
 
         rv_game_start_cards.layoutManager = CenterZoomLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        ApplicationHelper.currentUser?.gameLobby?.let { presenter.setInitState(it) }
+        AppHelper.currentUser?.gameLobby?.let { presenter.setInitState(it) }
     }
 
     override fun onBackPressed() {

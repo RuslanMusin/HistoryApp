@@ -13,6 +13,8 @@ object Const {
 
     const val TAG_LOG = "TEG"
 
+    const val DOUBLE_FORM = "%.2f"
+
     const val MAX_LENGTH = 80
     const val MORE_TEXT = "..."
 
@@ -64,12 +66,19 @@ object Const {
     const val USER_KEY = "user"
     const val POINT_KEY = "point"
 
+    const val EPOCH_KEY = "EPOCH_KEY"
+
+    const val GAME_WIN_POINTS = 20
+    const val GAME_LOSE_POINTS = 5
+    const val TEST_POINTS = 10
+
     //Crossing type
     const val WATCHER_TYPE = "watcher"
     const val OWNER_TYPE = "owner"
     const val RESTRICT_OWNER_TYPE = "restrict_owner"
     const val FOLLOWER_TYPE = "follower"
 
+    const val CARD_NUMBER = 3
     //Friend type
     const val ADD_FRIEND = "addF"
     const val REMOVE_FRIEND = "removeF"
@@ -87,6 +96,11 @@ object Const {
     const val OFFICIAL_LIST = "OFFICIAL"
     const val USER_LIST = "USER"
     const val MY_LIST = "MY"
+
+    //Stats list types
+    const val LEADER_LIST = "LEADER_LIST"
+    const val MY_GAME_LIST = "MY_GAME_LIST"
+    const val COMMON_LIST = "COMMON_LIST"
 
     //Firebase constants
     const val SEP = "/"

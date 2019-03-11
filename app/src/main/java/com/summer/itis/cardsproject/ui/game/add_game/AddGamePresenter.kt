@@ -7,6 +7,7 @@ import com.arellomobile.mvp.MvpPresenter
 import com.summer.itis.cardsproject.model.game.Lobby
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestView
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 
@@ -19,6 +20,7 @@ class AddGamePresenter : MvpPresenter<AddGameView>() {
     }
 
     fun createGame(lobby: Lobby) {
+        lobby.usersIds.add(AppHelper.currentUser.id)
         gamesRepository.createLobby(lobby) {
 
             viewState.onGameCreated() }

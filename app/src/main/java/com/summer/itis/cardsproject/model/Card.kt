@@ -14,6 +14,8 @@ open class Card() : Parcelable{
 
     var cardId: String? = null
 
+    var epochId: String? = null
+
     var testId: String? = null
 
     var intelligence: Int? = null
@@ -33,6 +35,9 @@ open class Card() : Parcelable{
 
     @Exclude
     var test: Test = Test()
+
+    @Exclude
+    var epoch: Epoch = Epoch()
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readString()

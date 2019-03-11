@@ -30,11 +30,16 @@ class Test {
 
     var imageUrl: String? = null
 
+    lateinit var epochId: String
+
     @Exclude
     var comments: MutableList<Comment> = ArrayList()
 
     @Exclude
     var card: Card? = null
+
+    @Exclude
+    var epoch: Epoch? = null
 
     @Exclude
     var testDone: Boolean = false
@@ -46,4 +51,27 @@ class Test {
 
     @Exclude
     lateinit var wrongQuestions: List<Question>
+
+    var usersIds: MutableList<String> = ArrayList()
+    var usersList: MutableList<User> = ArrayList()
+
+    var likes = 0.0
+
+    override fun equals(other: Any?): Boolean {
+        var flag = false
+        val test = other as Test
+        if(id?.equals(test.id)!!) {
+            flag = true
+        }
+        return flag
+    }
+
+    override fun hashCode(): Int {
+        var arr = id?.toCharArray()
+        var hash = 31
+        for(a in arr!!) {
+            hash += a.toInt()
+        }
+        return hash
+    }
 }

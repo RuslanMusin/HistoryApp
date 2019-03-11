@@ -15,7 +15,7 @@ import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.game
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.repository.json.UserRepository
 import com.summer.itis.cardsproject.ui.game.play.PlayGameActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 
 import com.summer.itis.cardsproject.utils.Const.ADD_REQUEST
 import com.summer.itis.cardsproject.utils.Const.IN_GAME_STATUS
@@ -23,7 +23,6 @@ import com.summer.itis.cardsproject.utils.Const.NOT_ACCEPTED
 import com.summer.itis.cardsproject.utils.Const.OWNER_TYPE
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.USER_KEY
-import com.summer.itis.cardsproject.utils.NetworkUtil.netTimer
 
 class PersonalPresenter(private val testActivity: PersonalActivity) {
 
@@ -74,7 +73,7 @@ class PersonalPresenter(private val testActivity: PersonalActivity) {
                    gamesRepository.waitEnemy().subscribe { relation ->
                         timer.cancel()
                        if(relation.relation.equals(IN_GAME_STATUS)) {
-                           ApplicationHelper.currentUser?.let {
+                           AppHelper.currentUser?.let {
                                timer.cancel()
                                it.status = IN_GAME_STATUS
                                userRepository.changeUserStatus(it).subscribe()

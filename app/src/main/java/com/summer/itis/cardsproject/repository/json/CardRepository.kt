@@ -1,12 +1,12 @@
 package com.summer.itis.cardsproject.repository.json
 
 import com.google.firebase.database.*
-import com.summer.itis.cardsproject.R.string.card
 import com.summer.itis.cardsproject.model.Card
 import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.model.db_dop_models.ElementId
 import com.summer.itis.cardsproject.model.db_dop_models.Relation
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.abstractCardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.epochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.AFTER_TEST
@@ -18,8 +18,6 @@ import com.summer.itis.cardsproject.utils.Const.WIN_GAME
 import com.summer.itis.cardsproject.utils.RxUtils
 import io.reactivex.Observable
 import io.reactivex.Single
-import java.util.*
-import java.util.regex.Pattern
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -42,6 +40,7 @@ class CardRepository {
     private val FIELD_HP = "hp"
     private val FIELD_STRENGTH = "strength"
     private val FIELD_TYPE = "type"
+    private val FIELD_EPOCH_ID = "epochId"
 
 
     init {
@@ -63,6 +62,7 @@ class CardRepository {
             result[FIELD_SUPPORT] = card.support
             result[FIELD_STRENGTH] = card.strength
             result[FIELD_TYPE] = card.type
+            result[FIELD_EPOCH_ID] = card.epochId
         }
         return result
     }
@@ -164,7 +164,11 @@ class CardRepository {
                                         .readTest(card?.testId)
                                         .subscribe{ test ->
                                             card?.test = test
-                                            e.onSuccess(card!!)
+                                            epochRepository.findEpoch(card?.epochId!!)
+                                                .subscribe { epoch ->
+                                                    card?.epoch = epoch
+                                                    e.onSuccess(card!!)
+                                                }
                                         }
                             }
                 }
@@ -213,12 +217,27 @@ class CardRepository {
         return single.compose(RxUtils.asyncSingle())
     }
 
-    fun findCardsByType(userId: String, type: String): Single<List<Card>> {
+    fun findCardsByType(userId: String, type: String, epochId: String): Single<List<Card>> {
         if(type.equals(OFFICIAL_TYPE)) {
-            return findOfficialMyCards(userId)
+            return findOfficialMyCards(userId, epochId)
         } else {
             return findMyCards(userId)
         }
+    }
+
+    fun findOfficialMyCards(userId: String, epochId: String): Single<List<Card>> {
+        val single:Single<List<Card>> =  Single.create { e ->
+            findMyCards(userId).subscribe { cards ->
+                val officials: MutableList<Card> = ArrayList()
+                for (card in cards) {
+                    if (card.type.equals(OFFICIAL_TYPE) || epochId.equals(card.epochId)) {
+                        officials.add(card)
+                    }
+                }
+                e.onSuccess(officials)
+            }
+        }
+        return single.compose(RxUtils.asyncSingle())
     }
 
     fun findOfficialMyCards(userId: String): Single<List<Card>> {

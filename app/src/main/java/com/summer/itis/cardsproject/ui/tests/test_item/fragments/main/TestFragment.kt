@@ -13,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -24,7 +23,6 @@ import com.google.firebase.database.ValueEventListener
 
 import com.summer.itis.cardsproject.R
 import com.summer.itis.cardsproject.model.Comment
-import com.summer.itis.cardsproject.model.Question
 import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.model.User
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
@@ -38,13 +36,9 @@ import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.QUESTION_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.cardsproject.ui.tests.test_item.TestView
-import com.summer.itis.cardsproject.ui.tests.test_item.fragments.finish.FinishFragment
 import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
-import com.summer.itis.cardsproject.ui.widget.ExpandableTextView
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.AFTER_TEST
-import com.summer.itis.cardsproject.utils.Const.LOSE_GAME
 
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.WIN_GAME
@@ -54,7 +48,6 @@ import kotlinx.android.synthetic.main.fragment_recycler_list.*
 import kotlinx.android.synthetic.main.layout_add_comment.*
 import kotlinx.android.synthetic.main.layout_expandable_text_view.*
 import kotlinx.android.synthetic.main.layout_test.*
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -111,7 +104,7 @@ class TestFragment : MvpAppCompatFragment(), View.OnClickListener, OnCommentClic
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        ApplicationHelper.hideKeyboardFrom(activity as Context,view)
+        AppHelper.hideKeyboardFrom(activity as Context,view)
 
         initViews(view)
         initRecycler()
@@ -233,7 +226,7 @@ class TestFragment : MvpAppCompatFragment(), View.OnClickListener, OnCommentClic
         Log.d(TAG_LOG, "send comment = $commentText")
         if (commentText.length > 0) {
             val comment = Comment()
-            val user = ApplicationHelper.currentUser
+            val user = AppHelper.currentUser
             user?.let {
                 comment.text = commentText
                 comment.authorId = user.id
@@ -245,7 +238,7 @@ class TestFragment : MvpAppCompatFragment(), View.OnClickListener, OnCommentClic
             }
 
             commentEditText.setText(null)
-            view?.getRootView()?.let { ApplicationHelper.hideKeyboardFrom(this.activity as Context, it)
+            view?.getRootView()?.let { AppHelper.hideKeyboardFrom(this.activity as Context, it)
                 Log.d(TAG_LOG,"hide keyboard")
             }
             commentEditText.clearFocus()

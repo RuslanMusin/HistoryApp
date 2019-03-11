@@ -1,8 +1,6 @@
 package com.summer.itis.cardsproject.ui.game.game_list.fragment
 
 import android.app.Activity
-import android.app.ProgressDialog.show
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -11,23 +9,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
-import com.bumptech.glide.Glide
-import com.ms.square.android.expandabletextview.ExpandableTextView
 import com.summer.itis.cardsproject.R
-import com.summer.itis.cardsproject.R.string.card
 import com.summer.itis.cardsproject.model.game.Lobby
-import com.summer.itis.cardsproject.model.game.LobbyPlayerData
-import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
 import com.summer.itis.cardsproject.ui.game.add_game.AddGameActivity
 import com.summer.itis.cardsproject.ui.game.game_list.GameAdapter
 import com.summer.itis.cardsproject.ui.game.game_list.game.GameListView
 import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 import kotlinx.android.synthetic.main.fragment_test_list.*
 import java.util.ArrayList
@@ -63,7 +55,7 @@ class GameListFragment : Fragment() {
         initRecycler()
 
         if (!isLoaded && type.equals(Const.OFFICIAL_LIST)) {
-            parentView!!.changeAdapter(0)
+//            parentView!!.changeAdapter(0)
         }
 
         super.onViewCreated(view, savedInstanceState)
@@ -104,7 +96,7 @@ class GameListFragment : Fragment() {
                         .positiveText("Создать")
                         .onPositive(object :MaterialDialog.SingleButtonCallback {
                             override fun onClick(dialog: MaterialDialog, which: DialogAction) {
-                                ApplicationHelper.currentUser?.let { it.lobbyId?.let { it1 ->
+                                AppHelper.currentUser?.let { it.lobbyId?.let { it1 ->
                                     adapter.removeItemById(it1)
                                 } }
                                 AddGameActivity.start(activity as Activity)

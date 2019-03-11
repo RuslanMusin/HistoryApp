@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HistoryBattle</string>
+    <string name="app_name">RussianHistory</string>
 
     <string name="action_clear">Clear</string>
     <string name="add">add</string>
@@ -191,8 +191,8 @@
     <string name="option_get_place">Get place</string>
     <string name="pick_place">Choose a place</string>
     <string name="login">Login</string>
-    <string name="create_account">No account yet? Create one</string>
-    <string name="if_member_login">Already a member? Login</string>
+    <string name="create_account">Нет аккаунта ? Зарегистрируйся</string>
+    <string name="if_member_login">Уже зарегистрирован ? Войди</string>
     <string name="create_new_account">Create Account</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
@@ -281,12 +281,48 @@
     <string name="delete_game">Удаление игры</string>
     <string name="enemy_not_online">Игрок не в сети</string>
     <string name="choose_card_mode">Какие карты можно использовать</string>
-    <string name="default_card_number">5</string>
+    <string name="default_card_number">3</string>
     <string name="set_card_min">В игре должно быть минимум 5 карт</string>
     <string name="enemy_doesnt_have_card_min">У противника недостаточно карт для этой игры</string>
     <string name="you_dont_have_card_min">Вам не хватает карт для игры</string>
     <string name="choose_from_standart">Выбрать из стандартных</string>
     <string name="choose_from_gallery">Выбрать из галлереи</string>
+    <string name="statistics">Статистика</string>
+    <string name="epoch">Эпоха</string>
+    <string name="choose_epoch">Выберите эпоху</string>
 
+    <string-array name="epoches">
+        <item>Древняя Русь, IX – XIIIвв</item>
+        <item>Татаро-монгольское иго, XIII – XVвв</item>
+        <item>Московское царство, XVI – XVI вв</item>
+        <item>Российская империя, XVIII – начало XXвв(1917)</item>
+        <item>СССР, 1917 – 1991</item>
+        <item>Российская федерация, 1991 - наст.время</item>
+    </string-array>
+
+    <string name="level">Уровень: %1$d</string>
+    <string name="cardnumber">3</string>
+
+    <string name="ke_arg">Общий коэффициент Ke : %1$s</string>
+    <string name="ke_change_arg">Изменения Ke : %1$s</string>
+    <string name="right_arg">Правильных ответов : %1$d</string>
+    <string name="wrong_arg">Неправильных ответов : %1$d</string>
+
+    <string name="ge_arg">Игровой коэффициент Ge : %1$s</string>
+    <string name="ge_change_arg">Изменения Ge : %1$s</string>
+    <string name="win_arg">Побед : %1$d</string>
+    <string name="lose_arg">Проигрышей : %1$d</string>
+
+    <string name="kg_arg">Общий игровой коэффициент Kg : %1$s</string>
+
+    <string name="game_dialog">Приглашение сыграть</string>
+    <string name="game_dialog_content">Принять приглашение ?</string>
+    <string name="common_stats">Общая</string>
+    <string name="game_stats">Игровая</string>
+    <string name="leaderboard">Топ игроков</string>
+    <string name="update_list">Обновить список</string>
+    <string name="users">Пользователи</string>
+    <string name="all_users">Все</string>
+    <string name="requests">Запросы</string>
 
 </resources>

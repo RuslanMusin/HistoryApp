@@ -15,7 +15,7 @@ import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.user
 import com.summer.itis.cardsproject.repository.json.GamesRepository.Companion.FIELD_CREATOR
 import com.summer.itis.cardsproject.repository.json.GamesRepository.Companion.FIELD_INVITED
 import com.summer.itis.cardsproject.repository.json.UserRepository
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const
 import com.summer.itis.cardsproject.utils.Const.BOT_GAME
 import com.summer.itis.cardsproject.utils.Const.BOT_ID
@@ -33,7 +33,7 @@ class GameListPresenter : MvpPresenter<GameListView>() {
     lateinit var timer: CountDownTimer
 
     fun loadOfficialTestsByQUery(query: String) {
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             RepositoryProvider.gamesRepository
                     .findOfficialTestsByQuery(query, it)
                     .doOnSubscribe(Consumer<Disposable> { viewState.showLoading(it) })
@@ -61,7 +61,7 @@ class GameListPresenter : MvpPresenter<GameListView>() {
 
     fun loadOfficialTests() {
         Log.d(Const.TAG_LOG, "load books")
-        ApplicationHelper.currentUser?.id?.let {
+        AppHelper.currentUser?.id?.let {
             RepositoryProvider.gamesRepository
                     .findOfficialTests(it)
                     .doOnSubscribe({ viewState.showLoading(it) })
@@ -72,7 +72,7 @@ class GameListPresenter : MvpPresenter<GameListView>() {
     }
 
     fun onItemClick(lobby: Lobby) {
-        if(!lobby.id.equals(ApplicationHelper.currentUser?.lobbyId)) {
+        if(!lobby.id.equals(AppHelper.currentUser?.lobbyId)) {
             viewState.showDetails(lobby)
         } else {
             viewState.showSnackbar("Вы не можете присоединиться к созданной вами игре")
@@ -83,13 +83,13 @@ class GameListPresenter : MvpPresenter<GameListView>() {
         Log.d(TAG_LOG,"find game online")
         val gameData: GameData = GameData()
         lobby.creator?.playerId?.let{ gameData.enemyId = it}
-        cardRepository.findCardsByType(gameData.enemyId,lobby.type).subscribe{ enemyCards ->
+        cardRepository.findCardsByType(gameData.enemyId, lobby.type, lobby.epochId).subscribe{ enemyCards ->
             val cardsSize = enemyCards.size
             if(cardsSize >= lobby.cardNumber) {
                 gameData.role = FIELD_INVITED
                 gameData.gameMode = ONLINE_GAME
                 lobby.gameData = gameData
-                ApplicationHelper.currentUser?.let { it.gameLobby = lobby }
+                AppHelper.currentUser?.let { it.gameLobby = lobby }
                 viewState.showProgressDialog()
                 timer = object : CountDownTimer(25000, 1000) {
 
@@ -147,7 +147,7 @@ class GameListPresenter : MvpPresenter<GameListView>() {
         gameData.role = FIELD_CREATOR
         lobby.gameData = gameData
 
-        ApplicationHelper.currentUser?.let {
+        AppHelper.currentUser?.let {
             it.gameLobby = lobby
             Log.d(TAG_LOG,"enemyId = ${lobby.gameData?.enemyId}")
             Log.d(TAG_LOG,"enemyId 2= ${it.gameLobby?.gameData?.enemyId}")

@@ -2,19 +2,12 @@ package com.summer.itis.cardsproject.ui.cards.cards_list.adapter
 
 import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import com.summer.itis.cardsproject.R
 import android.content.Context
 import android.support.annotation.NonNull
 import com.bumptech.glide.Glide
-import com.summer.itis.cardsproject.R.id.tv_desc
-import com.summer.itis.cardsproject.R.id.tv_name
 import com.summer.itis.cardsproject.model.AbstractCard
-import com.summer.itis.cardsproject.ui.tests.test_list.TestItemHolder
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.ApplicationHelper.Companion.cutLongDescription
-import com.summer.itis.cardsproject.utils.Const.MAX_LENGTH
+import com.summer.itis.cardsproject.utils.AppHelper.Companion.cutLongDescription
 import kotlinx.android.synthetic.main.item_member.view.*
 
 /**

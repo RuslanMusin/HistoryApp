@@ -37,8 +37,6 @@ interface GameListView : MvpView, BaseAdapter.OnItemClickListener<Lobby> {
 
     fun setProgressBar(progressBar: ProgressBar?)
 
-    fun changeAdapter(position: Int)
-
     fun changeDataSet(friends: List<Lobby>)
 
     fun onGameFinded()

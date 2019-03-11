@@ -39,10 +39,36 @@ class User {
     @Exclude
     private val tests: List<Test>? = null
 
+    var epochList: MutableList<UserEpoch> = ArrayList()
+
+    var level: Int = 1
+
+    var points: Long = 0
+
+    var nextLevel: Long = 60
+
     constructor() {}
 
     constructor(email: String, username: String) {
         this.email = email
         this.username = username
+    }
+
+    override fun equals(other: Any?): Boolean {
+        var flag = false
+        val user = other as User
+        if(id.equals(user.id)) {
+            flag = true
+        }
+        return flag
+    }
+
+    override fun hashCode(): Int {
+        var arr = id.toCharArray()
+        var hash = 31
+        for(a in arr) {
+            hash += a.toInt()
+        }
+        return hash
     }
 }

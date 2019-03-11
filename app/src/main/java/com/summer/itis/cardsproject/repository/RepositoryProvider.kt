@@ -39,6 +39,18 @@ class RepositoryProvider {
             AbstractCardRepository()
         }
 
+        val userEpochRepository: UserEpochRepository by lazy {
+            UserEpochRepository()
+        }
+
+        val leaderStatRepository: LeaderStatRepository by lazy {
+            LeaderStatRepository()
+        }
+
+        val epochRepository: EpochRepository by lazy {
+            EpochRepository()
+        }
+
         val wikiApiRepository: WikiApiRepository by lazy {
             Log.d(TAG_LOG,"wikiRepo")
             WikiApiRepositoryImpl()

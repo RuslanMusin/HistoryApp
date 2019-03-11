@@ -11,9 +11,11 @@ import com.summer.itis.cardsproject.model.game.Lobby
 import com.summer.itis.cardsproject.model.game.LobbyPlayerData
 import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.cardRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.gamesRepository
+import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userEpochRepository
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.repository.json.UserRepository.Companion.FIELD_LOBBY_ID
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.BOT_ID
 import com.summer.itis.cardsproject.utils.Const.IN_GAME_STATUS
 import com.summer.itis.cardsproject.utils.Const.MODE_END_GAME
@@ -93,7 +95,7 @@ class GamesRepository {
     fun setLobbyRefs(lobbyId: String) {
         currentLobbyRef = databaseReference.child(lobbyId)
 
-        ApplicationHelper.currentUser?.let {
+        AppHelper.currentUser?.let {
             if(it.gameLobby?.gameData?.role.equals(FIELD_INVITED)) {
                 myLobbyRef = currentLobbyRef.child(FIELD_INVITED)
                 enemyLobbyRef = currentLobbyRef.child(FIELD_CREATOR)
@@ -109,7 +111,7 @@ class GamesRepository {
     fun removeLobby(id: String) {
         Log.d(TAG_LOG,"remove lobby $id")
         databaseReference.child(id).removeValue()
-        ApplicationHelper.currentUser?.let {
+        AppHelper.currentUser?.let {
             it.lobbyId = null
             databaseReference.root.child(UserRepository.TABLE_NAME).child(it.id).child(FIELD_LOBBY_ID).setValue(null)
             databaseReference.root.child(USERS_LOBBIES).child(it.id).child(id).setValue(null)
@@ -227,7 +229,7 @@ class GamesRepository {
         lobbyId?.let {
             lobby.id = lobbyId
             databaseReference.child(it).setValue(lobby)
-            ApplicationHelper.currentUser?.let {
+            AppHelper.currentUser?.let {
                 it.id?.let { it1 -> databaseReference.root.child(UserRepository.TABLE_NAME).child(it1).child(FIELD_LOBBY_ID).setValue(lobbyId)
                     val relation:Relation = Relation()
                     relation.id = lobbyId
@@ -243,6 +245,15 @@ class GamesRepository {
         onFind()
     }
 
+    fun updateLobby(lobby: Lobby): Single<Boolean> {
+        val single: Single<Boolean> = Single.create { e ->
+            databaseReference.child(lobby.id).setValue(lobby).addOnCompleteListener {
+                e.onSuccess(true)
+            }
+        }
+        return single.compose(RxUtils.asyncSingle())
+    }
+
     fun removeFastLobby(userId: String, lobby: Lobby): Single<Boolean> {
         Log.d(TAG_LOG,"remove fast lobby")
         val single: Single<Boolean> = Single.create { e ->
@@ -250,7 +261,7 @@ class GamesRepository {
             val lobbyId: String? = lobby.id
             lobbyId?.let {
                 databaseReference.child(it).removeValue()
-                ApplicationHelper.currentUser?.let {
+                AppHelper.currentUser?.let {
                     it.id.let { it1 ->
                         databaseReference.root.child(USERS_LOBBIES).child(it1).child(lobbyId).removeValue()
                         databaseReference.root.child(USERS_LOBBIES).child(userId).child(lobbyId).removeValue()
@@ -270,7 +281,7 @@ class GamesRepository {
             lobbyId?.let {
                 lobby.id = lobbyId
                 databaseReference.child(it).setValue(lobby)
-                ApplicationHelper.currentUser?.let {
+                AppHelper.currentUser?.let {
                     it.id.let { it1 ->
                         val relation:Relation = Relation()
                         relation.id = lobbyId
@@ -314,7 +325,7 @@ class GamesRepository {
                 Log.d(TAG_LOG,"refuse in db")
                 databaseReference.root.child(USERS_LOBBIES).child(it).child(lobby.id).setValue(relation)
             }
-            ApplicationHelper.currentUser.let {
+            AppHelper.currentUser.let {
                 databaseReference.root.child(USERS_LOBBIES).child(it.id).child(lobby.id).setValue(null).addOnCompleteListener{ e.onSuccess(true)}
 
             }
@@ -324,7 +335,7 @@ class GamesRepository {
 
     fun waitEnemy(): Single<Relation>{
         val single: Single<Relation> = Single.create{ e ->
-            val user: User? = ApplicationHelper.currentUser
+            val user: User? = AppHelper.currentUser
             user?.id?.let {
                 val query: Query = databaseReference.root.child(USERS_LOBBIES).child(it)
                 query.addValueEventListener(object: ValueEventListener {
@@ -439,7 +450,7 @@ class GamesRepository {
         relation.id = lobby.id
         relation.relation = ONLINE_STATUS
         lobby.creator?.playerId?.let {
-            ApplicationHelper.currentUser?.let {user ->
+            AppHelper.currentUser?.let { user ->
                /* val gameData: GameData = GameData()
                 gameData.gameMode = ONLINE_GAME
                 gameData.enemyId = it
@@ -466,7 +477,7 @@ class GamesRepository {
                 val relation: Relation? = snap.getValue(Relation::class.java)
                 relation?.let {
                     if(it.relation.equals(IN_GAME_STATUS)) {
-                        ApplicationHelper.currentUser?.let { it1 ->
+                        AppHelper.currentUser?.let { it1 ->
                             it1.status = IN_GAME_STATUS
                             userRepository.changeUserStatus(it1).subscribe() }
                         onFind()
@@ -494,7 +505,7 @@ class GamesRepository {
     }
 
     fun notAccepted(lobby: Lobby) {
-        ApplicationHelper.currentUser?.let {
+        AppHelper.currentUser?.let {
             Log.d(TAG_LOG,"not accept")
                     databaseReference.root.child(USERS_LOBBIES).child(it.id).child(lobby.id).setValue(null)
                     myLobbyRef.setValue(null)
@@ -656,12 +667,12 @@ class GamesRepository {
         listeners.put(enemyLobbyRef!!.child(LobbyPlayerData.PARAM_online), enemyConnectionListener)*/
     }
 
-    private fun readCardsByType(lobbyId: String, type: String): Single<List<Card>> {
+    private fun readCardsByType(lobbyId: String, lobby: Lobby): Single<List<Card>> {
         val singleCards: Single<List<Card>>
-        if(type.equals(OFFICIAL_TYPE)) {
-            singleCards = cardRepository.findOfficialMyCards(lobbyId)
+        if(lobby.type.equals(OFFICIAL_TYPE)) {
+            singleCards = cardRepository.findOfficialMyCards(lobbyId, lobby.epochId)
         } else {
-            singleCards = cardRepository.findOfficialMyCards(lobbyId)
+            singleCards = cardRepository.findOfficialMyCards(lobbyId, lobby.epochId)
         }
         return singleCards
     }
@@ -669,8 +680,8 @@ class GamesRepository {
     private fun selectOnLoseCard(lobby: Lobby) {
 
         lobby.gameData?.enemyId?.let {
-            readCardsByType(it,lobby.type).subscribe { enemyCards: List<Card>? ->
-            readCardsByType(UserRepository.currentId,lobby.type).subscribe { myCards: List<Card>? ->
+            readCardsByType(it,lobby).subscribe { enemyCards: List<Card>? ->
+            readCardsByType(UserRepository.currentId,lobby).subscribe { myCards: List<Card>? ->
                 onYouLoseCard = ArrayList(myCards).minus(enemyCards!!).getRandom()
                 if(onYouLoseCard == null) {
                     onYouLoseCard = myCards?.getRandom()
@@ -844,7 +855,7 @@ class GamesRepository {
             databaseReference.root.child(USERS_LOBBIES).child(UserRepository.currentId).child(lobby.id).setValue(null)
         }
 
-     /*   ApplicationHelper.currentUser?.let{
+     /*   AppHelper.currentUser?.let{
             it.status = ONLINE_STATUS
             userRepository.changeUserStatus(it).subscribe()
         }*/
@@ -852,8 +863,8 @@ class GamesRepository {
 
     fun removeRedundantLobbies(shouldFind: Boolean) {
         Log.d(TAG_LOG,"removeRedundantLobbies")
-        if(ApplicationHelper.userInSession) {
-            ApplicationHelper.currentUser.let { user ->
+        if(AppHelper.userInSession) {
+            AppHelper.currentUser.let { user ->
                 databaseReference.root.child(USERS_LOBBIES).child(user.id).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
                         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -1011,7 +1022,18 @@ class GamesRepository {
 
         lobby.gameData?.enemyId?.let {
             RepositoryProvider.cardRepository.addCardAfterGame(onEnemyLoseCard!!.id!!, getPlayerId()!!, it)
-                .subscribe()
+                .subscribe { e ->
+                    Log.d(TAG_LOG, "card added after game")
+
+                    }
+        getPlayerId()?.let { it1 ->
+            if(!lobby.usersIds.contains(it1)) {
+                lobby.usersIds.add(it1)
+            }
+                gamesRepository.updateLobby(lobby).subscribe()
+                userEpochRepository.updateAfterGame(lobby, getPlayerId(), true, my_score).subscribe()
+                userEpochRepository.updateAfterGame(lobby, it, false, enemy_score).subscribe()
+            }
         }
     }
 
@@ -1049,8 +1071,8 @@ class GamesRepository {
                                 val card = snapshot.getValue(Lobby::class.java)
                                 card?.let {
                                     if ((ONLINE_STATUS.equals(card.status) && card.type.equals(type)) && !card.isFastGame
-                                            && (myNumber >= card.cardNumber || card.id.equals(ApplicationHelper.currentUser.lobbyId))) {
-                                        if(card.id.equals(ApplicationHelper.currentUser.lobbyId)) {
+                                            && (myNumber >= card.cardNumber || card.id.equals(AppHelper.currentUser.lobbyId))) {
+                                        if(card.id.equals(AppHelper.currentUser.lobbyId)) {
                                             it.isMyCreation = true
                                         }
                                         cards.add(it)
@@ -1086,8 +1108,8 @@ class GamesRepository {
                             val card = snapshot.getValue(Lobby::class.java)
                             card?.let {
                                 if ((ONLINE_STATUS.equals(card.status) && card.type.equals(type)) && !card.isFastGame
-                                    && (myNumber >= card.cardNumber || card.id.equals(ApplicationHelper.currentUser.lobbyId))) {
-                                        if(it.id.equals(ApplicationHelper.currentUser.lobbyId)) {
+                                    && (myNumber >= card.cardNumber || card.id.equals(AppHelper.currentUser.lobbyId))) {
+                                        if(it.id.equals(AppHelper.currentUser.lobbyId)) {
                                             it.isMyCreation = true
                                         }
                                     cards.add(it)

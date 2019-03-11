@@ -13,8 +13,13 @@
 
     <item
         android:id="@+id/menu_game"
-        android:icon="@drawable/ic_group_black_24dp"
+        android:icon="@drawable/ic_games_black_24dp"
         android:title="@string/game" />
+
+    <item
+            android:id="@+id/menu_statistics"
+            android:icon="@drawable/ic_trending_up_white_24dp"
+            android:title="@string/statistics" />
 
     <item
         android:id="@+id/menu_friends"

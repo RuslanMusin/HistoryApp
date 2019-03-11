@@ -14,7 +14,6 @@ import com.summer.itis.cardsproject.repository.RepositoryProvider
 import com.summer.itis.cardsproject.ui.base.*
 import com.summer.itis.cardsproject.ui.cards.cards_states.CardsStatesPagerAdapter
 import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
-import com.summer.itis.cardsproject.utils.ApplicationHelper
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import kotlinx.android.synthetic.main.back_forward.*

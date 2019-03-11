@@ -26,36 +26,28 @@ import java.util.ArrayList
 
 import android.app.Activity.RESULT_OK
 import android.content.Context
-import android.support.v4.app.ActivityCompat.startActivityForResult
 import android.util.Log
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
-import com.summer.itis.cardsproject.R.string.answer
 import com.summer.itis.cardsproject.model.Test
 import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.testRepository
-import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.userRepository
 import com.summer.itis.cardsproject.ui.base.BaseBackActivity
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
 import com.summer.itis.cardsproject.ui.base.OnFourActionListener
-import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
 import com.summer.itis.cardsproject.ui.tests.ChangeToolbarListener
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_QUESTION_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity.Companion.ADD_TEST_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.add_test.fragments.main.AddTestFragment
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
-import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.ANSWERS_FRAGMENT
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity.Companion.TEST_JSON
-import com.summer.itis.cardsproject.ui.tests.test_item.fragments.check_answers.AnswersFragment
-import com.summer.itis.cardsproject.ui.tests.test_item.fragments.finish.FinishFragment
 import com.summer.itis.cardsproject.ui.tests.test_list.test.TestListActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
-import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.TEST_MANY_TYPE
 import com.summer.itis.cardsproject.utils.Const.TEST_ONE_TYPE
 import com.summer.itis.cardsproject.utils.Const.gsonConverter
-import java.util.Arrays.copyOf
+import kotlinx.android.synthetic.main.fragment_add_question.*
 
 class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListener {
 
@@ -169,6 +161,7 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
     private fun setQuestionData() {
         Log.d(TAG_LOG,"set question data")
         etQuestion?.setText(question.question)
+//        etQuestion?.setText("вопрос")
         for(i in question.answers.indices) {
             if(i >= checkBoxes.size) {
                 addAnswer()
@@ -183,8 +176,8 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
         tiQuestion = view.findViewById(R.id.ti_question)
         liAnswers = view.findViewById(R.id.li_answers)
         btnAddAnswer = view.findViewById(R.id.btn_add_answer)
-        btnNextQuestion = view.findViewById(R.id.btn_next_question)
-        btnFinish = view.findViewById(R.id.btn_finish_questions)
+//        btnNextQuestion = view.findViewById(R.id.btn_next_question)
+//        btnFinish = view.findViewById(R.id.btn_finish_questions)
         spinner = view.findViewById(R.id.spinner)
         spinner!!.setItems(getString(R.string.test_type_one), getString(R.string.test_type_many))
 
@@ -208,7 +201,7 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
 
         }
 
-
+        et_question.setText("Вопрос")
         for (i in 0..2) {
            addAnswer()
 
@@ -218,8 +211,8 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
 
     private fun setListeners() {
         btnAddAnswer!!.setOnClickListener(this)
-        btnNextQuestion!!.setOnClickListener(this)
-        btnFinish!!.setOnClickListener(this)
+//        btnNextQuestion!!.setOnClickListener(this)
+//        btnFinish!!.setOnClickListener(this)
         spinner?.setOnItemSelectedListener(object : MaterialSpinner.OnItemSelectedListener<Any> {
             override fun onItemSelected(view: MaterialSpinner?, position: Int, id: Long, item: Any?) {
                 when (position) {
@@ -266,7 +259,7 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
         prepareQuestion()
 //        addTestView!!.createTest()
         if(checkQuestion()) {
-            ApplicationHelper.currentUser?.let {
+            AppHelper.currentUser?.let {
                 testRepository
                         .createTest(test, it)
                         .subscribe { e -> TestActivity.start(activity as Activity, test) }
@@ -322,14 +315,14 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
 
         when (v.id) {
 
-            R.id.btn_finish_questions -> {
+          /*  R.id.btn_finish_questions -> {
                 finishQuestions()
 
             }
 
             R.id.btn_next_question -> {
                 nextQuestion()
-            }
+            }*/
 
             R.id.btn_add_answer -> {
                 if(answerSize < 5) {
@@ -352,7 +345,12 @@ class AddQuestionFragment : Fragment(), View.OnClickListener, OnFourActionListen
         val view: View = layoutInflater.inflate(R.layout.layout_item_add_question,liAnswers,false)
         val editText: EditText = view.findViewById(R.id.et_answer)
         val checkBox: CheckBox = view.findViewById(R.id.checkbox)
-
+        if(answerSize == 1) {
+            checkBox.isChecked = true
+            editText.setText("п")
+        } else {
+            editText.setText("н")
+        }
        checkBox.setOnClickListener(checkListener)
 
         editTexts?.add(editText)

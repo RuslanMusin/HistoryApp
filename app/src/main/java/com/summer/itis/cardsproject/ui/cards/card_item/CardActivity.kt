@@ -1,7 +1,6 @@
 package com.summer.itis.cardsproject.ui.cards.card_item
 
 import QuestionFragment.Companion.CARD_JSON
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,9 +18,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.summer.itis.cardsproject.R
-import com.summer.itis.cardsproject.R.id.*
-import com.summer.itis.cardsproject.R.string.card
-import com.summer.itis.cardsproject.R.string.comments
 import com.summer.itis.cardsproject.model.AbstractCard
 import com.summer.itis.cardsproject.model.Comment
 import com.summer.itis.cardsproject.model.User
@@ -33,7 +29,7 @@ import com.summer.itis.cardsproject.ui.comment.CommentAdapter
 import com.summer.itis.cardsproject.ui.comment.OnCommentClickListener
 import com.summer.itis.cardsproject.ui.member.member_item.PersonalActivity
 import com.summer.itis.cardsproject.ui.tests.one_test_list.OneTestListActivity
-import com.summer.itis.cardsproject.utils.ApplicationHelper
+import com.summer.itis.cardsproject.utils.AppHelper
 import com.summer.itis.cardsproject.utils.Const.ABSTRACT_CARD_ID
 import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
@@ -149,7 +145,7 @@ class CardActivity : NavigationBaseActivity(), CardView, View.OnClickListener, O
         val intent = Intent(this,OneTestListActivity::class.java)
         intent.putExtra(TEST_LIST_TYPE, testType)
         intent.putExtra(ABSTRACT_CARD_ID, card.id)
-        intent.putExtra(USER_ID, ApplicationHelper.currentUser?.id)
+        intent.putExtra(USER_ID, AppHelper.currentUser?.id)
         return intent
     }
 
@@ -202,7 +198,7 @@ class CardActivity : NavigationBaseActivity(), CardView, View.OnClickListener, O
         Log.d(TAG_LOG, "send comment = $commentText")
         if (commentText.length > 0) {
             val comment = Comment()
-            val user = ApplicationHelper.currentUser
+            val user = AppHelper.currentUser
             user?.let {
                 comment.text = commentText
                 comment.authorId = user.id
@@ -214,7 +210,7 @@ class CardActivity : NavigationBaseActivity(), CardView, View.OnClickListener, O
             }
 
             commentEditText.setText(null)
-            currentFocus?.let { ApplicationHelper.hideKeyboardFrom(this@CardActivity as Context, it)
+            currentFocus?.let { AppHelper.hideKeyboardFrom(this@CardActivity as Context, it)
                 Log.d(TAG_LOG,"hide keyboard")
             }
             commentEditText.clearFocus()

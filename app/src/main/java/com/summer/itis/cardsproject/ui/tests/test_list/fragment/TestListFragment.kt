@@ -62,7 +62,7 @@ class TestListFragment : Fragment() {
         initRecycler()
 
         if (!isLoaded && type.equals(OFFICIAL_LIST)) {
-            parentView!!.changeAdapter(0)
+//            parentView!!.changeAdapter(0)
         }
 
         super.onViewCreated(view, savedInstanceState)

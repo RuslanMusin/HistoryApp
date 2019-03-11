@@ -1,5 +1,6 @@
 package com.summer.itis.cardsproject.ui.tests.test_list.test
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
@@ -15,6 +18,7 @@ import android.view.Menu
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.summer.itis.cardsproject.R
@@ -23,9 +27,11 @@ import com.summer.itis.cardsproject.repository.RepositoryProvider.Companion.user
 import com.summer.itis.cardsproject.repository.json.UserRepository
 import com.summer.itis.cardsproject.repository.json.UserRepository.Companion.currentId
 import com.summer.itis.cardsproject.ui.base.NavigationBaseActivity
+import com.summer.itis.cardsproject.ui.tests.add_test.AddTestActivity
 import com.summer.itis.cardsproject.ui.tests.test_item.TestActivity
 import com.summer.itis.cardsproject.ui.tests.test_list.TestAdapter
 import com.summer.itis.cardsproject.ui.tests.test_list.fragment.TestListFragment
+import com.summer.itis.cardsproject.ui.widget.EmptyStateRecyclerView
 import com.summer.itis.cardsproject.utils.Const.EDIT_STATUS
 import com.summer.itis.cardsproject.utils.Const.MY_LIST
 import com.summer.itis.cardsproject.utils.Const.OFFICIAL_LIST
@@ -33,6 +39,8 @@ import com.summer.itis.cardsproject.utils.Const.ONLINE_STATUS
 import com.summer.itis.cardsproject.utils.Const.TAG_LOG
 import com.summer.itis.cardsproject.utils.Const.USER_LIST
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_test_list.*
+import java.util.ArrayList
 
 class TestListActivity : NavigationBaseActivity(), TestListView {
 
@@ -41,6 +49,9 @@ class TestListActivity : NavigationBaseActivity(), TestListView {
     private var tabLayout: TabLayout? = null
     private var viewPager: ViewPager? = null
     private var adapter: TestAdapter? = null
+
+    private var recyclerView: EmptyStateRecyclerView? = null
+    private var tvEmpty: TextView? = null
 
     @InjectPresenter
     lateinit var presenter: TestListPresenter
@@ -54,57 +65,54 @@ class TestListActivity : NavigationBaseActivity(), TestListView {
         super.onCreate(savedInstanceState)
 
         val contentFrameLayout = findViewById<FrameLayout>(R.id.container)
-        layoutInflater.inflate(R.layout.activity_test_pager, contentFrameLayout)
+        layoutInflater.inflate(R.layout.activity_test_list, contentFrameLayout)
 
         toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         toolbar?.title = getString(R.string.tests)
         supportActionBar(toolbar!!)
 
-        viewPager = findViewById<View>(R.id.viewpager) as ViewPager
-        setupViewPager(viewPager!!)
-
-        tabLayout = findViewById<View>(R.id.tabs) as TabLayout
-        tabLayout!!.setupWithViewPager(viewPager)
-
-        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-
-        setTabListener()
+        initViews()
+        initRecycler()
+        presenter.loadOfficialTests()
 
     }
 
-    private fun setTabListener() {
-        tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                Log.d(TAG_LOG, "on tab selected")
-                viewPager!!.currentItem = tab.position
-                this@TestListActivity.changeAdapter(tab.position)
-            }
+    private fun initViews() {
+        progressBar = findViewById(R.id.pg_comics_list)
+        recyclerView = findViewById(R.id.rv_comics_list)
+        tvEmpty = findViewById(R.id.tv_empty)
+    }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
+    private fun initRecycler() {
+        adapter = TestAdapter(ArrayList<Test>())
+        val manager = LinearLayoutManager(this)
+        recyclerView!!.layoutManager = manager
+        recyclerView!!.setEmptyView(tvEmpty!!)
+        adapter!!.attachToRecyclerView(recyclerView!!)
+        adapter!!.setOnItemClickListener(this)
+        recyclerView!!.adapter = adapter
 
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
+        recyclerView?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && floating_button.getVisibility() == View.VISIBLE) {
+                    floating_button.hide();
+                } else if (dy < 0 && floating_button.getVisibility() != View.VISIBLE) {
+                    floating_button.show();
+                }
             }
         })
+
+        floating_button.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                Log.d(TAG_LOG,"act float btn")
+                AddTestActivity.start(this@TestListActivity)
+            }
+        })
+
     }
 
-    override fun changeAdapter(position: Int) {
-        val fragment = (viewPager!!.adapter as ViewPagerAdapter).getFragmentForChange(position)
-        fragment.changeDataInAdapter()
-    }
-
-    private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(TestListFragment.newInstance(OFFICIAL_LIST, this), OFFICIAL_LIST)
-        adapter.addFragment(TestListFragment.newInstance(USER_LIST, this), USER_LIST)
-        adapter.addFragment(TestListFragment.newInstance(MY_LIST, this),MY_LIST)
-        this.currentType = OFFICIAL_LIST
-        viewPager.adapter = adapter
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+   /* override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.search_menu, menu)
 
         val searchItem = menu.findItem(R.id.action_search)
@@ -138,33 +146,7 @@ class TestListActivity : NavigationBaseActivity(), TestListView {
             })
         }
         return super.onCreateOptionsMenu(menu)
-    }
-
-    internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
-        private val mFragmentList = ArrayList<Fragment>()
-        private val mFragmentTitleList = ArrayList<String>()
-
-        override fun getItem(position: Int): Fragment {
-            return mFragmentList[position]
-        }
-
-        fun getFragmentForChange(position: Int): TestListFragment {
-            return mFragmentList[position] as TestListFragment
-        }
-
-        override fun getCount(): Int {
-            return mFragmentList.size
-        }
-
-        fun addFragment(fragment: Fragment, title: String) {
-            mFragmentList.add(fragment)
-            mFragmentTitleList.add(title)
-        }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return mFragmentTitleList[position]
-        }
-    }
+    }*/
 
     override fun onItemClick(item: Test) {
         presenter!!.onItemClick(item)
